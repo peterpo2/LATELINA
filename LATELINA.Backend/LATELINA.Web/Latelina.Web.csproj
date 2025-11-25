@@ -28,9 +28,9 @@
   <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
 </ItemGroup>
 <ItemGroup>
-  <ProjectReference Include="..\AIPharm.Infrastructure\AIPharm.Infrastructure.csproj" />
-  <ProjectReference Include="..\AIPharm.Core\AIPharm.Core.csproj" />
-  <ProjectReference Include="..\AIPharm.Domain\AIPharm.Domain.csproj" />
+  <ProjectReference Include="..\Latelina.Infrastructure\Latelina.Infrastructure.csproj" />
+  <ProjectReference Include="..\Latelina.Core\Latelina.Core.csproj" />
+  <ProjectReference Include="..\Latelina.Domain\Latelina.Domain.csproj" />
 </ItemGroup>
 
 

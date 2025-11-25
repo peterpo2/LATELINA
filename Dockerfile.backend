@@ -3,19 +3,19 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy only the project files needed for restore
-COPY AIPharm.Backend/AIPharm.Web/AIPharm.Web.csproj AIPharm.Web/
-COPY AIPharm.Backend/AIPharm.Core/AIPharm.Core.csproj AIPharm.Core/
-COPY AIPharm.Backend/AIPharm.Domain/AIPharm.Domain.csproj AIPharm.Domain/
-COPY AIPharm.Backend/AIPharm.Infrastructure/AIPharm.Infrastructure.csproj AIPharm.Infrastructure/
+COPY LATELINA.Backend/LATELINA.Web/Latelina.Web.csproj Latelina.Web/
+COPY LATELINA.Backend/LATELINA.Core/Latelina.Core.csproj Latelina.Core/
+COPY LATELINA.Backend/LATELINA.Domain/Latelina.Domain.csproj Latelina.Domain/
+COPY LATELINA.Backend/LATELINA.Infrastructure/Latelina.Infrastructure.csproj Latelina.Infrastructure/
 
 # Restore dependencies based only on the Web project
-RUN dotnet restore AIPharm.Web/AIPharm.Web.csproj
+RUN dotnet restore Latelina.Web/Latelina.Web.csproj
 
 # Copy the rest of the source
-COPY AIPharm.Backend/ ./
+COPY LATELINA.Backend/ ./
 
 # Publish
-RUN dotnet publish AIPharm.Web/AIPharm.Web.csproj -c Release -o /out /p:UseAppHost=false
+RUN dotnet publish Latelina.Web/Latelina.Web.csproj -c Release -o /out /p:UseAppHost=false
 
 # ---------- runtime stage ----------
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
@@ -26,4 +26,4 @@ COPY --from=build /out .
 RUN echo "=== FINAL CONTENT ===" && ls -la /app
 
 # Run the web app
-ENTRYPOINT ["dotnet", "AIPharm.Web.dll"]
+ENTRYPOINT ["dotnet", "Latelina.Web.dll"]

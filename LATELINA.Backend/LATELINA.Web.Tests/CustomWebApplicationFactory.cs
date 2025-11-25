@@ -1,11 +1,11 @@
 using System.Linq;
-using AIPharm.Infrastructure.Data;
+using Latelina.Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AIPharm.Web.Tests;
+namespace Latelina.Web.Tests;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
@@ -16,10 +16,10 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         builder.ConfigureServices(services =>
         {
             var descriptors = services
-                .Where(d => d.ServiceType == typeof(DbContextOptions<AIPharmDbContext>)
-                         || d.ServiceType == typeof(AIPharmDbContext)
-                         || d.ServiceType == typeof(IDbContextFactory<AIPharmDbContext>)
-                         || d.ServiceType == typeof(IPooledDbContextFactory<AIPharmDbContext>))
+                .Where(d => d.ServiceType == typeof(DbContextOptions<LatelinaDbContext>)
+                         || d.ServiceType == typeof(LatelinaDbContext)
+                         || d.ServiceType == typeof(IDbContextFactory<LatelinaDbContext>)
+                         || d.ServiceType == typeof(IPooledDbContextFactory<LatelinaDbContext>))
                 .ToList();
 
             foreach (var descriptor in descriptors)
@@ -27,13 +27,13 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 services.Remove(descriptor);
             }
 
-            services.AddDbContext<AIPharmDbContext>(options =>
-                options.UseInMemoryDatabase("AIPharmTests"));
+            services.AddDbContext<LatelinaDbContext>(options =>
+                options.UseInMemoryDatabase("LatelinaTests"));
 
             var serviceProvider = services.BuildServiceProvider();
 
             using var scope = serviceProvider.CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<AIPharmDbContext>();
+            var db = scope.ServiceProvider.GetRequiredService<LatelinaDbContext>();
             db.Database.EnsureCreated();
         });
     }

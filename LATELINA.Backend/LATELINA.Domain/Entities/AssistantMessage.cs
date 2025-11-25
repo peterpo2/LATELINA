@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class AssistantMessage
     {

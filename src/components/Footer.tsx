@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Instagram, Stethoscope, Shield, Award, Star } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import AIPharmLogo from './Logo';
+import LatelinaLogo from './Logo';
 import { quickLinks } from '../data/navigation';
 import { APP_VERSION } from '../config/appVersion';
 
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
       `${t('footer.ratingLabel')}: ${rating}/5\n\n${message.trim()}`,
     );
 
-    window.location.href = `mailto:aipharmproject@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:latelinaproject@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
           {/* Logo and description */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <AIPharmLogo className="h-16" />
+              <LatelinaLogo className="h-16" />
             </div>
             
             <p className="text-gray-300 mb-8 max-w-lg leading-relaxed text-lg">

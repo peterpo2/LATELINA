@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AIPharm.Core.Security;
-using AIPharm.Domain.Entities;
+using Latelina.Core.Security;
+using Latelina.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace AIPharm.Infrastructure.Data
+namespace Latelina.Infrastructure.Data
 {
     public static class DbInitializer
     {
-        public static async Task InitializeAsync(AIPharmDbContext context, bool dropAndRecreate, CancellationToken ct = default)
+        public static async Task InitializeAsync(LatelinaDbContext context, bool dropAndRecreate, CancellationToken ct = default)
         {
             if (dropAndRecreate)
             {
@@ -339,8 +339,8 @@ namespace AIPharm.Infrastructure.Data
             {
                 new
                 {
-                    Email = "aipharmproject@gmail.com",
-                    FullName = "AIPharm Administrator",
+                    Email = "latelinaproject@gmail.com",
+                    FullName = "Latelina Administrator",
                     IsAdmin = true,
                     IsStaff = true,
                     Password = "Admin123!",
@@ -442,7 +442,7 @@ namespace AIPharm.Infrastructure.Data
             await EnsureDemoOrdersAsync(context, ct);
         }
 
-        private static async Task EnsureDemoOrdersAsync(AIPharmDbContext context, CancellationToken ct)
+        private static async Task EnsureDemoOrdersAsync(LatelinaDbContext context, CancellationToken ct)
         {
             var users = await context.Users
                 .AsNoTracking()
@@ -558,7 +558,7 @@ namespace AIPharm.Infrastructure.Data
             Console.WriteLine($"✅ Seeded {ordersToAdd.Count} demo order(s).");
         }
 
-        private static async Task EnsureAdminTwoFactorDisabledAsync(AIPharmDbContext context, CancellationToken ct)
+        private static async Task EnsureAdminTwoFactorDisabledAsync(LatelinaDbContext context, CancellationToken ct)
         {
             var adminUsers = await context.Users
                 .Where(u => u.IsAdmin && u.TwoFactorEnabled)

@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using AIPharm.Domain.Entities;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Infrastructure.Data
+namespace Latelina.Infrastructure.Data
 {
-      public class AIPharmDbContext : DbContext
+      public class LatelinaDbContext : DbContext
       {
-            public AIPharmDbContext(DbContextOptions<AIPharmDbContext> options) : base(options)
+            public LatelinaDbContext(DbContextOptions<LatelinaDbContext> options) : base(options)
             {
             }
 

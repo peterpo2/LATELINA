@@ -1,6 +1,6 @@
-# AIPharm+
+# Latelina
 
-AIPharm+ is a full digital-pharmacy demo that combines a .NET 8 Web API, a React + TypeScript storefront, seeded SQL Server
+Latelina is a full digital-pharmacy demo that combines a .NET 8 Web API, a React + TypeScript storefront, seeded SQL Server
 data, and an AI chat assistant powered by OpenAI. The goal is to help you explore a realistic e-commerce experience that includes
 medical product browsing, ordering, and conversational support.
 
@@ -84,8 +84,8 @@ graph TB
 ## AI agents & automation (AI агенти)
 - Learn how the AI chat assistant is wired into the backend, how it stores context, and how to extend it for customer-service automations in [`docs/AI-AGENTS.md`](docs/AI-AGENTS.md).
 - Документът включва **начални промптове** за стартиране на агент за разработка, примерни правила за безопасност и инструкции за наблюдение на разходите към OpenAI API.
-- Recommended starter prompt for development work: _"Act as the AIPharm+ development co-pilot. Before coding, confirm the active feature flag set, check the current version (0.1.0), and list impacted microservices. Provide a step-by-step plan before editing files."_  
-  Препоръчителен начален промпт (BG): _"Действай като AIPharm+ агент за разработка. Провери текущата версия (0.1.0), активните функционални флагове и зависимостите към бекенда, след което предложи план на български преди да правиш промени."_
+- Recommended starter prompt for development work: _"Act as the Latelina development co-pilot. Before coding, confirm the active feature flag set, check the current version (0.1.0), and list impacted microservices. Provide a step-by-step plan before editing files."_  
+  Препоръчителен начален промпт (BG): _"Действай като Latelina агент за разработка. Провери текущата версия (0.1.0), активните функционални флагове и зависимостите към бекенда, след което предложи план на български преди да правиш промени."_
 
 Use the sections below when you are ready to clone the repository and configure your environment.
 
@@ -110,8 +110,8 @@ Use the sections below when you are ready to clone the repository and configure 
 Open a terminal (PowerShell on Windows, Terminal on macOS/Linux) and run:
 
 ```bash
-git clone https://github.com/your-username/AIPharm.git
-cd AIPharm
+git clone https://github.com/your-username/Latelina.git
+cd Latelina
 ```
 
 You should now be inside the project folder that contains the `docker-compose.yml` file.
@@ -136,16 +136,16 @@ There are two easy options—pick whichever you prefer:
   3. Docker Compose automatically loads the value and passes it to the backend.
 
 - **Option B: edit the appsettings file**  
-  1. Open `AIPharm.Backend/AIPharm.Web/appsettings.json`.  
+  1. Open `Latelina.Backend/Latelina.Web/appsettings.json`.  
   2. Find the `"OpenAI": { "ApiKey": "" }` section and paste your key between the quotes.  
   3. Save the file.  
   4. Remember not to commit this file to public source control.
 
 ### 3.3 Configure email (optional)
 If you want the app to send verification emails:
-1. Open `AIPharm.Backend/AIPharm.Web/appsettings.json`.
+1. Open `Latelina.Backend/Latelina.Web/appsettings.json`.
 2. In the `Email` section replace the Gmail address, app password, and other settings with your own email provider values.  Gmail requires 2-Step Verification and an app password.
-3. To store copies of outgoing emails on disk set `UsePickupDirectory` to `true` and pick a folder inside `AIPharm.Backend/AIPharm.Web/App_Data`.
+3. To store copies of outgoing emails on disk set `UsePickupDirectory` to `true` and pick a folder inside `Latelina.Backend/Latelina.Web/App_Data`.
 
 If you do not need email right now you can leave the defaults. The app will still run.
 
@@ -173,7 +173,7 @@ To stop everything press `Ctrl + C` in the terminal.  To delete the containers r
 
 | Role | Email | Password |
 | --- | --- | --- |
-| Administrator | aipharmproject@gmail.com | Admin123! |
+| Administrator | latelinaproject@gmail.com | Admin123! |
 | Staff | diyana.angelova@example.com | Employee123! |
 | Staff | petar.iliev@example.com | Employee456! |
 | Customer | maria.ivanova@example.com | Customer123! |
@@ -189,9 +189,9 @@ If you installed the optional tooling from the prerequisites you can run each pr
 
 ### Backend (.NET)
 ```bash
-cd AIPharm.Backend
+cd Latelina.Backend
 dotnet restore
-cd AIPharm.Web
+cd Latelina.Web
 dotnet ef database update
 dotnet run
 ```
@@ -219,4 +219,4 @@ Attach to your SQL Server using the password you set in section 3.1.
 
 ---
 
-You now have a local copy of AIPharm+.  Explore the code, change the styling, or extend the API once you are comfortable.
+You now have a local copy of Latelina.  Explore the code, change the styling, or extend the API once you are comfortable.

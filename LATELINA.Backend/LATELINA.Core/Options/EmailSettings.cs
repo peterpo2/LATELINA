@@ -1,14 +1,14 @@
-namespace AIPharm.Core.Options
+namespace Latelina.Core.Options
 {
     public class EmailSettings
     {
-        public string FromAddress { get; set; } = "aipharmproject@gmail.com";
-        public string FromName { get; set; } = "AIPharm";
+        public string FromAddress { get; set; } = "latelinaproject@gmail.com";
+        public string FromName { get; set; } = "Latelina";
         public string? OverrideToAddress { get; set; }
         public string SmtpHost { get; set; } = "smtp.gmail.com";
         public int SmtpPort { get; set; } = 587;
         public bool EnableSsl { get; set; } = true;
-        public string? Username { get; set; } = "aipharmproject@gmail.com";
+        public string? Username { get; set; } = "latelinaproject@gmail.com";
         public string? Password { get; set; }
         public bool UseOAuth { get; set; }
         public string OAuthScope { get; set; } = "https://mail.google.com/";

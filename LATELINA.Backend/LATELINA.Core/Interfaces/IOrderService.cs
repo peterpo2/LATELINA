@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AIPharm.Core.DTOs;
-using AIPharm.Domain.Entities;
+using Latelina.Core.DTOs;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface IOrderService
     {

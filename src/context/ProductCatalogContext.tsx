@@ -33,7 +33,7 @@ interface ProductCatalogContextValue {
   removePromotion: (id: number) => Product | null;
 }
 
-const STORAGE_KEY = 'aipharm.catalog.products';
+const STORAGE_KEY = 'latelina.catalog.products';
 
 const ProductCatalogContext = createContext<ProductCatalogContextValue | undefined>(undefined);
 

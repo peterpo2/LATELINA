@@ -1,6 +1,6 @@
-# Docker Guide for AIPharm+
+# Docker Guide for Latelina
 
-AIPharm+ is a digital-pharmacy demo that blends a React storefront, .NET 8 Web API, SQL Server database, and an OpenAI-powered
+Latelina is a digital-pharmacy demo that blends a React storefront, .NET 8 Web API, SQL Server database, and an OpenAI-powered
 assistant. The Docker setup lets you experience every feature—including the seeded catalog, AI chat widget, and admin dashboard—
 without installing the individual runtimes.
 
@@ -24,8 +24,8 @@ Optional: update the email settings if you want the app to send real emails.  Th
 
 1. Open a terminal and clone the repository:
    ```bash
-   git clone https://github.com/your-username/AIPharm.git
-   cd AIPharm
+   git clone https://github.com/your-username/Latelina.git
+   cd Latelina
    ```
 2. Open `docker-compose.yml` and replace every `Xyzzy2005!` value with the SQL Server password you chose.
 3. Create a file named `.env` in the same folder and add your OpenAI key:
@@ -33,7 +33,7 @@ Optional: update the email settings if you want the app to send real emails.  Th
    echo OpenAI__ApiKey=your-openai-api-key > .env
    ```
    - If you are on Windows PowerShell use: `Set-Content -Path .env -Value 'OpenAI__ApiKey=your-openai-api-key'`
-4. (Optional) Edit `AIPharm.Backend/AIPharm.Web/appsettings.json` and replace the email address, password, and SMTP host with
+4. (Optional) Edit `Latelina.Backend/Latelina.Web/appsettings.json` and replace the email address, password, and SMTP host with
 your own values if you need working email.
 
 You only need to do these edits once.
@@ -78,7 +78,7 @@ If you change the SQL password or OpenAI key rerun `docker-compose up --build` t
 
 | Role | Email | Password |
 | --- | --- | --- |
-| Administrator | aipharmproject@gmail.com | Admin123! |
+| Administrator | latelinaproject@gmail.com | Admin123! |
 | Customer | maria.ivanova@example.com | Customer123! |
 | Customer | georgi.petrov@example.com | Customer456! |
 

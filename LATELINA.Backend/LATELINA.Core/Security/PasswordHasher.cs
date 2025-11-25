@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace AIPharm.Core.Security
+namespace Latelina.Core.Security
 {
     public static class PasswordHasher
     {

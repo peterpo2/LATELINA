@@ -4,13 +4,13 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
 
-using AIPharm.Infrastructure.Data;
-using AIPharm.Infrastructure.Repositories;
-using AIPharm.Infrastructure.Services;
-using AIPharm.Core.Interfaces;
-using AIPharm.Core.Services;
-using AIPharm.Core.Mapping;
-using AIPharm.Core.Options;
+using Latelina.Infrastructure.Data;
+using Latelina.Infrastructure.Repositories;
+using Latelina.Infrastructure.Services;
+using Latelina.Core.Interfaces;
+using Latelina.Core.Services;
+using Latelina.Core.Mapping;
+using Latelina.Core.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,7 +49,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // === EF Core DbContext ===
-builder.Services.AddDbContextPool<AIPharmDbContext>(opt =>
+builder.Services.AddDbContextPool<LatelinaDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // === Repositories & Services ===
@@ -63,7 +63,7 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 
 // === Health checks ===
-builder.Services.AddHealthChecks().AddDbContextCheck<AIPharmDbContext>("db");
+builder.Services.AddHealthChecks().AddDbContextCheck<LatelinaDbContext>("db");
 
 // === CORS ===
 // Reads from ALLOWED_CORS_ORIGINS in .env.prod
@@ -90,7 +90,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AIPharm API v1");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Latelina API v1");
 });
 
 // === HTTPS redirection (skip in Docker) ===
@@ -110,7 +110,7 @@ app.MapControllers();
 app.MapGet("/", () =>
     Results.Ok(new
     {
-        name = "AIPharm API",
+        name = "Latelina API",
         env = app.Environment.EnvironmentName,
         time = DateTime.UtcNow
     }))
@@ -122,7 +122,7 @@ app.MapHealthChecks("/health");
 if (!app.Environment.IsEnvironment("Testing"))
 {
     using var scope = app.Services.CreateScope();
-    var ctx = scope.ServiceProvider.GetRequiredService<AIPharmDbContext>();
+    var ctx = scope.ServiceProvider.GetRequiredService<LatelinaDbContext>();
     try
     {
         var drop = (Environment.GetEnvironmentVariable("DROP_DB_ON_STARTUP") ?? "false")

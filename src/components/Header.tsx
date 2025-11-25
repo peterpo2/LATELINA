@@ -19,7 +19,7 @@ import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import LoginModal from './auth/LoginModal';
 import RegisterModal from './auth/RegisterModal';
-import AIPharmLogo from './Logo';
+import LatelinaLogo from './Logo';
 import ProfileSettingsModal from './profile/ProfileSettingsModal';
 import MyOrdersModal from './profile/MyOrdersModal';
 import { quickLinks } from '../data/navigation';
@@ -65,10 +65,10 @@ const Header: React.FC<HeaderProps> = ({
 
     const handleOpenLoginModal = () => setShowLoginModal(true);
 
-    window.addEventListener('aiPharm:openLoginModal', handleOpenLoginModal);
+    window.addEventListener('latelina:openLoginModal', handleOpenLoginModal);
 
     return () => {
-      window.removeEventListener('aiPharm:openLoginModal', handleOpenLoginModal);
+      window.removeEventListener('latelina:openLoginModal', handleOpenLoginModal);
     };
   }, []);
 
@@ -226,7 +226,7 @@ const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <AIPharmLogo className="h-12" />
+            <LatelinaLogo className="h-12" />
           </Link>
 
           {/* Search bar */}

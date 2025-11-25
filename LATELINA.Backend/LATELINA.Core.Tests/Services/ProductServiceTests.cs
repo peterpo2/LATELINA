@@ -1,13 +1,13 @@
 using AutoMapper;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
-using AIPharm.Core.Mapping;
-using AIPharm.Core.Services;
-using AIPharm.Domain.Entities;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
+using Latelina.Core.Mapping;
+using Latelina.Core.Services;
+using Latelina.Domain.Entities;
 using Moq;
 using Xunit;
 
-namespace AIPharm.Core.Tests.Services;
+namespace Latelina.Core.Tests.Services;
 
 public class ProductServiceTests
 {

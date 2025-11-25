@@ -1,10 +1,10 @@
 using System.Net;
 using System.Net.Http.Json;
-using AIPharm.Core.DTOs;
+using Latelina.Core.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
-namespace AIPharm.Web.Tests;
+namespace Latelina.Web.Tests;
 
 public class ProductsControllerTests : IClassFixture<CustomWebApplicationFactory>
 {

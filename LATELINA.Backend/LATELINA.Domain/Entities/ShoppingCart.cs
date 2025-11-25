@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class ShoppingCart
     {

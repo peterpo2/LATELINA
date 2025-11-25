@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

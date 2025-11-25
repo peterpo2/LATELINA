@@ -1,9 +1,9 @@
-﻿### C:\AIPharm\AIPharm.Backend\AIPharm.Domain\Entities\CartItem.cs
+﻿### C:\Latelina\Latelina.Backend\Latelina.Domain\Entities\CartItem.cs
 `csharp
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class CartItem
     {
@@ -30,11 +30,11 @@ namespace AIPharm.Domain.Entities
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Domain\Entities\Category.cs
+### C:\Latelina\Latelina.Backend\Latelina.Domain\Entities\Category.cs
 `csharp
 using System.ComponentModel.DataAnnotations;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class Category
     {
@@ -61,12 +61,12 @@ namespace AIPharm.Domain.Entities
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Domain\Entities\Order.cs
+### C:\Latelina\Latelina.Backend\Latelina.Domain\Entities\Order.cs
 `csharp
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public enum OrderStatus
     {
@@ -116,12 +116,12 @@ namespace AIPharm.Domain.Entities
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Domain\Entities\OrderItem.cs
+### C:\Latelina\Latelina.Backend\Latelina.Domain\Entities\OrderItem.cs
 `csharp
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class OrderItem
     {
@@ -151,12 +151,12 @@ namespace AIPharm.Domain.Entities
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Domain\Entities\Product.cs
+### C:\Latelina\Latelina.Backend\Latelina.Domain\Entities\Product.cs
 `csharp
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class Product
     {
@@ -222,12 +222,12 @@ namespace AIPharm.Domain.Entities
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Domain\Entities\ShoppingCart.cs
+### C:\Latelina\Latelina.Backend\Latelina.Domain\Entities\ShoppingCart.cs
 `csharp
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class ShoppingCart
     {
@@ -253,11 +253,11 @@ namespace AIPharm.Domain.Entities
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Domain\Entities\User.cs
+### C:\Latelina\Latelina.Backend\Latelina.Domain\Entities\User.cs
 `csharp
 using System.ComponentModel.DataAnnotations;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class User
     {

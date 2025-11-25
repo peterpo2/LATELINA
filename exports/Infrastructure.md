@@ -1,13 +1,13 @@
-﻿### C:\AIPharm\AIPharm.Backend\AIPharm.Infrastructure\Data\AIPharmDbContext.cs
+﻿### C:\Latelina\Latelina.Backend\Latelina.Infrastructure\Data\LatelinaDbContext.cs
 `csharp
 using Microsoft.EntityFrameworkCore;
-using AIPharm.Domain.Entities;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Infrastructure.Data
+namespace Latelina.Infrastructure.Data
 {
-    public class AIPharmDbContext : DbContext
+    public class LatelinaDbContext : DbContext
     {
-        public AIPharmDbContext(DbContextOptions<AIPharmDbContext> options) : base(options)
+        public LatelinaDbContext(DbContextOptions<LatelinaDbContext> options) : base(options)
         {
         }
 
@@ -122,16 +122,16 @@ namespace AIPharm.Infrastructure.Data
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Infrastructure\Data\DbInitializer.cs
+### C:\Latelina\Latelina.Backend\Latelina.Infrastructure\Data\DbInitializer.cs
 `csharp
-using AIPharm.Domain.Entities;
-using AIPharm.Infrastructure.Data;
+using Latelina.Domain.Entities;
+using Latelina.Infrastructure.Data;
 
-namespace AIPharm.Infrastructure.Data
+namespace Latelina.Infrastructure.Data
 {
     public static class DbInitializer
     {
-        public static async Task InitializeAsync(AIPharmDbContext context)
+        public static async Task InitializeAsync(LatelinaDbContext context)
         {
             // Ensure database is created
             await context.Database.EnsureCreatedAsync();
@@ -422,7 +422,7 @@ namespace AIPharm.Infrastructure.Data
                 new User
                 {
                     Id = "admin-user-id",
-                    Email = "aipharmproject@gmail.com",
+                    Email = "latelinaproject@gmail.com",
                     FullName = "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ",
                     IsAdmin = true,
                     CreatedAt = DateTime.UtcNow
@@ -446,21 +446,21 @@ namespace AIPharm.Infrastructure.Data
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Infrastructure\Repositories\Repository.cs
+### C:\Latelina\Latelina.Backend\Latelina.Infrastructure\Repositories\Repository.cs
 `csharp
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using AIPharm.Core.Interfaces;
-using AIPharm.Infrastructure.Data;
+using Latelina.Core.Interfaces;
+using Latelina.Infrastructure.Data;
 
-namespace AIPharm.Infrastructure.Repositories
+namespace Latelina.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly AIPharmDbContext _context;
+        protected readonly LatelinaDbContext _context;
         protected readonly DbSet<T> _dbSet;
 
-        public Repository(AIPharmDbContext context)
+        public Repository(LatelinaDbContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();

@@ -89,13 +89,13 @@ export const newsArticles: NewsArticle[] = [
     excerptEn:
       'Artificial intelligence enables faster consultations, personalized recommendations, and improved service in pharmacies.',
     content:
-      'В AIPHARM+ интегрираме AI решения, които подпомагат фармацевтите в ежедневната им работа. Системата анализира симптоми, ' +
+      'В Latelina интегрираме AI решения, които подпомагат фармацевтите в ежедневната им работа. Системата анализира симптоми, ' +
       'лекарствени взаимодействия и наличности в реално време, за да предложи най-подходящите продукти. Това съкращава времето за ' +
       'обслужване и намалява риска от грешки.\n\nAI асистентът ни предоставя персонализирани съвети, базирани на нуждите на клиента, ' +
       'и напомня за предстоящи рефил заявки. Така клиентите получават по-високо качество на обслужване, а фармацевтите могат да се концентрират ' +
       'върху професионалните консултации.',
     contentEn:
-      'At AIPHARM+ we integrate AI solutions that support pharmacists in their daily work. The system analyses symptoms, drug interactions, ' +
+      'At Latelina we integrate AI solutions that support pharmacists in their daily work. The system analyses symptoms, drug interactions, ' +
       'and inventory in real time to suggest the most appropriate products, reducing service time and minimizing errors.\n\nOur AI assistant delivers ' +
       'personalized advice based on customer needs and sends refill reminders. Customers benefit from higher service quality while pharmacists focus on professional consultations.',
     category: 'Технологии',

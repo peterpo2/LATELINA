@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AIPharm.Domain.Entities
+namespace Latelina.Domain.Entities
 {
     public class Category
     {

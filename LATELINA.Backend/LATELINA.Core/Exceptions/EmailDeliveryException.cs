@@ -1,6 +1,6 @@
 using System;
 
-namespace AIPharm.Core.Exceptions;
+namespace Latelina.Core.Exceptions;
 
 public class EmailDeliveryException : Exception
 {

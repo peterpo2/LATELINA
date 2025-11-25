@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using AIPharm.Core.Interfaces;
-using AIPharm.Infrastructure.Data;
+using Latelina.Core.Interfaces;
+using Latelina.Infrastructure.Data;
 
-namespace AIPharm.Infrastructure.Repositories
+namespace Latelina.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly AIPharmDbContext _context;
+        protected readonly LatelinaDbContext _context;
         protected readonly DbSet<T> _dbSet;
 
-        public Repository(AIPharmDbContext context)
+        public Repository(LatelinaDbContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();

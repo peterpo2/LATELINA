@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.10" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AIPharm.Web\AIPharm.Web.csproj" />
-    <ProjectReference Include="..\AIPharm.Core\AIPharm.Core.csproj" />
+    <ProjectReference Include="..\Latelina.Web\Latelina.Web.csproj" />
+    <ProjectReference Include="..\Latelina.Core\Latelina.Core.csproj" />
   </ItemGroup>
 </Project>

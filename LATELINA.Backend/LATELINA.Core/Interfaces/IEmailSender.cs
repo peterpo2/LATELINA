@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface IEmailSender
     {

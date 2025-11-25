@@ -10,7 +10,7 @@ interface NewsContextValue {
   deleteArticle: (id: string) => void;
 }
 
-const STORAGE_KEY = 'aipharm.news';
+const STORAGE_KEY = 'latelina.news';
 
 const sortArticles = (articles: NewsArticle[]): NewsArticle[] => {
   return articles

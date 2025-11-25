@@ -1,4 +1,4 @@
-# 📚 AIPharm+ API Documentation
+# 📚 Latelina API Documentation
 
 ## 🔗 Base URL
 ```
@@ -19,7 +19,7 @@ POST /api/auth/login
 Content-Type: application/json
 
 { 
-  "email": "aipharmproject@gmail.com",
+  "email": "latelinaproject@gmail.com",
   "password": "Admin123!",
   "rememberMe": true
 }
@@ -226,7 +226,7 @@ POST /api/auth/login
 Content-Type: application/json
 
 { 
-  "email": "aipharmproject@gmail.com",
+  "email": "latelinaproject@gmail.com",
   "password": "Admin123!",
   "rememberMe": true
 }
@@ -240,8 +240,8 @@ Content-Type: application/json
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "user": {
     "id": "admin-user-id",
-    "email": "aipharmproject@gmail.com",
-    "fullName": "AIPharm Administrator",
+    "email": "latelinaproject@gmail.com",
+    "fullName": "Latelina Administrator",
     "isAdmin": true,
     "createdAt": "2025-01-01T00:00:00Z"
   }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

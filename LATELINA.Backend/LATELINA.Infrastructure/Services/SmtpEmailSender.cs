@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using AIPharm.Core.Exceptions;
-using AIPharm.Core.Interfaces;
-using AIPharm.Core.Options;
+using Latelina.Core.Exceptions;
+using Latelina.Core.Interfaces;
+using Latelina.Core.Options;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Hosting;
@@ -14,7 +14,7 @@ using Microsoft.Identity.Client;
 using MimeKit;
 using MimeKit.Text;
 
-namespace AIPharm.Infrastructure.Services;
+namespace Latelina.Infrastructure.Services;
 
 public class SmtpEmailSender : IEmailSender
 {

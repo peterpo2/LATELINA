@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface IRepository<T> where T : class
     {

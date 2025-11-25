@@ -1,6 +1,6 @@
-# Manual Setup Guide for AIPharm+
+# Manual Setup Guide for Latelina
 
-AIPharm+ delivers a full digital-pharmacy experience: React + TypeScript storefront, .NET 8 Web API with AI-powered assistance,
+Latelina delivers a full digital-pharmacy experience: React + TypeScript storefront, .NET 8 Web API with AI-powered assistance,
 seeded SQL Server data, and sample accounts for testing. Running it manually gives you insight into how each part works and how
 they connect.
 
@@ -30,8 +30,8 @@ You will also need:
 Open a terminal and run:
 
 ```bash
-git clone https://github.com/your-username/AIPharm.git
-cd AIPharm
+git clone https://github.com/your-username/Latelina.git
+cd Latelina
 ```
 
 ---
@@ -39,15 +39,15 @@ cd AIPharm
 ## 3. Configure secrets
 
 ### 3.1 Database connection
-Edit `AIPharm.Backend/AIPharm.Web/appsettings.Development.json` and update the `DefaultConnection` string so it points to your SQL
+Edit `Latelina.Backend/Latelina.Web/appsettings.Development.json` and update the `DefaultConnection` string so it points to your SQL
 Server instance.  Replace:
-- `Server=aipharm-database,1433` with the server name or `localhost\\SQLEXPRESS`.
+- `Server=latelina-database,1433` with the server name or `localhost\\SQLEXPRESS`.
 - `Password=Xyzzy2005!` with the password for your `sa` or SQL login.
 
 ### 3.2 OpenAI key
 Choose one of the following:
 - Add `OpenAI__ApiKey=your-openai-key` as an environment variable in your operating system, **or**
-- Edit `AIPharm.Backend/AIPharm.Web/appsettings.json` and set the `OpenAI.ApiKey` value.
+- Edit `Latelina.Backend/Latelina.Web/appsettings.json` and set the `OpenAI.ApiKey` value.
 
 Make sure your OpenAI account has credit—free accounts cannot call the API.
 
@@ -60,15 +60,15 @@ if you simply want `.eml` files saved locally for testing.
 
 ## 4. Prepare the database
 
-1. Open a terminal inside `AIPharm.Backend`.
+1. Open a terminal inside `Latelina.Backend`.
 2. Restore packages and create the database:
    ```bash
    dotnet restore
-   cd AIPharm.Web
+   cd Latelina.Web
    dotnet tool restore
    dotnet ef database update
    ```
-   The migrations create the `AIPharm` database and populate it with sample data.
+   The migrations create the `Latelina` database and populate it with sample data.
 
 If you receive a login error double-check the connection string from step 3.1.
 
@@ -76,7 +76,7 @@ If you receive a login error double-check the connection string from step 3.1.
 
 ## 5. Run the backend
 
-From `AIPharm.Backend/AIPharm.Web` execute:
+From `Latelina.Backend/Latelina.Web` execute:
 ```bash
 dotnet run
 ```
@@ -110,7 +110,7 @@ Use the seeded accounts to log in:
 
 | Role | Email | Password |
 | --- | --- | --- |
-| Administrator | aipharmproject@gmail.com | Admin123! |
+| Administrator | latelinaproject@gmail.com | Admin123! |
 | Customer | maria.ivanova@example.com | Customer123! |
 | Customer | georgi.petrov@example.com | Customer456! |
 
@@ -122,7 +122,7 @@ Change the administrator password before using the site with real data.
 
 | Issue | Suggested fix |
 | --- | --- |
-| `dotnet ef` command not found | Run `dotnet tool restore` inside `AIPharm.Backend`. |
+| `dotnet ef` command not found | Run `dotnet tool restore` inside `Latelina.Backend`. |
 | Database login failed | Check the server name, username, and password in `appsettings.Development.json`. |
 | Swagger shows OpenAI errors | Ensure your OpenAI API key is correct and that your account has an active paid plan. |
 | Frontend cannot reach the API | Confirm the backend terminal shows `Now listening on: http://localhost:5000`. Update `VITE_API_BASE_URL` if you changed the port. |

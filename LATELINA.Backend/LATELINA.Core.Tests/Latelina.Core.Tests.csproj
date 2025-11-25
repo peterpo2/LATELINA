@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AIPharm.Core\AIPharm.Core.csproj" />
-    <ProjectReference Include="..\AIPharm.Infrastructure\AIPharm.Infrastructure.csproj" />
-    <ProjectReference Include="..\AIPharm.Domain\AIPharm.Domain.csproj" />
-    <ProjectReference Include="..\AIPharm.Web\AIPharm.Web.csproj" />
+    <ProjectReference Include="..\Latelina.Core\Latelina.Core.csproj" />
+    <ProjectReference Include="..\Latelina.Infrastructure\Latelina.Infrastructure.csproj" />
+    <ProjectReference Include="..\Latelina.Domain\Latelina.Domain.csproj" />
+    <ProjectReference Include="..\Latelina.Web\Latelina.Web.csproj" />
   </ItemGroup>
 </Project>

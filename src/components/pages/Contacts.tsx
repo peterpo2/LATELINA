@@ -41,7 +41,7 @@ const Contacts: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">{t('contacts.email')}</h3>
-                    <p className="text-gray-600">aipharmproject@gmail.com</p>
+                    <p className="text-gray-600">latelinaproject@gmail.com</p>
                   </div>
                 </div>
 

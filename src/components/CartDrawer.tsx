@@ -57,7 +57,7 @@ const CartDrawer: React.FC = () => {
   const handleLoginPromptClick = () => {
     dispatch({ type: 'SET_CART_OPEN', payload: false });
     if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('aiPharm:openLoginModal'));
+      window.dispatchEvent(new CustomEvent('latelina:openLoginModal'));
     }
   };
 

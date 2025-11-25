@@ -1,9 +1,9 @@
 using AutoMapper;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
-using AIPharm.Domain.Entities;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Core.Services
+namespace Latelina.Core.Services
 {
     public class CategoryService : ICategoryService
     {

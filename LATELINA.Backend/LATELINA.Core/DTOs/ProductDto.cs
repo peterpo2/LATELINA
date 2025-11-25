@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AIPharm.Core.DTOs
+namespace Latelina.Core.DTOs
 {
     public class ProductDto
     {

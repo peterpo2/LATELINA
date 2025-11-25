@@ -1,15 +1,15 @@
-﻿### C:\AIPharm\AIPharm.Backend\AIPharm.Web\Program.cs
+﻿### C:\Latelina\Latelina.Backend\Latelina.Web\Program.cs
 `csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-using AIPharm.Infrastructure.Data;
-using AIPharm.Infrastructure.Repositories;
-using AIPharm.Core.Interfaces;
-using AIPharm.Core.Services;
-using AIPharm.Core.Mapping;
+using Latelina.Infrastructure.Data;
+using Latelina.Infrastructure.Repositories;
+using Latelina.Core.Interfaces;
+using Latelina.Core.Services;
+using Latelina.Core.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +43,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // EF Core
-builder.Services.AddDbContextPool<AIPharmDbContext>(opt =>
+builder.Services.AddDbContextPool<LatelinaDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Repos & services
@@ -52,7 +52,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IAssistantService, AssistantService>(); 
-builder.Services.AddHealthChecks().AddDbContextCheck<AIPharmDbContext>("db");
+builder.Services.AddHealthChecks().AddDbContextCheck<LatelinaDbContext>("db");
 
 
 // CORS for local & docker dev
@@ -63,7 +63,7 @@ builder.Services.AddCors(options =>
                 "http://localhost:5173",
                 "http://localhost:3000",
                 "http://frontend:3000",
-                "http://aipharm-frontend:3000"
+                "http://latelina-frontend:3000"
             )
             .AllowAnyHeader()
             .AllowAnyMethod()
@@ -80,7 +80,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AIPharm API v1");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Latelina API v1");
 });
 
 // In Docker you typically set ASPNETCORE_ENVIRONMENT=Development; skip HTTPS redirect then
@@ -98,7 +98,7 @@ app.MapControllers();
 
 // root ping + health
 app.MapGet("/", () =>
-    Results.Ok(new { name = "AIPharm API", env = app.Environment.EnvironmentName, time = DateTime.UtcNow }))
+    Results.Ok(new { name = "Latelina API", env = app.Environment.EnvironmentName, time = DateTime.UtcNow }))
     .WithName("Root");
 
 app.MapHealthChecks("/health");
@@ -106,7 +106,7 @@ app.MapHealthChecks("/health");
 // DB migrate + seed on startup
 using (var scope = app.Services.CreateScope())
 {
-    var ctx = scope.ServiceProvider.GetRequiredService<AIPharmDbContext>();
+    var ctx = scope.ServiceProvider.GetRequiredService<LatelinaDbContext>();
     try
     {
         await ctx.Database.MigrateAsync();
@@ -124,13 +124,13 @@ app.Run();
 
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Web\Controllers\AssistantController.cs
+### C:\Latelina\Latelina.Backend\Latelina.Web\Controllers\AssistantController.cs
 `csharp
 using Microsoft.AspNetCore.Mvc;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -181,7 +181,7 @@ namespace AIPharm.Web.Controllers
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Web\Controllers\AuthController.cs
+### C:\Latelina\Latelina.Backend\Latelina.Web\Controllers\AuthController.cs
 `csharp
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -189,10 +189,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using AIPharm.Core.Interfaces;
-using AIPharm.Domain.Entities;
+using Latelina.Core.Interfaces;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -221,7 +221,7 @@ namespace AIPharm.Web.Controllers
                 }
 
                 // Demo password check - in production use proper password verification
-                var isValidPassword = (request.Email == "aipharmproject@gmail.com" && request.Password == "Admin123!");
+                var isValidPassword = (request.Email == "latelinaproject@gmail.com" && request.Password == "Admin123!");
 
                 if (!isValidPassword)
                 {
@@ -375,13 +375,13 @@ namespace AIPharm.Web.Controllers
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Web\Controllers\CartController.cs
+### C:\Latelina\Latelina.Backend\Latelina.Web\Controllers\CartController.cs
 `csharp
 using Microsoft.AspNetCore.Mvc;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -507,13 +507,13 @@ namespace AIPharm.Web.Controllers
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Web\Controllers\CategoriesController.cs
+### C:\Latelina\Latelina.Backend\Latelina.Web\Controllers\CategoriesController.cs
 `csharp
 using Microsoft.AspNetCore.Mvc;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -615,11 +615,11 @@ namespace AIPharm.Web.Controllers
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Web\Controllers\HealthController.cs
+### C:\Latelina\Latelina.Backend\Latelina.Web\Controllers\HealthController.cs
 `csharp
 using Microsoft.AspNetCore.Mvc;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -639,13 +639,13 @@ namespace AIPharm.Web.Controllers
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Web\Controllers\ProductsController.cs
+### C:\Latelina\Latelina.Backend\Latelina.Web\Controllers\ProductsController.cs
 `csharp
 using Microsoft.AspNetCore.Mvc;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

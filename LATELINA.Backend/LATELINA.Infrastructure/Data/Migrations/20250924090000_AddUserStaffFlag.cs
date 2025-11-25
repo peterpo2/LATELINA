@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AIPharm.Infrastructure.Data.Migrations
+namespace Latelina.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddUserStaffFlag : Migration

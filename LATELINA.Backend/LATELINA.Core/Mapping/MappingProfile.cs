@@ -1,8 +1,8 @@
 using AutoMapper;
-using AIPharm.Core.DTOs;
-using AIPharm.Domain.Entities;
+using Latelina.Core.DTOs;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Core.Mapping
+namespace Latelina.Core.Mapping
 {
     public class MappingProfile : Profile
     {

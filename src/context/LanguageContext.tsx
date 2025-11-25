@@ -13,7 +13,7 @@ interface LanguageContextType {
 const translations = {
   bg: {
     // Header
-    'header.title': 'AIPHARM+',
+    'header.title': 'Latelina',
     'header.subtitle': 'AI аптека и асистент',
     'header.search': 'Търсете лекарства, витамини, козметика...',
     'header.phone': '+359 2 123 4567',
@@ -38,7 +38,7 @@ const translations = {
     'navigation.news': 'Новини',
 
     // Hero Section
-    'hero.title': 'AIPHARM+',
+    'hero.title': 'Latelina',
     'hero.description': 'Качествени лекарства с AI консултации и бърза доставка',
     'hero.certifiedQuality': 'Сертифицирано качество',
     'hero.support247': '24/7 Поддръжка',
@@ -531,7 +531,7 @@ const translations = {
     'admin.news.form.imageUrl': 'URL на изображение',
     'admin.news.form.imageUrlHelp': 'Използвайте собствена снимка или натиснете „Генерирай“, за да създадете графика.',
     'admin.news.form.generateImage': 'Генерирай',
-    'admin.news.form.generatedTitleFallback': 'AIPharm Insight',
+    'admin.news.form.generatedTitleFallback': 'Latelina Insight',
     'admin.news.form.generatedCategoryFallback': 'Pharmacy Updates',
     'admin.news.form.publishedAt': 'Дата на публикуване',
     'admin.news.form.readTime': 'Време за четене (минути)',
@@ -546,7 +546,7 @@ const translations = {
     'admin.news.delete.cancel': 'Отказ',
 
     // Footer
-    'footer.title': 'AIPHARM+',
+    'footer.title': 'Latelina',
     'footer.description': 'Качествени лекарства с AI консултации и бърза доставка.',
     'footer.version': 'Версия {version}',
     'footer.quickLinks': 'Бързи връзки',
@@ -560,19 +560,19 @@ const translations = {
     'footer.contactsTitle': 'Контакти',
     'footer.workingHours': 'Работно време',
     'footer.workingHoursText': 'Пон-Пет: 8:00 - 22:00\nСъб-Нед: 9:00 - 20:00',
-    'footer.copyright': '© 2025 AIPHARM+. Всички права запазени.',
+    'footer.copyright': '© 2025 Latelina. Всички права запазени.',
     'footer.privacy': 'Политика за поверителност',
     'footer.terms': 'Условия за ползване',
     'footer.cookies': 'Бисквитки',
     'footer.feedbackTitle': 'Споделете мнението си',
-    'footer.feedbackDescription': 'Вашата обратна връзка ни помага да подобряваме платформата и услугите на AIPHARM+. Споделете какво мислите за сайта и проекта.',
+    'footer.feedbackDescription': 'Вашата обратна връзка ни помага да подобряваме платформата и услугите на Latelina. Споделете какво мислите за сайта и проекта.',
     'footer.ratingLabel': 'Оценка',
     'footer.starsLabel': 'звезди',
     'footer.messageLabel': 'Отзив',
     'footer.messagePlaceholder': 'Опишете вашето впечатление, какво харесвате и какво можем да подобрим...',
-    'footer.feedbackPrivacy': 'Мнението ви ще бъде изпратено по имейл до екипа на AIPHARM+',
+    'footer.feedbackPrivacy': 'Мнението ви ще бъде изпратено по имейл до екипа на Latelina',
     'footer.submitButton': 'Изпрати по имейл',
-    'footer.feedbackEmailSubject': 'Обратна връзка за AIPHARM+',
+    'footer.feedbackEmailSubject': 'Обратна връзка за Latelina',
 
     // Common
     'common.loading': 'Зареждане...',
@@ -595,7 +595,7 @@ const translations = {
     'common.currency': '€',
 
     // About Us
-    'about.description': 'AIPHARM+ е водеща дигитална аптека в България, която съчетава традиционната фармацевтична грижа с най-новите AI технологии.',
+    'about.description': 'Latelina е водеща дигитална аптека в България, която съчетава традиционната фармацевтична грижа с най-новите AI технологии.',
     'about.mission': 'Нашата мисия',
     'about.missionText': 'Да предоставяме качествени лекарства и здравни продукти с персонализирани AI консултации, осигурявайки достъпна и надеждна здравна грижа за всеки.',
     'about.vision': 'Нашата визия',
@@ -629,7 +629,7 @@ const translations = {
     'services.deliveryFeature1': 'Експресни доставки до 2 часа в София',
     'services.deliveryFeature2': 'Проследяване на пратката в реално време',
     'services.deliveryFeature3': 'Температурно контролиран транспорт',
-    'services.valueTitle': 'Защо да изберете AIPHARM+',
+    'services.valueTitle': 'Защо да изберете Latelina',
     'services.valueSubtitle': 'Съчетаваме безопасност, експертиза и удобство за нашите клиенти.',
     'services.valuePatients': 'Грижа за пациента',
     'services.valuePatientsDesc': 'Индивидуални планове и напомняния за прием на лекарства.',
@@ -731,7 +731,7 @@ const translations = {
   },
   en: {
     // Header
-    'header.title': 'AIPHARM+',
+    'header.title': 'Latelina',
     'header.subtitle': 'AI pharmacy & assistant',
     'header.search': 'Search medicines, vitamins, cosmetics...',
     'header.phone': '+359 2 123 4567',
@@ -756,7 +756,7 @@ const translations = {
     'navigation.news': 'News',
 
     // Hero Section
-    'hero.title': 'AIPHARM+',
+    'hero.title': 'Latelina',
     'hero.description': 'Quality medicines with AI consultations and fast delivery',
     'hero.certifiedQuality': 'Certified Quality',
     'hero.support247': '24/7 Support',
@@ -1249,7 +1249,7 @@ const translations = {
     'admin.news.form.imageUrl': 'Image URL',
     'admin.news.form.imageUrlHelp': 'Use your own image or press “Generate” to create artwork automatically.',
     'admin.news.form.generateImage': 'Generate',
-    'admin.news.form.generatedTitleFallback': 'AIPharm Insight',
+    'admin.news.form.generatedTitleFallback': 'Latelina Insight',
     'admin.news.form.generatedCategoryFallback': 'Pharmacy Updates',
     'admin.news.form.publishedAt': 'Publish date',
     'admin.news.form.readTime': 'Reading time (minutes)',
@@ -1264,7 +1264,7 @@ const translations = {
     'admin.news.delete.cancel': 'Keep article',
 
     // Footer
-    'footer.title': 'AIPHARM+',
+    'footer.title': 'Latelina',
     'footer.description': 'Quality medicines with AI consultations and fast delivery.',
     'footer.version': 'Version {version}',
     'footer.quickLinks': 'Quick Links',
@@ -1278,19 +1278,19 @@ const translations = {
     'footer.contactsTitle': 'Contact Info',
     'footer.workingHours': 'Working Hours',
     'footer.workingHoursText': 'Mon-Fri: 8:00 - 22:00\nSat-Sun: 9:00 - 20:00',
-    'footer.copyright': '© 2025 AIPHARM+. All rights reserved.',
+    'footer.copyright': '© 2025 Latelina. All rights reserved.',
     'footer.privacy': 'Privacy Policy',
     'footer.terms': 'Terms of Use',
     'footer.cookies': 'Cookies',
     'footer.feedbackTitle': 'Share Your Opinion',
-    'footer.feedbackDescription': 'Your insights help us improve AIPHARM+ and its services. Let us know what you think about the site and the project.',
+    'footer.feedbackDescription': 'Your insights help us improve Latelina and its services. Let us know what you think about the site and the project.',
     'footer.ratingLabel': 'Rating',
     'footer.starsLabel': 'stars',
     'footer.messageLabel': 'Review',
     'footer.messagePlaceholder': 'Tell us what stands out to you and how we can enhance your experience...',
-    'footer.feedbackPrivacy': 'Your opinion will be sent directly to the AIPHARM+ team via email',
+    'footer.feedbackPrivacy': 'Your opinion will be sent directly to the Latelina team via email',
     'footer.submitButton': 'Send Email',
-    'footer.feedbackEmailSubject': 'Feedback for AIPHARM+',
+    'footer.feedbackEmailSubject': 'Feedback for Latelina',
 
     // Common
     'common.loading': 'Loading...',
@@ -1313,7 +1313,7 @@ const translations = {
     'common.currency': '€',
 
     // About Us
-    'about.description': 'AIPHARM+ is a leading digital pharmacy in Bulgaria, combining traditional pharmaceutical care with the latest AI technologies.',
+    'about.description': 'Latelina is a leading digital pharmacy in Bulgaria, combining traditional pharmaceutical care with the latest AI technologies.',
     'about.mission': 'Our Mission',
     'about.missionText': 'To provide quality medicines and health products with personalized AI consultations, ensuring accessible and reliable healthcare for everyone.',
     'about.vision': 'Our Vision',
@@ -1347,7 +1347,7 @@ const translations = {
     'services.deliveryFeature1': 'Express two-hour deliveries in Sofia',
     'services.deliveryFeature2': 'Real-time order tracking',
     'services.deliveryFeature3': 'Temperature-controlled transport',
-    'services.valueTitle': 'Why choose AIPHARM+',
+    'services.valueTitle': 'Why choose Latelina',
     'services.valueSubtitle': 'We bring together safety, expertise, and convenience.',
     'services.valuePatients': 'Patient care',
     'services.valuePatientsDesc': 'Individual plans and medicine intake reminders.',

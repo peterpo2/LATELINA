@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using AIPharm.Core.Exceptions;
-using AIPharm.Core.Interfaces;
-using AIPharm.Domain.Entities;
-using AIPharm.Core.Security;
-using AIPharm.Core.Options;
+using Latelina.Core.Exceptions;
+using Latelina.Core.Interfaces;
+using Latelina.Domain.Entities;
+using Latelina.Core.Security;
+using Latelina.Core.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -25,8 +25,8 @@ namespace AIPharm.Web.Controllers
         private readonly EmailSettings _emailSettings;
         private readonly ILogger<AuthController> _logger;
 
-        private const string TwoFactorEmailSubject = "AIPharm login verification code";
-        private const string RegistrationEmailSubject = "Welcome to AIPharm";
+        private const string TwoFactorEmailSubject = "Latelina login verification code";
+        private const string RegistrationEmailSubject = "Welcome to Latelina";
 
         public AuthController(
             IRepository<User> userRepository,
@@ -432,7 +432,7 @@ namespace AIPharm.Web.Controllers
             var greetingName = string.IsNullOrWhiteSpace(user.FullName) ? "there" : user.FullName;
             var body =
                 $"Hi {greetingName},\n\n" +
-                "Thanks for registering with AIPharm! Your account has been created successfully and two-factor authentication is enabled by default to keep your data secure.\n\n" +
+                "Thanks for registering with Latelina! Your account has been created successfully and two-factor authentication is enabled by default to keep your data secure.\n\n" +
                 "You can now sign in using your email and password. When you log in, we'll email you a verification code to confirm it's really you.\n\n" +
                 "If you didn't create this account, please contact our support team immediately.";
 
@@ -450,7 +450,7 @@ namespace AIPharm.Web.Controllers
 
         private string BuildTwoFactorEmailBody(string code)
         {
-            return $"Your AIPharm verification code is {code}. It expires in {_emailSettings.CodeLifetimeMinutes} minute(s). " +
+            return $"Your Latelina verification code is {code}. It expires in {_emailSettings.CodeLifetimeMinutes} minute(s). " +
                    "If you did not request this code, please ignore this email.";
         }
 

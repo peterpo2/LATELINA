@@ -5,18 +5,18 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Mapping;
-using AIPharm.Core.Services;
-using AIPharm.Domain.Entities;
-using AIPharm.Infrastructure.Data;
-using AIPharm.Infrastructure.Repositories;
+using Latelina.Core.DTOs;
+using Latelina.Core.Mapping;
+using Latelina.Core.Services;
+using Latelina.Domain.Entities;
+using Latelina.Infrastructure.Data;
+using Latelina.Infrastructure.Repositories;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Xunit;
 
-namespace AIPharm.Core.Tests;
+namespace Latelina.Core.Tests;
 
 public class ProductServiceTests
 {
@@ -27,12 +27,12 @@ public class ProductServiceTests
         await connection.OpenAsync();
 
         var interceptor = new CommandCaptureInterceptor();
-        var options = new DbContextOptionsBuilder<AIPharmDbContext>()
+        var options = new DbContextOptionsBuilder<LatelinaDbContext>()
             .UseSqlite(connection)
             .AddInterceptors(interceptor)
             .Options;
 
-        await using var context = new AIPharmDbContext(options);
+        await using var context = new LatelinaDbContext(options);
         await context.Database.EnsureCreatedAsync();
 
         var seedData = await SeedTestDataAsync(context);
@@ -85,12 +85,12 @@ public class ProductServiceTests
         await connection.OpenAsync();
 
         var interceptor = new CommandCaptureInterceptor();
-        var options = new DbContextOptionsBuilder<AIPharmDbContext>()
+        var options = new DbContextOptionsBuilder<LatelinaDbContext>()
             .UseSqlite(connection)
             .AddInterceptors(interceptor)
             .Options;
 
-        await using var context = new AIPharmDbContext(options);
+        await using var context = new LatelinaDbContext(options);
         await context.Database.EnsureCreatedAsync();
 
         var seedData = await SeedTestDataAsync(context);
@@ -127,7 +127,7 @@ public class ProductServiceTests
         Assert.Empty(context.ChangeTracker.Entries<Product>());
     }
 
-    private static async Task<SeedData> SeedTestDataAsync(AIPharmDbContext context)
+    private static async Task<SeedData> SeedTestDataAsync(LatelinaDbContext context)
     {
         var analgesics = new Category { Name = "Analgesics", Icon = "pill" };
         var supplements = new Category { Name = "Supplements", Icon = "leaf" };

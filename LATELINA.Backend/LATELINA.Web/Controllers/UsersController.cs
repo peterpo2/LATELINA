@@ -2,12 +2,12 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
-using AIPharm.Core.Interfaces;
-using AIPharm.Domain.Entities;
+using Latelina.Core.Interfaces;
+using Latelina.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AIPharm.Web.Controllers
+namespace Latelina.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

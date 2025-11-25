@@ -1,6 +1,6 @@
-﻿### C:\AIPharm\AIPharm.Backend\AIPharm.Core\DTOs\AssistantDto.cs
+﻿### C:\Latelina\Latelina.Backend\Latelina.Core\DTOs\AssistantDto.cs
 `csharp
-namespace AIPharm.Core.DTOs
+namespace Latelina.Core.DTOs
 {
     public class AssistantRequestDto
     {
@@ -19,9 +19,9 @@ namespace AIPharm.Core.DTOs
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\DTOs\CartDto.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\DTOs\CartDto.cs
 `csharp
-namespace AIPharm.Core.DTOs
+namespace Latelina.Core.DTOs
 {
     public class CartDto
     {
@@ -59,9 +59,9 @@ namespace AIPharm.Core.DTOs
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\DTOs\CategoryDto.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\DTOs\CategoryDto.cs
 `csharp
-namespace AIPharm.Core.DTOs
+namespace Latelina.Core.DTOs
 {
     public class CategoryDto
     {
@@ -88,9 +88,9 @@ namespace AIPharm.Core.DTOs
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\DTOs\PagedResultDto.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\DTOs\PagedResultDto.cs
 `csharp
-namespace AIPharm.Core.DTOs
+namespace Latelina.Core.DTOs
 {
     public class PagedResultDto<T>
     {
@@ -105,9 +105,9 @@ namespace AIPharm.Core.DTOs
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\DTOs\ProductDto.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\DTOs\ProductDto.cs
 `csharp
-namespace AIPharm.Core.DTOs
+namespace Latelina.Core.DTOs
 {
     public class ProductDto
     {
@@ -183,11 +183,11 @@ namespace AIPharm.Core.DTOs
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Interfaces\IAssistantService.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Interfaces\IAssistantService.cs
 `csharp
-using AIPharm.Core.DTOs;
+using Latelina.Core.DTOs;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface IAssistantService
     {
@@ -197,11 +197,11 @@ namespace AIPharm.Core.Interfaces
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Interfaces\ICartService.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Interfaces\ICartService.cs
 `csharp
-using AIPharm.Core.DTOs;
+using Latelina.Core.DTOs;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface ICartService
     {
@@ -214,11 +214,11 @@ namespace AIPharm.Core.Interfaces
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Interfaces\ICategoryService.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Interfaces\ICategoryService.cs
 `csharp
-using AIPharm.Core.DTOs;
+using Latelina.Core.DTOs;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface ICategoryService
     {
@@ -231,11 +231,11 @@ namespace AIPharm.Core.Interfaces
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Interfaces\IProductService.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Interfaces\IProductService.cs
 `csharp
-using AIPharm.Core.DTOs;
+using Latelina.Core.DTOs;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface IProductService
     {
@@ -249,11 +249,11 @@ namespace AIPharm.Core.Interfaces
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Interfaces\IRepository.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Interfaces\IRepository.cs
 `csharp
 using System.Linq.Expressions;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface IRepository<T> where T : class
     {
@@ -274,13 +274,13 @@ namespace AIPharm.Core.Interfaces
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Mapping\MappingProfile.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Mapping\MappingProfile.cs
 `csharp
 using AutoMapper;
-using AIPharm.Core.DTOs;
-using AIPharm.Domain.Entities;
+using Latelina.Core.DTOs;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Core.Mapping
+namespace Latelina.Core.Mapping
 {
     public class MappingProfile : Profile
     {
@@ -311,12 +311,12 @@ namespace AIPharm.Core.Mapping
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Services\AssistantService.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Services\AssistantService.cs
 `csharp
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
 
-namespace AIPharm.Core.Services
+namespace Latelina.Core.Services
 {
     public class AssistantService : IAssistantService
     {
@@ -390,14 +390,14 @@ namespace AIPharm.Core.Services
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Services\CartService.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Services\CartService.cs
 `csharp
 using AutoMapper;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
-using AIPharm.Domain.Entities;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Core.Services
+namespace Latelina.Core.Services
 {
     public class CartService : ICartService
     {
@@ -581,14 +581,14 @@ namespace AIPharm.Core.Services
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Services\CategoryService.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Services\CategoryService.cs
 `csharp
 using AutoMapper;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
-using AIPharm.Domain.Entities;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Core.Services
+namespace Latelina.Core.Services
 {
     public class CategoryService : ICategoryService
     {
@@ -679,14 +679,14 @@ namespace AIPharm.Core.Services
 }
 ``r
 
-### C:\AIPharm\AIPharm.Backend\AIPharm.Core\Services\ProductService.cs
+### C:\Latelina\Latelina.Backend\Latelina.Core\Services\ProductService.cs
 `csharp
 using AutoMapper;
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
-using AIPharm.Domain.Entities;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Core.Services
+namespace Latelina.Core.Services
 {
     public class ProductService : IProductService
     {

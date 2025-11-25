@@ -1,6 +1,6 @@
-using AIPharm.Core.DTOs;
+using Latelina.Core.DTOs;
 
-namespace AIPharm.Core.Interfaces
+namespace Latelina.Core.Interfaces
 {
     public interface IAssistantService
 {

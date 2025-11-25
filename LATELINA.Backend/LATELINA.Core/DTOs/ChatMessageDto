@@ -1,4 +1,4 @@
-namespace AIPharm.Core.DTOs
+namespace Latelina.Core.DTOs
 {
     public class ChatMessageDto
     {

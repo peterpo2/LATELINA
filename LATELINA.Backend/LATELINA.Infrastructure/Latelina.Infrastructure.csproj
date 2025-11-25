@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AIPharm.Core\AIPharm.Core.csproj" />
-    <ProjectReference Include="..\AIPharm.Domain\AIPharm.Domain.csproj" />
+    <ProjectReference Include="..\Latelina.Core\Latelina.Core.csproj" />
+    <ProjectReference Include="..\Latelina.Domain\Latelina.Domain.csproj" />
   </ItemGroup>
   
   <ItemGroup>

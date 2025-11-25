@@ -1,7 +1,7 @@
 services:
   database:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: aipharm-database
+    container_name: latelina-database
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Xyzzy2005!
@@ -11,29 +11,29 @@ services:
     volumes:
       - sqlserver_data:/var/opt/mssql
     networks:
-      - aipharm-network
+      - latelina-network
 
   backend:
     build:
       context: .
       dockerfile: Dockerfile.backend
-    container_name: aipharm-backend
+    container_name: latelina-backend
     volumes:
-      - ./AIPharm.Backend/AIPharm.Web/App_Data:/app/App_Data
+      - ./LATELINA.Backend/LATELINA.Web/App_Data:/app/App_Data
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__DefaultConnection=Server=database,1433;Database=AIPharm;User Id=sa;Password=Xyzzy2005!;TrustServerCertificate=true;MultipleActiveResultSets=true
-      - Jwt__Key=AIPharm-Super-Secret-Key-For-JWT-Tokens-2025-Very-Long-Key-Docker
-      - Jwt__Issuer=AIPharm
-      - Jwt__Audience=AIPharm-Users
+      - ConnectionStrings__DefaultConnection=Server=database,1433;Database=Latelina;User Id=sa;Password=Xyzzy2005!;TrustServerCertificate=true;MultipleActiveResultSets=true
+      - Jwt__Key=Latelina-Super-Secret-Key-For-JWT-Tokens-2025-Very-Long-Key-Docker
+      - Jwt__Issuer=Latelina
+      - Jwt__Audience=Latelina-Users
       - ALLOWED_CORS_ORIGINS=http://localhost:3000
     ports:
       - "5000:8080"
     depends_on:
       - database
     networks:
-      - aipharm-network
+      - latelina-network
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:8080/api/health || exit 1"]
     restart: unless-stopped
@@ -42,7 +42,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.frontend
-    container_name: aipharm-frontend
+    container_name: latelina-frontend
     environment:
       - NODE_ENV=development
       - VITE_API_BASE_URL=http://localhost:5000/api
@@ -51,7 +51,7 @@ services:
     depends_on:
       - backend
     networks:
-      - aipharm-network
+      - latelina-network
     restart: unless-stopped
     volumes:
       - ./src:/app/src
@@ -62,7 +62,7 @@ services:
       - ./tailwind.config.js:/app/tailwind.config.js
 
 networks:
-  aipharm-network:
+  latelina-network:
     driver: bridge
 
 volumes:

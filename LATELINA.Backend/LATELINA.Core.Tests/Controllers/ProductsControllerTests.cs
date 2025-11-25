@@ -1,11 +1,11 @@
-using AIPharm.Core.DTOs;
-using AIPharm.Core.Interfaces;
-using AIPharm.Web.Controllers;
+using Latelina.Core.DTOs;
+using Latelina.Core.Interfaces;
+using Latelina.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
-namespace AIPharm.Core.Tests.Controllers;
+namespace Latelina.Core.Tests.Controllers;
 
 public class ProductsControllerTests
 {

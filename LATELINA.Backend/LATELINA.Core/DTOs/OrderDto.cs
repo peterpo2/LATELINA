@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using AIPharm.Domain.Entities;
+using Latelina.Domain.Entities;
 
-namespace AIPharm.Core.DTOs
+namespace Latelina.Core.DTOs
 {
     public class OrderDto
     {
