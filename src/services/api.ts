@@ -69,15 +69,6 @@ export interface ProductFilter {
     pageSize?: number;
 }
 
-export interface AssistantRequest { question: string; productId?: number; }
-export interface AssistantResponse {
-    question: string;
-    answer: string;
-    productId?: number;
-    timestamp: string;
-    disclaimer: string;
-}
-
 // ---------- Helpers ----------
 function isAbortError(e: unknown): boolean {
     return typeof e === "object" && e !== null && "name" in e && (e as { name?: unknown }).name === "AbortError";
@@ -212,14 +203,6 @@ class ApiClient {
         return this.request<ApiCart>("/cart", { method: "DELETE" });
     }
 
-    // ----- Assistant -----
-    askAssistant(question: string, productId?: number) {
-        return this.request<AssistantResponse>("/assistant/ask", {
-            method: "POST",
-            body: JSON.stringify({ question, productId }),
-        });
-    }
-
     // ----- Health -----
     healthCheck() {
         return this.request<{ status: string; timestamp: string; environment: string }>("/health");
@@ -239,5 +222,4 @@ export function addToCart(productId: number, quantity = 1) { return apiClient.ad
 export function updateCartItem(cartItemId: number, quantity: number) { return apiClient.updateCartItem(cartItemId, quantity); }
 export function removeFromCart(cartItemId: number) { return apiClient.removeFromCart(cartItemId); }
 export function clearCart() { return apiClient.clearCart(); }
-export function askAssistant(question: string, productId?: number) { return apiClient.askAssistant(question, productId); }
 export function healthCheck() { return apiClient.healthCheck(); }

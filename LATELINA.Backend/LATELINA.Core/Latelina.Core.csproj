@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Latelina.Domain\Latelina.Domain.csproj" />
+    <ProjectReference Include="..\LATELINA.Domain\Latelina.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,7 +16,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.10" />
-    <PackageReference Include="OpenAI" Version="2.0.0" />
   </ItemGroup>
   
 </Project>

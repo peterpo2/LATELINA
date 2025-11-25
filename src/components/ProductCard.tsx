@@ -1,8 +1,7 @@
 import React from 'react';
-import { ShoppingCart, MessageCircle, Shield, Heart, Package } from 'lucide-react';
+import { ShoppingCart, Shield, Heart, Package, Info } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
-import { useChat } from '../context/ChatContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useFeatureToggles } from '../context/FeatureToggleContext';
 
@@ -13,7 +12,6 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) => {
   const { dispatch } = useCart();
-  const { askAssistant } = useChat();
   const { language, t } = useLanguage();
   const { prescriptionFeaturesEnabled } = useFeatureToggles();
 
@@ -65,17 +63,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
     dispatch({ type: 'ADD_ITEM', payload: product });
   };
 
-  const handleAskAI = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    const productName = language === 'bg' ? product.name : product.nameEn;
-    const question =
-      language === 'bg' ? `Разкажете ми за ${productName}` : `Tell me about ${productName}`;
-
-    if (product.id) {
-      void askAssistant(question, product.id);
-    }
-  };
-
   const getProductName = () => (language === 'bg' ? product.name : product.nameEn);
   const getActiveIngredient = () =>
     language === 'bg' ? product.activeIngredient : product.activeIngredientEn;
@@ -87,6 +74,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
     if (onProductClick) {
       onProductClick(product);
     }
+  };
+
+  const handleViewDetails = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    handleProductClick();
   };
 
   return (
@@ -248,11 +240,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
           </button>
 
           <button
-            onClick={handleAskAI}
+            onClick={handleViewDetails}
             type="button"
             className="rounded-xl bg-gray-100 p-3 text-gray-600 transition-all duration-300 hover:scale-110 hover:bg-emerald-100 hover:text-emerald-600"
+            aria-label={t('products.viewDetails')}
           >
-            <MessageCircle className="w-5 h-5" />
+            <Info className="w-5 h-5" />
           </button>
         </div>
       </div>

@@ -146,22 +146,6 @@ export interface ProductFilter {
   pageSize: number;
 }
 
-export interface ChatMessage {
-  id: string;
-  content: string;
-  isUser: boolean;
-  timestamp: Date;
-  productId?: number;
-}
-
-export interface AssistantResponse {
-  question: string;
-  answer: string;
-  productId?: number;
-  timestamp: Date;
-  disclaimer: string;
-}
-
 export interface NewsArticle {
   id: string;
   title: string;

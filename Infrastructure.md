@@ -9,7 +9,6 @@
 ## Backend
 - **Tech stack:** .NET 8 Web API, Entity Framework Core, SQL Server 2022 container.
 - **Authentication:** JWT bearer tokens with seeded demo accounts.
-- **AI integration:** OpenAI client configured through `OpenAI__ApiKey` in environment variables or `appsettings.json`.
 
 ## DevOps
 - **Containers:** `docker-compose.yml` orchestrates `frontend`, `backend`, and `database` services for local parity.

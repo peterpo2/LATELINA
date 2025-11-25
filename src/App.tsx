@@ -3,9 +3,7 @@ import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
-import ChatBot from './components/ChatBot';
 import { CartProvider } from './context/CartContext';
-import { ChatProvider } from './context/ChatContext';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { NewsProvider } from './context/NewsContext';
@@ -209,7 +207,6 @@ function AppContent() {
 
       <Footer />
       <CartDrawer />
-      <ChatBot />
     </div>
   );
 }
@@ -222,9 +219,7 @@ function App() {
           <ProductCatalogProvider>
             <CartProvider>
               <NewsProvider>
-                <ChatProvider>
-                  <AppContent />
-                </ChatProvider>
+                <AppContent />
               </NewsProvider>
             </CartProvider>
           </ProductCatalogProvider>

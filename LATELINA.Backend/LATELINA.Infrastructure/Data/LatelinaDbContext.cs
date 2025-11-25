@@ -17,19 +17,9 @@ namespace Latelina.Infrastructure.Data
             public DbSet<Order> Orders { get; set; }
             public DbSet<OrderItem> OrderItems { get; set; }
             public DbSet<NhifPrescription> NhifPrescriptions { get; set; }
-            public DbSet<AssistantMessage> AssistantMessages { get; set; }
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
                   base.OnModelCreating(modelBuilder);
-
-                  // ===== ASSISTANT MESSAGES =====
-                  modelBuilder.Entity<AssistantMessage>(entity =>
-                  {
-                        entity.ToTable("AssistantMessages", "dbo");
-                        entity.HasKey(e => e.Id);
-                        entity.Property(e => e.Id).UseIdentityColumn();
-                        entity.Property(e => e.Content).IsRequired();
-                  });
                   // ===== USERS =====
                   modelBuilder.Entity<User>(entity =>
                   {
@@ -52,8 +42,7 @@ namespace Latelina.Infrastructure.Data
                         entity.HasKey(e => e.Id);
 
                         entity.Property(e => e.Id)
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                         entity.Property(e => e.Name)
                         .IsRequired()
@@ -73,8 +62,7 @@ namespace Latelina.Infrastructure.Data
                         entity.HasKey(e => e.Id);
 
                         entity.Property(e => e.Id)
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWID()");
+                        .ValueGeneratedOnAdd();
 
                         entity.Property(e => e.Name)
                         .IsRequired()

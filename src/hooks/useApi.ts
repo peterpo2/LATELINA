@@ -101,26 +101,3 @@ export function useCart() {
     refetch,
   };
 }
-
-// ===== Assistant Hook =====
-export function useAssistant() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const askQuestion = async (question: string, productId?: number) => {
-    try {
-      setLoading(true);
-      setError(null);
-      return await apiClient.askAssistant(question, productId);
-    } catch (err: unknown) {
-      const msg =
-        err instanceof Error ? err.message : "Failed to get assistant response";
-      setError(msg);
-      throw new Error(msg);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return { askQuestion, loading, error };
-}

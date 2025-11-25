@@ -188,36 +188,6 @@ DELETE /api/cart
 X-User-Id: demo-user
 ```
 
-## 🤖 AI Assistant API
-
-### Ask Question
-```http
-POST /api/assistant/ask
-Content-Type: application/json
-
-{
-  "question": "Как се взима парацетамол?",
-  "productId": 1
-}
-```
-
-**Response:**
-```json
-{
-  "question": "Как се взима парацетамол?",
-  "answer": "Парацетамолът се взима по 500-1000мг на 4-6 часа, максимум 4г дневно. Не трябва да се комбинира с алкохол.",
-  "productId": 1,
-  "timestamp": "2025-01-01T10:00:00Z",
-  "disclaimer": "⚠️ Това е обща информация. Консултирайте се с лекар."
-}
-```
-
-### Get Conversation History
-```http
-GET /api/assistant/history
-X-User-Id: demo-user
-```
-
 ## 🔐 Authentication API
 
 ### Login
@@ -338,7 +308,6 @@ Accept-Language: bg-BG          # For localized responses
 
 - **General API**: 100 requests per minute
 - **Authentication**: 10 requests per minute
-- **AI Assistant**: 20 requests per minute
 
 Rate limit headers:
 ```http

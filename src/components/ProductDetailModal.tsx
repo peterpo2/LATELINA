@@ -4,7 +4,6 @@ import {
   Shield,
   Package,
   ShoppingCart,
-  MessageCircle,
   Tag,
   Calendar,
   Info,
@@ -12,7 +11,6 @@ import {
 import { Product } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
-import { useChat } from '../context/ChatContext';
 import { useFeatureToggles } from '../context/FeatureToggleContext';
 
 interface ProductDetailModalProps {
@@ -23,7 +21,6 @@ interface ProductDetailModalProps {
 const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose }) => {
   const { t, language } = useLanguage();
   const { dispatch } = useCart();
-  const { askAssistant } = useChat();
   const { prescriptionFeaturesEnabled } = useFeatureToggles();
 
   const getProductName = () => (language === 'bg' ? product.name : product.nameEn);
@@ -59,16 +56,6 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
 
   const handleAddToCart = () => {
     dispatch({ type: 'ADD_ITEM', payload: product });
-  };
-
-  const handleAskAI = () => {
-    const productName = getProductName();
-    const question =
-      language === 'bg' ? `Разкажете ми за ${productName}` : `Tell me about ${productName}`;
-
-    if (product.id) {
-      void askAssistant(question, product.id);
-    }
   };
 
   const handleOpenMoreInfo = () => {
@@ -242,14 +229,6 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
             >
               <ShoppingCart className="h-5 w-5" />
               <span>{t('products.add')}</span>
-            </button>
-            <button
-              type="button"
-              onClick={handleAskAI}
-              className="flex flex-1 items-center justify-center space-x-2 rounded-2xl border border-emerald-200 px-6 py-3 font-semibold text-emerald-600 transition hover:scale-[1.02] hover:border-emerald-300 hover:bg-emerald-50"
-            >
-              <MessageCircle className="h-5 w-5" />
-              <span>{t('products.askAssistant')}</span>
             </button>
             <button
               type="button"

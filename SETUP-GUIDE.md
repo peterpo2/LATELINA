@@ -20,7 +20,6 @@ in the order you should complete it.
 | [Git](https://git-scm.com/downloads) | Copies the code from GitHub. |
 
 You will also need:
-- An OpenAI API key with billing enabled so the assistant can respond to questions.
 - Email credentials (optional) if you want outgoing messages to work.
 
 ---
@@ -44,14 +43,7 @@ Server instance.  Replace:
 - `Server=latelina-database,1433` with the server name or `localhost\\SQLEXPRESS`.
 - `Password=Xyzzy2005!` with the password for your `sa` or SQL login.
 
-### 3.2 OpenAI key
-Choose one of the following:
-- Add `OpenAI__ApiKey=your-openai-key` as an environment variable in your operating system, **or**
-- Edit `Latelina.Backend/Latelina.Web/appsettings.json` and set the `OpenAI.ApiKey` value.
-
-Make sure your OpenAI account has credit—free accounts cannot call the API.
-
-### 3.3 Email (optional)
+### 3.2 Email (optional)
 In the same `appsettings.json` file replace the values in the `Email` section with the SMTP server, username, and password from
 your provider.  Gmail users must create an app password after enabling 2-Step Verification.  Set `UsePickupDirectory` to `true`
 if you simply want `.eml` files saved locally for testing.
@@ -124,7 +116,6 @@ Change the administrator password before using the site with real data.
 | --- | --- |
 | `dotnet ef` command not found | Run `dotnet tool restore` inside `Latelina.Backend`. |
 | Database login failed | Check the server name, username, and password in `appsettings.Development.json`. |
-| Swagger shows OpenAI errors | Ensure your OpenAI API key is correct and that your account has an active paid plan. |
 | Frontend cannot reach the API | Confirm the backend terminal shows `Now listening on: http://localhost:5000`. Update `VITE_API_BASE_URL` if you changed the port. |
 | Emails missing | Replace the sample Gmail credentials with your own provider settings. |
 

@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   Calendar,
   Info,
-  MessageCircle,
   Package,
   Shield,
   ShoppingCart,
@@ -13,7 +12,6 @@ import { Product } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
 import { useFeatureToggles } from '../../context/FeatureToggleContext';
 import { useCart } from '../../context/CartContext';
-import { useChat } from '../../context/ChatContext';
 import { useProductCatalog } from '../../context/ProductCatalogContext';
 
 const ProductMoreInfoPage: React.FC = () => {
@@ -22,7 +20,6 @@ const ProductMoreInfoPage: React.FC = () => {
   const { language, t } = useLanguage();
   const { prescriptionFeaturesEnabled } = useFeatureToggles();
   const { dispatch } = useCart();
-  const { askAssistant } = useChat();
   const { products } = useProductCatalog();
 
   const product: Product | undefined = useMemo(
@@ -49,14 +46,6 @@ const ProductMoreInfoPage: React.FC = () => {
 
   const handleAddToCart = (currentProduct: Product) => {
     dispatch({ type: 'ADD_ITEM', payload: currentProduct });
-  };
-
-  const handleAskAI = (currentProduct: Product) => {
-    const productName = getProductName(currentProduct);
-    const question = language === 'bg' ? `Разкажете ми за ${productName}` : `Tell me about ${productName}`;
-    if (currentProduct.id) {
-      void askAssistant(question, currentProduct.id);
-    }
   };
 
   const formatPromotionDate = (value: string) => {
@@ -220,14 +209,6 @@ const ProductMoreInfoPage: React.FC = () => {
                 >
                   <ShoppingCart className="h-5 w-5" />
                   <span>{t('products.add')}</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleAskAI(product)}
-                  className="flex flex-1 items-center justify-center space-x-2 rounded-2xl border border-emerald-200 px-6 py-3 font-semibold text-emerald-600 transition hover:scale-[1.02] hover:border-emerald-300 hover:bg-emerald-50"
-                >
-                  <MessageCircle className="h-5 w-5" />
-                  <span>{t('products.askAssistant')}</span>
                 </button>
               </div>
             </div>

@@ -2,15 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import { useChat } from "../context/ChatContext";
 
 const HeroSection: React.FC = () => {
   const { t } = useLanguage();
-  const { setIsOpen } = useChat();
-
-  const handleOpenAssistant = () => {
-    setIsOpen(true);
-  };
 
   return (
     <div className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-50 overflow-hidden">
@@ -49,12 +43,12 @@ const HeroSection: React.FC = () => {
                 <span>{t("hero.viewProducts")}</span>
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
-              <button
-                onClick={handleOpenAssistant}
+              <Link
+                to="/contacts"
                 className="group border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
               >
-                {t("hero.aiAssistant")}
-              </button>
+                {t("hero.contactTeam")}
+              </Link>
             </div>
 
             {/* Stats - Only 3 key stats */}

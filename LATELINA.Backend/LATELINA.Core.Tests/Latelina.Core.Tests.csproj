@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Latelina.Core\Latelina.Core.csproj" />
-    <ProjectReference Include="..\Latelina.Infrastructure\Latelina.Infrastructure.csproj" />
-    <ProjectReference Include="..\Latelina.Domain\Latelina.Domain.csproj" />
-    <ProjectReference Include="..\Latelina.Web\Latelina.Web.csproj" />
+    <ProjectReference Include="..\LATELINA.Core\Latelina.Core.csproj" />
+    <ProjectReference Include="..\LATELINA.Infrastructure\Latelina.Infrastructure.csproj" />
+    <ProjectReference Include="..\LATELINA.Domain\Latelina.Domain.csproj" />
+    <ProjectReference Include="..\LATELINA.Web\Latelina.Web.csproj" />
   </ItemGroup>
 </Project>

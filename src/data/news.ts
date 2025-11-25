@@ -82,26 +82,25 @@ export const newsArticles: NewsArticle[] = [
   },
   {
     id: 'news-4',
-    title: 'AI в помощ на фармацевтите',
-    titleEn: 'AI Supporting Pharmacists',
+    title: 'Дигитални решения в помощ на фармацевтите',
+    titleEn: 'Digital Tools Supporting Pharmacists',
     excerpt:
-      'Изкуственият интелект помага за по-бърза и точна консултация, персонализирани препоръки и подобрено обслужване.',
+      'Съвременните технологии помагат за по-бърза и точна консултация, персонализирани препоръки и подобрено обслужване.',
     excerptEn:
-      'Artificial intelligence enables faster consultations, personalized recommendations, and improved service in pharmacies.',
+      'Modern technology enables faster consultations, personalized recommendations, and improved service in pharmacies.',
     content:
-      'В Latelina интегрираме AI решения, които подпомагат фармацевтите в ежедневната им работа. Системата анализира симптоми, ' +
+      'В Latelina интегрираме дигитални решения, които подпомагат фармацевтите в ежедневната им работа. Системата анализира симптоми, ' +
       'лекарствени взаимодействия и наличности в реално време, за да предложи най-подходящите продукти. Това съкращава времето за ' +
-      'обслужване и намалява риска от грешки.\n\nAI асистентът ни предоставя персонализирани съвети, базирани на нуждите на клиента, ' +
-      'и напомня за предстоящи рефил заявки. Така клиентите получават по-високо качество на обслужване, а фармацевтите могат да се концентрират ' +
-      'върху професионалните консултации.',
+      'обслужване и намалява риска от грешки.\n\nПерсонализираните препоръки се подготвят спрямо нуждите на клиента и могат да включват напомняния за презареждане. ' +
+      'Така клиентите получават по-високо качество на обслужване, а фармацевтите могат да се концентрират върху професионалните консултации.',
     contentEn:
-      'At Latelina we integrate AI solutions that support pharmacists in their daily work. The system analyses symptoms, drug interactions, ' +
-      'and inventory in real time to suggest the most appropriate products, reducing service time and minimizing errors.\n\nOur AI assistant delivers ' +
-      'personalized advice based on customer needs and sends refill reminders. Customers benefit from higher service quality while pharmacists focus on professional consultations.',
+      'At Latelina we integrate digital solutions that support pharmacists in their daily work. The system analyses symptoms, drug interactions, ' +
+      'and inventory in real time to suggest the most appropriate products, reducing service time and minimizing errors.\n\nPersonalized recommendations are prepared around customer needs and can include refill reminders. ' +
+      'Customers benefit from higher service quality while pharmacists focus on professional consultations.',
     category: 'Технологии',
     categoryEn: 'Technology',
-    author: 'AI Specialist Георги Лазаров',
-    imageUrl: generateNewsImage('AI Supporting Pharmacists', 'Technology'),
+    author: 'Технологичен екип на Latelina',
+    imageUrl: generateNewsImage('Digital Tools Supporting Pharmacists', 'Technology'),
     publishedAt: '2025-01-15',
     readTimeMinutes: 3,
   },
