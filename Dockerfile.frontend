@@ -1,0 +1,19 @@
+FROM node:20-alpine
+WORKDIR /app
+
+# Install dependencies separately so the build cache is reused when source files change
+COPY package*.json ./
+RUN npm install
+
+# Copy only the configuration files required to boot the dev server.
+# Source files are mounted as volumes by docker-compose for live reload.
+COPY vite.config.ts ./
+COPY tsconfig*.json ./
+COPY tailwind.config.js postcss.config.js ./
+COPY index.html ./
+
+# Ensure directories exist before bind-mounting in development
+RUN mkdir -p src public
+
+EXPOSE 3000
+CMD ["npm", "run", "dev", "--", "--host"]

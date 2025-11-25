@@ -1,0 +1,69 @@
+services:
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: aipharm-database
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Xyzzy2005!
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - aipharm-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: aipharm-backend
+    volumes:
+      - ./AIPharm.Backend/AIPharm.Web/App_Data:/app/App_Data
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Server=database,1433;Database=AIPharm;User Id=sa;Password=Xyzzy2005!;TrustServerCertificate=true;MultipleActiveResultSets=true
+      - Jwt__Key=AIPharm-Super-Secret-Key-For-JWT-Tokens-2025-Very-Long-Key-Docker
+      - Jwt__Issuer=AIPharm
+      - Jwt__Audience=AIPharm-Users
+      - ALLOWED_CORS_ORIGINS=http://localhost:3000
+    ports:
+      - "5000:8080"
+    depends_on:
+      - database
+    networks:
+      - aipharm-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/api/health || exit 1"]
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: aipharm-frontend
+    environment:
+      - NODE_ENV=development
+      - VITE_API_BASE_URL=http://localhost:5000/api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - aipharm-network
+    restart: unless-stopped
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      - ./package.json:/app/package.json
+      - ./vite.config.ts:/app/vite.config.ts
+      - ./tailwind.config.js:/app/tailwind.config.js
+
+networks:
+  aipharm-network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:

@@ -1,0 +1,58 @@
+# -----------------------
+# Core build junk / caches
+# -----------------------
+**/bin/
+**/obj/
+**/node_modules/
+**/.vs/
+**/.vscode/
+**/.idea/
+**/.cache/
+**/dist/
+**/build/
+**/coverage/
+**/.nyc_output/
+**/test-results/
+**/*.log
+**/.DS_Store
+**/Thumbs.db
+publish-test/
+
+# -----------------------
+# VCS & local env
+# -----------------------
+.git
+.gitignore
+**/.env
+
+# -----------------------
+# Infra files not needed in image build context
+# (Compose reads these locally; images don't need them)
+# -----------------------
+docker-compose*.yml
+
+# -----------------------
+# Azure/K8s (if present)
+# -----------------------
+**/azds.yaml
+**/charts/
+**/secrets.dev.yaml
+**/values.dev.yaml
+
+# -----------------------
+# KEEP the important source for both images
+# -----------------------
+!AIPharm.Backend/
+!src/
+!public/
+!index.html
+!package.json
+!package-lock.json
+!tsconfig*.json
+!vite.config.ts
+!tailwind.config.js
+!postcss.config.js
+
+# Always include Dockerfiles and this ignore file
+!Dockerfile*
+!.dockerignore
