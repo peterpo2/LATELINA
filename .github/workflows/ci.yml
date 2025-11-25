@@ -18,13 +18,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore ./AIPharm.Backend/AIPharm.sln
+        run: dotnet restore ./LATELINA.Backend/LATELINA.sln
 
       - name: Build
-        run: dotnet build ./AIPharm.Backend/AIPharm.sln --no-restore
+        run: dotnet build ./LATELINA.Backend/LATELINA.sln --no-restore
 
       - name: Test
-        run: dotnet test ./AIPharm.Backend/AIPharm.sln --no-build --verbosity normal
+        run: dotnet test ./LATELINA.Backend/LATELINA.sln --no-build --verbosity normal
 
   frontend-tests:
     runs-on: ubuntu-latest

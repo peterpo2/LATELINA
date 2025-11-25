@@ -42,7 +42,7 @@ docker-compose*.yml
 # -----------------------
 # KEEP the important source for both images
 # -----------------------
-!AIPharm.Backend/
+!LATELINA.Backend/
 !src/
 !public/
 !index.html

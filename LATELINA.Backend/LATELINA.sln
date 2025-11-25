@@ -2,15 +2,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIPharm.Web", "AIPharm.Web\AIPharm.Web.csproj", "{8B5CA653-AD3D-4C80-BCFB-F1DD78C256ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LATELINA.Web", "LATELINA.Web\LATELINA.Web.csproj", "{8B5CA653-AD3D-4C80-BCFB-F1DD78C256ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIPharm.Core", "AIPharm.Core\AIPharm.Core.csproj", "{2C5728B6-8B5A-4C80-BCFB-F1DD78C256EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LATELINA.Core", "LATELINA.Core\LATELINA.Core.csproj", "{2C5728B6-8B5A-4C80-BCFB-F1DD78C256EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIPharm.Domain", "AIPharm.Domain\AIPharm.Domain.csproj", "{3D6839C7-9C6B-4D81-BCFB-F1DD78C256EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LATELINA.Domain", "LATELINA.Domain\LATELINA.Domain.csproj", "{3D6839C7-9C6B-4D81-BCFB-F1DD78C256EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIPharm.Infrastructure", "AIPharm.Infrastructure\AIPharm.Infrastructure.csproj", "{4E7A4AD8-AD6C-4E82-BCFB-F1DD78C256F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LATELINA.Infrastructure", "LATELINA.Infrastructure\LATELINA.Infrastructure.csproj", "{4E7A4AD8-AD6C-4E82-BCFB-F1DD78C256F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIPharm.Core.Tests", "AIPharm.Core.Tests\AIPharm.Core.Tests.csproj", "{B7071E0D-017B-481E-925D-169BFF6A254C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LATELINA.Core.Tests", "LATELINA.Core.Tests\LATELINA.Core.Tests.csproj", "{B7071E0D-017B-481E-925D-169BFF6A254C}"
 EndProject
 Global
         GlobalSection(SolutionConfigurationPlatforms) = preSolution
