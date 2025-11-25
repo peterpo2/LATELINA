@@ -36,13 +36,13 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
-!AIPharm.Backend/AIPharm.sln
+!LATELINA.Backend/LATELINA.sln
 # =========================================
 # .NET / Visual Studio
 # =========================================
 .vs/
 *.user
-*.userosscache
+*.userosscacheLATELINA
 *.suo
 *.sln.docstates
 
