@@ -11,17 +11,7 @@ namespace Latelina.Infrastructure.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ActiveIngredientEn",
-                schema: "dbo",
-                table: "Products");
-
-            migrationBuilder.DropColumn(
                 name: "DescriptionEn",
-                schema: "dbo",
-                table: "Products");
-
-            migrationBuilder.DropColumn(
-                name: "DosageEn",
                 schema: "dbo",
                 table: "Products");
 
@@ -40,27 +30,11 @@ namespace Latelina.Infrastructure.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "ActiveIngredientEn",
-                schema: "dbo",
-                table: "Products",
-                type: "nvarchar(200)",
-                maxLength: 200,
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
                 name: "DescriptionEn",
                 schema: "dbo",
                 table: "Products",
                 type: "nvarchar(1000)",
                 maxLength: 1000,
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "DosageEn",
-                schema: "dbo",
-                table: "Products",
-                type: "nvarchar(100)",
-                maxLength: 100,
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(

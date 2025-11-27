@@ -395,37 +395,6 @@ namespace Latelina.Infrastructure.Data.Migrations
                     b.Navigation("ShoppingCart");
                 });
 
-            modelBuilder.Entity("Latelina.Domain.Entities.NhifPrescription", b =>
-                {
-                    b.HasOne("Latelina.Domain.Entities.Order", "Order")
-                        .WithMany("NhifPrescriptions")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Latelina.Domain.Entities.User", "User")
-                        .WithMany("NhifPrescriptions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Latelina.Domain.Entities.Order", b =>
-                {
-                    b.HasOne("Latelina.Domain.Entities.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Orders_Users_OrderUser");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Latelina.Domain.Entities.OrderItem", b =>
                 {
                     b.HasOne("Latelina.Domain.Entities.Order", "Order")
@@ -476,7 +445,6 @@ namespace Latelina.Infrastructure.Data.Migrations
                 {
                     b.Navigation("Items");
 
-                    b.Navigation("NhifPrescriptions");
                 });
 
             modelBuilder.Entity("Latelina.Domain.Entities.Product", b =>
@@ -493,7 +461,6 @@ namespace Latelina.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Latelina.Domain.Entities.User", b =>
                 {
-                    b.Navigation("NhifPrescriptions");
 
                     b.Navigation("Orders");
 

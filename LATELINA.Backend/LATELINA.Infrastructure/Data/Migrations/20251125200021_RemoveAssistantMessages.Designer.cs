@@ -96,153 +96,6 @@ namespace Latelina.Infrastructure.Data.Migrations
                     b.ToTable("Categories", "dbo");
                 });
 
-            modelBuilder.Entity("Latelina.Domain.Entities.NhifPrescription", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("NhifPaidAmount")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<decimal?>("OtherCoverageAmount")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<decimal>("PatientPaidAmount")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<string>("PersonalIdentificationNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime>("PrescribedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PrescriptionNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("PrescriptionNumber")
-                        .IsUnique();
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("NhifPrescriptions", "dbo");
-                });
-
-            modelBuilder.Entity("Latelina.Domain.Entities.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<string>("City")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Country")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("OrderDate");
-
-                    b.Property<string>("CustomerEmail")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("CustomerName")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("DeliveryAddress")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<decimal>("DeliveryFee")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<string>("Notes")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("OrderKey");
-
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PostalCode")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int")
-                        .HasColumnName("OrderStatus");
-
-                    b.Property<decimal>("Subtotal")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("OrderUser");
-
-                    b.Property<decimal>("VatAmount")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<decimal>("VatRate")
-                        .HasColumnType("decimal(4,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .HasDatabaseName("IX_Orders_OrderUser");
-
-                    b.ToTable("Orders", "dbo");
-                });
-
             modelBuilder.Entity("Latelina.Domain.Entities.OrderItem", b =>
                 {
                     b.Property<int>("Id")
@@ -295,14 +148,6 @@ namespace Latelina.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ActiveIngredient")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ActiveIngredientEn")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -316,14 +161,6 @@ namespace Latelina.Infrastructure.Data.Migrations
                     b.Property<string>("DescriptionEn")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Dosage")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("DosageEn")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(500)
@@ -354,9 +191,6 @@ namespace Latelina.Infrastructure.Data.Migrations
 
                     b.Property<decimal?>("Rating")
                         .HasColumnType("decimal(3,2)");
-
-                    b.Property<bool>("RequiresPrescription")
-                        .HasColumnType("bit");
 
                     b.Property<int>("ReviewCount")
                         .HasColumnType("int");
@@ -489,37 +323,6 @@ namespace Latelina.Infrastructure.Data.Migrations
                     b.Navigation("ShoppingCart");
                 });
 
-            modelBuilder.Entity("Latelina.Domain.Entities.NhifPrescription", b =>
-                {
-                    b.HasOne("Latelina.Domain.Entities.Order", "Order")
-                        .WithMany("NhifPrescriptions")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Latelina.Domain.Entities.User", "User")
-                        .WithMany("NhifPrescriptions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Latelina.Domain.Entities.Order", b =>
-                {
-                    b.HasOne("Latelina.Domain.Entities.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Orders_Users_OrderUser");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Latelina.Domain.Entities.OrderItem", b =>
                 {
                     b.HasOne("Latelina.Domain.Entities.Order", "Order")
@@ -570,7 +373,6 @@ namespace Latelina.Infrastructure.Data.Migrations
                 {
                     b.Navigation("Items");
 
-                    b.Navigation("NhifPrescriptions");
                 });
 
             modelBuilder.Entity("Latelina.Domain.Entities.Product", b =>
@@ -587,7 +389,6 @@ namespace Latelina.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Latelina.Domain.Entities.User", b =>
                 {
-                    b.Navigation("NhifPrescriptions");
 
                     b.Navigation("Orders");
 

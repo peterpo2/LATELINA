@@ -247,14 +247,6 @@ namespace Latelina.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ActiveIngredient")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ActiveIngredientEn")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -268,14 +260,6 @@ namespace Latelina.Infrastructure.Data.Migrations
                     b.Property<string>("DescriptionEn")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Dosage")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("DosageEn")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(500)
@@ -306,9 +290,6 @@ namespace Latelina.Infrastructure.Data.Migrations
 
                     b.Property<decimal?>("Rating")
                         .HasColumnType("decimal(3,2)");
-
-                    b.Property<bool>("RequiresPrescription")
-                        .HasColumnType("bit");
 
                     b.Property<int>("ReviewCount")
                         .HasColumnType("int");
