@@ -31,7 +31,7 @@ public class ProductsControllerTests : IClassFixture<CustomWebApplicationFactory
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
-        var problem = await response.Content.ReadFromJsonAsync<HttpValidationProblemDetails>();
+        var problem = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
 
         Assert.NotNull(problem);
         Assert.True(problem!.Errors.ContainsKey(nameof(CreateProductDto.Name)));

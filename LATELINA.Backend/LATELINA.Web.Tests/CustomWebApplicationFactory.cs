@@ -18,8 +18,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             var descriptors = services
                 .Where(d => d.ServiceType == typeof(DbContextOptions<LatelinaDbContext>)
                          || d.ServiceType == typeof(LatelinaDbContext)
-                         || d.ServiceType == typeof(IDbContextFactory<LatelinaDbContext>)
-                         || d.ServiceType == typeof(IPooledDbContextFactory<LatelinaDbContext>))
+                         || d.ServiceType == typeof(IDbContextFactory<LatelinaDbContext>))
                 .ToList();
 
             foreach (var descriptor in descriptors)

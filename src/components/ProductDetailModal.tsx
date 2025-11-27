@@ -19,18 +19,15 @@ interface ProductDetailModalProps {
 }
 
 const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose }) => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const { dispatch } = useCart();
   const { prescriptionFeaturesEnabled } = useFeatureToggles();
 
-  const getProductName = () => (language === 'bg' ? product.name : product.nameEn);
-  const getDescription = () =>
-    language === 'bg' ? product.description ?? '' : product.descriptionEn ?? product.description ?? '';
-  const getActiveIngredient = () =>
-    language === 'bg' ? product.activeIngredient : product.activeIngredientEn ?? product.activeIngredient;
-  const getDosage = () => (language === 'bg' ? product.dosage : product.dosageEn ?? product.dosage);
-  const getManufacturer = () =>
-    language === 'bg' ? product.manufacturer : product.manufacturerEn ?? product.manufacturer;
+  const getProductName = () => product.name;
+  const getDescription = () => product.description ?? '';
+  const getActiveIngredient = () => product.activeIngredient;
+  const getDosage = () => product.dosage;
+  const getManufacturer = () => product.manufacturer;
 
   const hasPromotion = Boolean(product.promotion);
   const displayPrice = hasPromotion ? product.promotion!.promoPrice : product.price;
@@ -70,7 +67,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
       return value;
     }
 
-    return new Intl.DateTimeFormat(language === 'bg' ? 'bg-BG' : 'en-GB', {
+    return new Intl.DateTimeFormat('bg-BG', {
       dateStyle: 'medium',
     }).format(date);
   };
@@ -110,13 +107,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
           {hasPromotion && (
             <div className="absolute bottom-4 left-4 flex items-center space-x-2 rounded-full bg-emerald-600/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
               <Tag className="h-4 w-4" />
-              <span>
-                {discountPercentage && discountPercentage > 0
-                  ? `-${discountPercentage}%`
-                  : language === 'bg'
-                  ? product.promotion!.title
-                  : product.promotion!.titleEn}
-              </span>
+              <span>{discountPercentage && discountPercentage > 0 ? `-${discountPercentage}%` : product.promotion!.title}</span>
             </div>
           )}
         </div>
@@ -216,7 +207,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
             </div>
             {product.promotion?.description && (
               <p className="text-sm text-emerald-700">
-                {language === 'bg' ? product.promotion.description : product.promotion.descriptionEn}
+                {product.promotion.description}
               </p>
             )}
           </div>

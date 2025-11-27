@@ -4,21 +4,11 @@ import { useLanguage } from '../../context/LanguageContext';
 import { useNews } from '../../context/NewsContext';
 
 const News: React.FC = () => {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const { news } = useNews();
   const [expandedArticleId, setExpandedArticleId] = useState<string | null>(null);
 
-  const articles = useMemo(
-    () =>
-      news.map((article) => ({
-        ...article,
-        title: language === 'bg' ? article.title : article.titleEn,
-        excerpt: language === 'bg' ? article.excerpt : article.excerptEn,
-        content: language === 'bg' ? article.content : article.contentEn,
-        category: language === 'bg' ? article.category : article.categoryEn,
-      })),
-    [language, news]
-  );
+  const articles = useMemo(() => news, [news]);
 
   const formatDate = (value: string) => {
     const date = new Date(value);
@@ -26,7 +16,7 @@ const News: React.FC = () => {
       return value;
     }
 
-    return new Intl.DateTimeFormat(language === 'bg' ? 'bg-BG' : 'en-GB', {
+    return new Intl.DateTimeFormat('bg-BG', {
       dateStyle: 'medium',
     }).format(date);
   };

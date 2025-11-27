@@ -139,13 +139,9 @@ interface UpdateOrderStatusResponse {
 interface NewsFormState {
   id: string;
   title: string;
-  titleEn: string;
   excerpt: string;
-  excerptEn: string;
   content: string;
-  contentEn: string;
   category: string;
-  categoryEn: string;
   author: string;
   imageUrl: string;
   publishedAt: string;
@@ -155,13 +151,9 @@ interface NewsFormState {
 const mapArticleToFormState = (article: NewsArticle): NewsFormState => ({
   id: article.id,
   title: article.title,
-  titleEn: article.titleEn,
   excerpt: article.excerpt,
-  excerptEn: article.excerptEn,
   content: article.content,
-  contentEn: article.contentEn,
   category: article.category,
-  categoryEn: article.categoryEn,
   author: article.author,
   imageUrl: article.imageUrl,
   publishedAt: article.publishedAt,
@@ -171,26 +163,19 @@ const mapArticleToFormState = (article: NewsArticle): NewsFormState => ({
 const mapProductToFormState = (product: Product): ProductFormState => ({
   id: product.id,
   name: product.name,
-  nameEn: product.nameEn ?? product.name,
   description: product.description ?? '',
-  descriptionEn: product.descriptionEn ?? product.description ?? '',
   price: product.price.toString(),
   stockQuantity: product.stockQuantity.toString(),
   imageUrl: product.imageUrl,
   categoryId: product.categoryId.toString(),
   requiresPrescription: product.requiresPrescription,
   activeIngredient: product.activeIngredient ?? '',
-  activeIngredientEn: product.activeIngredientEn ?? product.activeIngredient ?? '',
   dosage: product.dosage ?? '',
-  dosageEn: product.dosageEn ?? product.dosage ?? '',
   manufacturer: product.manufacturer ?? '',
-  manufacturerEn: product.manufacturerEn ?? product.manufacturer ?? '',
   hasPromotion: Boolean(product.promotion),
   promotionId: product.promotion?.id ?? '',
   promotionTitle: product.promotion?.title ?? '',
-  promotionTitleEn: product.promotion?.titleEn ?? '',
   promotionDescription: product.promotion?.description ?? '',
-  promotionDescriptionEn: product.promotion?.descriptionEn ?? '',
   promoPrice: product.promotion?.promoPrice ? product.promotion.promoPrice.toString() : '',
   discountPercentage: product.promotion?.discountPercentage
     ? product.promotion.discountPercentage.toString()
@@ -202,26 +187,19 @@ const mapProductToFormState = (product: Product): ProductFormState => ({
 const buildEmptyProductForm = (): ProductFormState => ({
   id: null,
   name: '',
-  nameEn: '',
   description: '',
-  descriptionEn: '',
   price: '',
   stockQuantity: '',
   imageUrl: '',
   categoryId: '',
   requiresPrescription: false,
   activeIngredient: '',
-  activeIngredientEn: '',
   dosage: '',
-  dosageEn: '',
   manufacturer: '',
-  manufacturerEn: '',
   hasPromotion: false,
   promotionId: '',
   promotionTitle: '',
-  promotionTitleEn: '',
   promotionDescription: '',
-  promotionDescriptionEn: '',
   promoPrice: '',
   discountPercentage: '',
   validUntil: '',
@@ -271,26 +249,19 @@ type PromotionBadgeColor = ProductPromotion['badgeColor'] | '';
 interface ProductFormState {
   id: number | null;
   name: string;
-  nameEn: string;
   description: string;
-  descriptionEn: string;
   price: string;
   stockQuantity: string;
   imageUrl: string;
   categoryId: string;
   requiresPrescription: boolean;
   activeIngredient: string;
-  activeIngredientEn: string;
   dosage: string;
-  dosageEn: string;
   manufacturer: string;
-  manufacturerEn: string;
   hasPromotion: boolean;
   promotionId: string;
   promotionTitle: string;
-  promotionTitleEn: string;
   promotionDescription: string;
-  promotionDescriptionEn: string;
   promoPrice: string;
   discountPercentage: string;
   validUntil: string;
@@ -357,13 +328,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
   const buildInitialNewsForm = useCallback((): NewsFormState => ({
     id: '',
     title: '',
-    titleEn: '',
     excerpt: '',
-    excerptEn: '',
     content: '',
-    contentEn: '',
     category: '',
-    categoryEn: '',
     author: defaultAuthor,
     imageUrl: '',
     publishedAt: new Date().toISOString().split('T')[0],
@@ -713,9 +680,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
 
   const handleGenerateNewsImage = () => {
     setNewsForm((previous) => {
-      const titleSource = previous.titleEn.trim() || previous.title.trim() || t('admin.news.form.generatedTitleFallback');
-      const categorySource =
-        previous.categoryEn.trim() || previous.category.trim() || t('admin.news.form.generatedCategoryFallback');
+      const titleSource = previous.title.trim() || t('admin.news.form.generatedTitleFallback');
+      const categorySource = previous.category.trim() || t('admin.news.form.generatedCategoryFallback');
       const generated = generateNewsImage(titleSource, categorySource);
       setNewsToast({ type: 'success', text: t('admin.news.messages.imageGenerated') });
       return { ...previous, imageUrl: generated };
@@ -802,13 +768,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
     const trimmed = {
       id: newsForm.id.trim(),
       title: newsForm.title.trim(),
-      titleEn: newsForm.titleEn.trim(),
       excerpt: newsForm.excerpt.trim(),
-      excerptEn: newsForm.excerptEn.trim(),
       content: newsForm.content.trim(),
-      contentEn: newsForm.contentEn.trim(),
       category: newsForm.category.trim(),
-      categoryEn: newsForm.categoryEn.trim(),
       author: newsForm.author.trim(),
       imageUrl: newsForm.imageUrl.trim(),
       publishedAt: newsForm.publishedAt.trim(),
@@ -818,13 +780,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
     const errors: string[] = [];
 
     if (!trimmed.title) errors.push(t('admin.news.errors.title'));
-    if (!trimmed.titleEn) errors.push(t('admin.news.errors.titleEn'));
     if (!trimmed.excerpt) errors.push(t('admin.news.errors.excerpt'));
-    if (!trimmed.excerptEn) errors.push(t('admin.news.errors.excerptEn'));
     if (!trimmed.content) errors.push(t('admin.news.errors.content'));
-    if (!trimmed.contentEn) errors.push(t('admin.news.errors.contentEn'));
     if (!trimmed.category) errors.push(t('admin.news.errors.category'));
-    if (!trimmed.categoryEn) errors.push(t('admin.news.errors.categoryEn'));
     if (!trimmed.author) errors.push(t('admin.news.errors.author'));
     if (!trimmed.imageUrl) errors.push(t('admin.news.errors.imageUrl'));
 
@@ -868,13 +826,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
       const savedArticle = addArticle({
         id: trimmed.id || undefined,
         title: trimmed.title,
-        titleEn: trimmed.titleEn,
         excerpt: trimmed.excerpt,
-        excerptEn: trimmed.excerptEn,
         content: trimmed.content,
-        contentEn: trimmed.contentEn,
         category: trimmed.category,
-        categoryEn: trimmed.categoryEn,
         author: trimmed.author,
         imageUrl: trimmed.imageUrl,
         publishedAt: formattedDate,
@@ -925,11 +879,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
 
         const values = [
           product.name,
-          product.nameEn ?? '',
           product.activeIngredient ?? '',
           product.manufacturer ?? '',
           product.description ?? '',
-          product.descriptionEn ?? '',
         ];
 
         return values.some((value) => value.toLowerCase().includes(term));
@@ -1090,9 +1042,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
               hasPromotion: false,
               promotionId: '',
               promotionTitle: '',
-              promotionTitleEn: '',
               promotionDescription: '',
-              promotionDescriptionEn: '',
               promoPrice: '',
               discountPercentage: '',
               validUntil: '',
@@ -1406,22 +1356,16 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
 
     const errors: string[] = [];
     const name = productForm.name.trim();
-    const nameEn = productForm.nameEn.trim();
     const description = productForm.description.trim();
-    const descriptionEn = productForm.descriptionEn.trim();
     const imageUrl = productForm.imageUrl.trim();
     const activeIngredient = productForm.activeIngredient.trim();
-    const activeIngredientEn = productForm.activeIngredientEn.trim();
     const dosage = productForm.dosage.trim();
-    const dosageEn = productForm.dosageEn.trim();
     const manufacturer = productForm.manufacturer.trim();
-    const manufacturerEn = productForm.manufacturerEn.trim();
     const categoryId = Number(productForm.categoryId);
     const price = Number(productForm.price);
     const stockQuantity = Number(productForm.stockQuantity);
 
     if (!name) errors.push(t('admin.products.errors.name'));
-    if (!nameEn) errors.push(t('admin.products.errors.nameEn'));
     if (!Number.isFinite(price) || price <= 0) errors.push(t('admin.products.errors.price'));
     if (!Number.isFinite(stockQuantity) || stockQuantity < 0)
       errors.push(t('admin.products.errors.stock'));
@@ -1432,13 +1376,10 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
     let promotionPayload: ProductPromotion | null = null;
     if (productForm.hasPromotion) {
       const promotionTitle = productForm.promotionTitle.trim();
-      const promotionTitleEn = productForm.promotionTitleEn.trim();
       const promotionDescription = productForm.promotionDescription.trim();
-      const promotionDescriptionEn = productForm.promotionDescriptionEn.trim();
       const promoPrice = Number(productForm.promoPrice);
 
       if (!promotionTitle) errors.push(t('admin.products.errors.promotionTitle'));
-      if (!promotionTitleEn) errors.push(t('admin.products.errors.promotionTitleEn'));
       if (!Number.isFinite(promoPrice) || promoPrice <= 0) {
         errors.push(t('admin.products.errors.promoPrice'));
       } else if (promoPrice >= price) {
@@ -1465,9 +1406,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
       promotionPayload = {
         id: productForm.promotionId.trim() || `promo-${Date.now()}`,
         title: promotionTitle,
-        titleEn: promotionTitleEn || promotionTitle,
         description: promotionDescription,
-        descriptionEn: promotionDescriptionEn || promotionDescription,
         promoPrice,
         discountPercentage: discountValue,
         validUntil: productForm.validUntil.trim() || undefined,
@@ -1487,20 +1426,15 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
     try {
       const payload = {
         name,
-        nameEn: nameEn || name,
         description: description || undefined,
-        descriptionEn: descriptionEn || description || undefined,
         price,
         stockQuantity,
         imageUrl,
         categoryId,
         requiresPrescription: productForm.requiresPrescription,
         activeIngredient: activeIngredient || undefined,
-        activeIngredientEn: activeIngredientEn || activeIngredient || undefined,
         dosage: dosage || undefined,
-        dosageEn: dosageEn || dosage || undefined,
         manufacturer: manufacturer || undefined,
-        manufacturerEn: manufacturerEn || manufacturer || undefined,
         promotion: productForm.hasPromotion ? promotionPayload : null,
       };
 
@@ -2092,20 +2026,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-name-en">
-                      {t('admin.products.form.fields.nameEn')}
-                    </label>
-                    <input
-                      id="admin-product-name-en"
-                      name="nameEn"
-                      type="text"
-                      value={productForm.nameEn}
-                      onChange={handleProductFieldChange}
-                      disabled={!canEditProducts || productSaving}
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
                   <div className="space-y-2 md:col-span-2">
                     <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-description">
                       {t('admin.products.form.fields.descriptionBg')}
@@ -2114,19 +2034,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       id="admin-product-description"
                       name="description"
                       value={productForm.description}
-                      onChange={handleProductFieldChange}
-                      disabled={!canEditProducts || productSaving}
-                      className="h-24 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
-                  <div className="space-y-2 md:col-span-2">
-                    <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-description-en">
-                      {t('admin.products.form.fields.descriptionEn')}
-                    </label>
-                    <textarea
-                      id="admin-product-description-en"
-                      name="descriptionEn"
-                      value={productForm.descriptionEn}
                       onChange={handleProductFieldChange}
                       disabled={!canEditProducts || productSaving}
                       className="h-24 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
@@ -2236,20 +2143,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-active-en">
-                      {t('admin.products.form.fields.activeIngredientEn')}
-                    </label>
-                    <input
-                      id="admin-product-active-en"
-                      name="activeIngredientEn"
-                      type="text"
-                      value={productForm.activeIngredientEn}
-                      onChange={handleProductFieldChange}
-                      disabled={!canEditProducts || productSaving}
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
-                  <div className="space-y-2">
                     <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-dosage-bg">
                       {t('admin.products.form.fields.dosageBg')}
                     </label>
@@ -2264,20 +2157,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-dosage-en">
-                      {t('admin.products.form.fields.dosageEn')}
-                    </label>
-                    <input
-                      id="admin-product-dosage-en"
-                      name="dosageEn"
-                      type="text"
-                      value={productForm.dosageEn}
-                      onChange={handleProductFieldChange}
-                      disabled={!canEditProducts || productSaving}
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
-                  <div className="space-y-2">
                     <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-manufacturer-bg">
                       {t('admin.products.form.fields.manufacturerBg')}
                     </label>
@@ -2286,20 +2165,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       name="manufacturer"
                       type="text"
                       value={productForm.manufacturer}
-                      onChange={handleProductFieldChange}
-                      disabled={!canEditProducts || productSaving}
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-manufacturer-en">
-                      {t('admin.products.form.fields.manufacturerEn')}
-                    </label>
-                    <input
-                      id="admin-product-manufacturer-en"
-                      name="manufacturerEn"
-                      type="text"
-                      value={productForm.manufacturerEn}
                       onChange={handleProductFieldChange}
                       disabled={!canEditProducts || productSaving}
                       className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
@@ -2362,20 +2227,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-promo-title-en">
-                        {t('admin.products.form.fields.promotionTitleEn')}
-                      </label>
-                      <input
-                        id="admin-product-promo-title-en"
-                        name="promotionTitleEn"
-                        type="text"
-                        value={productForm.promotionTitleEn}
-                        onChange={handleProductFieldChange}
-                        disabled={!canEditProducts || productSaving}
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                      />
-                    </div>
-                    <div className="space-y-2">
                       <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-promo-price">
                         {t('admin.products.form.fields.promotionPrice')}
                       </label>
@@ -2429,19 +2280,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                         id="admin-product-promo-description-bg"
                         name="promotionDescription"
                         value={productForm.promotionDescription}
-                        onChange={handleProductFieldChange}
-                        disabled={!canEditProducts || productSaving}
-                        className="h-20 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                      />
-                    </div>
-                    <div className="space-y-2 md:col-span-2">
-                      <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-promo-description-en">
-                        {t('admin.products.form.fields.promotionDescriptionEn')}
-                      </label>
-                      <textarea
-                        id="admin-product-promo-description-en"
-                        name="promotionDescriptionEn"
-                        value={productForm.promotionDescriptionEn}
                         onChange={handleProductFieldChange}
                         disabled={!canEditProducts || productSaving}
                         className="h-20 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
@@ -2991,18 +2829,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                           className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
                         />
                       </div>
-                      <div>
-                        <label className="mb-2 block text-sm font-medium text-slate-600" htmlFor="admin-news-titleEn">
-                          {t('admin.news.form.titleEn')}
-                        </label>
-                        <input
-                          id="admin-news-titleEn"
-                          name="titleEn"
-                          value={newsForm.titleEn}
-                          onChange={handleNewsFieldChange}
-                          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
-                        />
-                      </div>
                     </div>
                     <div className="grid gap-4 md:grid-cols-2">
                       <div>
@@ -3013,19 +2839,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                           id="admin-news-excerpt"
                           name="excerpt"
                           value={newsForm.excerpt}
-                          onChange={handleNewsFieldChange}
-                          rows={3}
-                          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
-                        />
-                      </div>
-                      <div>
-                        <label className="mb-2 block text-sm font-medium text-slate-600" htmlFor="admin-news-excerptEn">
-                          {t('admin.news.form.excerptEn')}
-                        </label>
-                        <textarea
-                          id="admin-news-excerptEn"
-                          name="excerptEn"
-                          value={newsForm.excerptEn}
                           onChange={handleNewsFieldChange}
                           rows={3}
                           className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
@@ -3046,19 +2859,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                           className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
                         />
                       </div>
-                      <div>
-                        <label className="mb-2 block text-sm font-medium text-slate-600" htmlFor="admin-news-contentEn">
-                          {t('admin.news.form.contentEn')}
-                        </label>
-                        <textarea
-                          id="admin-news-contentEn"
-                          name="contentEn"
-                          value={newsForm.contentEn}
-                          onChange={handleNewsFieldChange}
-                          rows={5}
-                          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
-                        />
-                      </div>
                     </div>
                     <div className="grid gap-4 md:grid-cols-2">
                       <div>
@@ -3069,18 +2869,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                           id="admin-news-category"
                           name="category"
                           value={newsForm.category}
-                          onChange={handleNewsFieldChange}
-                          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
-                        />
-                      </div>
-                      <div>
-                        <label className="mb-2 block text-sm font-medium text-slate-600" htmlFor="admin-news-categoryEn">
-                          {t('admin.news.form.categoryEn')}
-                        </label>
-                        <input
-                          id="admin-news-categoryEn"
-                          name="categoryEn"
-                          value={newsForm.categoryEn}
                           onChange={handleNewsFieldChange}
                           className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
                         />
