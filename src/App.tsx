@@ -56,15 +56,8 @@ function AppContent() {
       const query = searchTerm.trim().toLowerCase();
       return source.filter((product) => {
         const name = product.name.toLowerCase();
-        const nameEn = product.nameEn?.toLowerCase() ?? '';
         const description = product.description?.toLowerCase() ?? '';
-        const descriptionEn = product.descriptionEn?.toLowerCase() ?? '';
-        return (
-          name.includes(query) ||
-          nameEn.includes(query) ||
-          description.includes(query) ||
-          descriptionEn.includes(query)
-        );
+        return name.includes(query) || description.includes(query);
       });
     }
 

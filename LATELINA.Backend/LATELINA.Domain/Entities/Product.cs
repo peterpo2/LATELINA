@@ -12,14 +12,8 @@ namespace Latelina.Domain.Entities
         [MaxLength(200)]
         public string Name { get; set; } = string.Empty;
         
-        [MaxLength(200)]
-        public string? NameEn { get; set; }
-        
         [MaxLength(1000)]
         public string? Description { get; set; }
-        
-        [MaxLength(1000)]
-        public string? DescriptionEn { get; set; }
         
         [Column(TypeName = "decimal(10,2)")]
         public decimal Price { get; set; }
@@ -39,20 +33,11 @@ namespace Latelina.Domain.Entities
         [MaxLength(200)]
         public string? ActiveIngredient { get; set; }
         
-        [MaxLength(200)]
-        public string? ActiveIngredientEn { get; set; }
-        
         [MaxLength(100)]
         public string? Dosage { get; set; }
         
-        [MaxLength(100)]
-        public string? DosageEn { get; set; }
-        
         [MaxLength(200)]
         public string? Manufacturer { get; set; }
-        
-        [MaxLength(200)]
-        public string? ManufacturerEn { get; set; }
         
         [Column(TypeName = "decimal(3,2)")]
         public decimal? Rating { get; set; }

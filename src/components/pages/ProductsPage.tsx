@@ -102,12 +102,8 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
       }
 
       if (searchQuery) {
-        const name = (language === 'bg' ? product.name : product.nameEn ?? product.name).toLowerCase();
-        const description = (
-          language === 'bg'
-            ? product.description ?? ''
-            : product.descriptionEn ?? product.description ?? ''
-        ).toLowerCase();
+        const name = product.name.toLowerCase();
+        const description = (product.description ?? '').toLowerCase();
 
         if (!name.includes(searchQuery) && !description.includes(searchQuery)) {
           return false;
@@ -129,7 +125,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
   }, [
     availabilityFilter,
     filteredProducts,
-    language,
     localSearch,
     onlyPromotions,
     prescriptionFilter,

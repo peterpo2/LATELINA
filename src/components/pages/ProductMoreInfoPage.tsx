@@ -17,7 +17,7 @@ import { useProductCatalog } from '../../context/ProductCatalogContext';
 const ProductMoreInfoPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const { prescriptionFeaturesEnabled } = useFeatureToggles();
   const { dispatch } = useCart();
   const { products } = useProductCatalog();
@@ -27,22 +27,11 @@ const ProductMoreInfoPage: React.FC = () => {
     [productId, products],
   );
 
-  const getProductName = (currentProduct: Product) =>
-    language === 'bg' ? currentProduct.name : currentProduct.nameEn;
-  const getDescription = (currentProduct: Product) =>
-    language === 'bg'
-      ? currentProduct.description ?? ''
-      : currentProduct.descriptionEn ?? currentProduct.description ?? '';
-  const getActiveIngredient = (currentProduct: Product) =>
-    language === 'bg'
-      ? currentProduct.activeIngredient
-      : currentProduct.activeIngredientEn ?? currentProduct.activeIngredient;
-  const getDosage = (currentProduct: Product) =>
-    language === 'bg' ? currentProduct.dosage : currentProduct.dosageEn ?? currentProduct.dosage;
-  const getManufacturer = (currentProduct: Product) =>
-    language === 'bg'
-      ? currentProduct.manufacturer
-      : currentProduct.manufacturerEn ?? currentProduct.manufacturer;
+  const getProductName = (currentProduct: Product) => currentProduct.name;
+  const getDescription = (currentProduct: Product) => currentProduct.description ?? '';
+  const getActiveIngredient = (currentProduct: Product) => currentProduct.activeIngredient;
+  const getDosage = (currentProduct: Product) => currentProduct.dosage;
+  const getManufacturer = (currentProduct: Product) => currentProduct.manufacturer;
 
   const handleAddToCart = (currentProduct: Product) => {
     dispatch({ type: 'ADD_ITEM', payload: currentProduct });
@@ -54,7 +43,7 @@ const ProductMoreInfoPage: React.FC = () => {
       return value;
     }
 
-    return new Intl.DateTimeFormat(language === 'bg' ? 'bg-BG' : 'en-GB', {
+    return new Intl.DateTimeFormat('bg-BG', {
       dateStyle: 'medium',
     }).format(date);
   };
@@ -192,13 +181,13 @@ const ProductMoreInfoPage: React.FC = () => {
                 {hasPromotion && (
                   <span className="inline-flex items-center space-x-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
                     <Tag className="h-4 w-4" />
-                    <span>{language === 'bg' ? product.promotion!.title : product.promotion!.titleEn}</span>
+                    <span>{product.promotion!.title}</span>
                   </span>
                 )}
               </div>
               {product.promotion?.description && (
                 <p className="mt-3 text-sm text-emerald-700">
-                  {language === 'bg' ? product.promotion.description : product.promotion.descriptionEn}
+                  {product.promotion.description}
                 </p>
               )}
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">

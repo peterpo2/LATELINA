@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) => {
   const { dispatch } = useCart();
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const { prescriptionFeaturesEnabled } = useFeatureToggles();
 
   const promotion = product.promotion;
@@ -24,16 +24,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
       : 0;
   const discountPercentage = promotion?.discountPercentage ?? computedDiscount;
 
-  const promotionTitle = hasPromotion
-    ? language === 'bg'
-      ? promotion!.title
-      : promotion!.titleEn
-    : '';
-  const promotionDescription = hasPromotion
-    ? language === 'bg'
-      ? promotion!.description
-      : promotion!.descriptionEn
-    : '';
+  const promotionTitle = hasPromotion ? promotion!.title : '';
+  const promotionDescription = hasPromotion ? promotion!.description : '';
 
   const formatPromotionDate = (value: string) => {
     const date = new Date(value);
@@ -41,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
       return value;
     }
 
-    return new Intl.DateTimeFormat(language === 'bg' ? 'bg-BG' : 'en-GB', {
+    return new Intl.DateTimeFormat('bg-BG', {
       dateStyle: 'medium',
     }).format(date);
   };
@@ -63,12 +55,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
     dispatch({ type: 'ADD_ITEM', payload: product });
   };
 
-  const getProductName = () => (language === 'bg' ? product.name : product.nameEn);
-  const getActiveIngredient = () =>
-    language === 'bg' ? product.activeIngredient : product.activeIngredientEn;
-  const getDosage = () => (language === 'bg' ? product.dosage : product.dosageEn);
-  const getManufacturer = () =>
-    language === 'bg' ? product.manufacturer : product.manufacturerEn;
+  const getProductName = () => product.name;
+  const getActiveIngredient = () => product.activeIngredient;
+  const getDosage = () => product.dosage;
+  const getManufacturer = () => product.manufacturer;
 
   const handleProductClick = () => {
     if (onProductClick) {

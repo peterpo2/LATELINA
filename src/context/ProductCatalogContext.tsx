@@ -4,20 +4,15 @@ import { categories as initialCategories, products as initialProducts } from '..
 
 interface ProductInput {
   name: string;
-  nameEn: string;
   description?: string;
-  descriptionEn?: string;
   price: number;
   stockQuantity: number;
   imageUrl: string;
   categoryId: number;
   requiresPrescription: boolean;
   activeIngredient?: string;
-  activeIngredientEn?: string;
   dosage?: string;
-  dosageEn?: string;
   manufacturer?: string;
-  manufacturerEn?: string;
   promotion?: ProductPromotion | null;
 }
 
@@ -47,9 +42,7 @@ const sanitizePromotion = (promotion?: ProductPromotion | null): ProductPromotio
     ...promotion,
     id: trimmedId || `promo-${Date.now()}`,
     title: promotion.title.trim(),
-    titleEn: promotion.titleEn.trim(),
     description: promotion.description.trim(),
-    descriptionEn: promotion.descriptionEn.trim(),
     promoPrice: Number(promotion.promoPrice),
     discountPercentage:
       promotion.discountPercentage !== undefined && promotion.discountPercentage !== null
@@ -65,20 +58,15 @@ const sanitizePromotion = (promotion?: ProductPromotion | null): ProductPromotio
 const buildProduct = (id: number, input: ProductInput): Product => ({
   id,
   name: input.name.trim(),
-  nameEn: input.nameEn.trim() || input.name.trim(),
   description: input.description?.trim() || undefined,
-  descriptionEn: input.descriptionEn?.trim() || input.description?.trim(),
   price: input.price,
   stockQuantity: input.stockQuantity,
   imageUrl: input.imageUrl.trim(),
   categoryId: input.categoryId,
   requiresPrescription: input.requiresPrescription,
   activeIngredient: input.activeIngredient?.trim() || undefined,
-  activeIngredientEn: input.activeIngredientEn?.trim() || input.activeIngredient?.trim(),
   dosage: input.dosage?.trim() || undefined,
-  dosageEn: input.dosageEn?.trim() || input.dosage?.trim(),
   manufacturer: input.manufacturer?.trim() || undefined,
-  manufacturerEn: input.manufacturerEn?.trim() || input.manufacturer?.trim(),
   promotion: sanitizePromotion(input.promotion),
 });
 
@@ -146,20 +134,15 @@ export const ProductCatalogProvider: React.FC<{ children: React.ReactNode }> = (
 
           const merged: ProductInput = {
             name: updates.name ?? item.name,
-            nameEn: updates.nameEn ?? item.nameEn,
             description: updates.description ?? item.description,
-            descriptionEn: updates.descriptionEn ?? item.descriptionEn,
             price: updates.price ?? item.price,
             stockQuantity: updates.stockQuantity ?? item.stockQuantity,
             imageUrl: updates.imageUrl ?? item.imageUrl,
             categoryId: updates.categoryId ?? item.categoryId,
             requiresPrescription: updates.requiresPrescription ?? item.requiresPrescription,
             activeIngredient: updates.activeIngredient ?? item.activeIngredient,
-            activeIngredientEn: updates.activeIngredientEn ?? item.activeIngredientEn,
             dosage: updates.dosage ?? item.dosage,
-            dosageEn: updates.dosageEn ?? item.dosageEn,
             manufacturer: updates.manufacturer ?? item.manufacturer,
-            manufacturerEn: updates.manufacturerEn ?? item.manufacturerEn,
             promotion:
               updates.promotion !== undefined
                 ? updates.promotion

@@ -8,9 +8,7 @@ export interface Category {
 export interface ProductPromotion {
   id: string;
   title: string;
-  titleEn: string;
   description: string;
-  descriptionEn: string;
   promoPrice: number;
   discountPercentage?: number;
   validUntil?: string;
@@ -20,9 +18,7 @@ export interface ProductPromotion {
 export interface Product {
   id: number;
   name: string;
-  nameEn: string;
   description?: string;
-  descriptionEn?: string;
   price: number;
   stockQuantity: number;
   imageUrl: string;
@@ -30,11 +26,8 @@ export interface Product {
   category?: Category;
   requiresPrescription: boolean;
   activeIngredient?: string;
-  activeIngredientEn?: string;
   dosage?: string;
-  dosageEn?: string;
   manufacturer?: string;
-  manufacturerEn?: string;
   rating?: number;
   reviewCount?: number;
   promotion?: ProductPromotion;
@@ -149,13 +142,9 @@ export interface ProductFilter {
 export interface NewsArticle {
   id: string;
   title: string;
-  titleEn: string;
   excerpt: string;
-  excerptEn: string;
   content: string;
-  contentEn: string;
   category: string;
-  categoryEn: string;
   author: string;
   imageUrl: string;
   publishedAt: string;

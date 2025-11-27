@@ -8,18 +8,14 @@ import type { Product } from '../types';
 
 const CartDrawer: React.FC = () => {
   const { state, dispatch } = useCart();
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
   const { isAuthenticated } = useAuth();
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
 
-  const getProductName = (product: Product) =>
-    language === 'bg' ? product.name : product.nameEn;
-  const getActiveIngredient = (product: Product) =>
-    language === 'bg' ? product.activeIngredient : product.activeIngredientEn;
-  const getDosage = (product: Product) =>
-    language === 'bg' ? product.dosage : product.dosageEn;
-  const getManufacturer = (product: Product) =>
-    language === 'bg' ? product.manufacturer : product.manufacturerEn;
+  const getProductName = (product: Product) => product.name;
+  const getActiveIngredient = (product: Product) => product.activeIngredient;
+  const getDosage = (product: Product) => product.dosage;
+  const getManufacturer = (product: Product) => product.manufacturer;
 
   const updateQuantity = (id: number, quantity: number) => {
     dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
