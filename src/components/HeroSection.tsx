@@ -7,16 +7,16 @@ const HeroSection: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-50 overflow-hidden">
+    <div className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
         <div
-          className="absolute top-40 right-10 w-72 h-72 bg-teal-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"
+          className="absolute top-40 right-10 w-72 h-72 bg-secondary-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"
           style={{ animationDelay: "2s" }}
         ></div>
         <div
-          className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"
+          className="absolute -bottom-8 left-20 w-72 h-72 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"
           style={{ animationDelay: "4s" }}
         ></div>
       </div>
@@ -25,7 +25,7 @@ const HeroSection: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center">
             {/* Main Title */}
-            <div className="inline-flex items-center px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4 mr-2" />
               {t("hero.certifiedQuality")}
             </div>
@@ -38,14 +38,14 @@ const HeroSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-3 mb-8 justify-center">
               <Link
                 to="/products"
-                className="group bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
+                className="group bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
               >
                 <span>{t("hero.viewProducts")}</span>
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
               <Link
                 to="/contacts"
-                className="group border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+                className="group border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
               >
                 {t("hero.contactTeam")}
               </Link>
@@ -54,7 +54,7 @@ const HeroSection: React.FC = () => {
             {/* Stats - Only 3 key stats */}
             <div className="grid grid-cols-3 gap-6 pt-6 border-t border-gray-200 max-w-xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl font-bold text-emerald-600 mb-1">
+                <div className="text-2xl font-bold text-primary-600 mb-1">
                   10,000+
                 </div>
                 <div className="text-sm text-gray-600">
@@ -62,7 +62,7 @@ const HeroSection: React.FC = () => {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-emerald-600 mb-1">
+                <div className="text-2xl font-bold text-primary-600 mb-1">
                   5,000+
                 </div>
                 <div className="text-sm text-gray-600">
@@ -70,7 +70,7 @@ const HeroSection: React.FC = () => {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-emerald-600 mb-1">
+                <div className="text-2xl font-bold text-primary-600 mb-1">
                   24/7
                 </div>
                 <div className="text-sm text-gray-600">

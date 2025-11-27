@@ -1,25 +1,25 @@
 import type { LucideIcon } from 'lucide-react';
-import { Pill, Heart, Thermometer, Car, Droplet, Baby } from 'lucide-react';
+import { Gift, Heart, Sparkles, Star, Moon, Crown } from 'lucide-react';
 
 import type { Category } from '../types';
 import type { Language } from '../context/LanguageContext';
 
 const categoryIconMap: Record<string, LucideIcon> = {
-  pill: Pill,
   heart: Heart,
-  thermometer: Thermometer,
-  stomach: Car,
-  droplet: Droplet,
-  baby: Baby,
+  gift: Gift,
+  sparkles: Sparkles,
+  star: Star,
+  moon: Moon,
+  crown: Crown,
 };
 
 const categoryNameTranslations: Record<string, string> = {
-  'Обезболяващи': 'Painkillers',
-  Витамини: 'Vitamins',
-  'Простуда и грип': 'Cold & Flu',
-  'Стомашно-чревни': 'Digestive',
-  'Кожа и коса': 'Skin & Hair',
-  'Детски продукти': 'Children',
+  'Мечета от рози': 'Rose bears',
+  'Подаръчни кошници': 'Gift baskets',
+  'Романтични комплекти': 'Romantic sets',
+  'Сладки изненади': 'Sweet treats',
+  'Декорации': 'Decor',
+  'Специални поводи': 'Special moments',
 };
 
 export const getCategoryIcon = (iconKey: string): LucideIcon => {

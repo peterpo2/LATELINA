@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Search,
   ShoppingCart,
@@ -45,6 +45,7 @@ const Header: React.FC<HeaderProps> = ({
   const { user, isAuthenticated, isAdmin, isStaff, logout } = useAuth();
   const { t, language } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -139,9 +140,9 @@ const Header: React.FC<HeaderProps> = ({
 
   const navigationItems = [
     {
-      key: 'navigation.categories',
-      path: '/categories',
-      onClick: onNavigateToCategories,
+      key: 'navigation.home',
+      path: '/',
+      onClick: () => navigate('/'),
     },
     {
       key: 'navigation.products',
@@ -155,8 +156,13 @@ const Header: React.FC<HeaderProps> = ({
     },
     {
       key: 'navigation.news',
-      path: '/news',
-      onClick: onNavigateToNews,
+      path: '/about',
+      onClick: () => navigate('/about'),
+    },
+    {
+      key: 'navigation.contacts',
+      path: '/contacts',
+      onClick: () => navigate('/contacts'),
     },
   ];
 
@@ -172,14 +178,14 @@ const Header: React.FC<HeaderProps> = ({
         <div className="hidden md:flex items-center justify-between py-2 text-sm text-gray-600 border-b border-gray-50">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
-              <Phone className="w-4 h-4 text-emerald-600" />
+              <Phone className="w-4 h-4 text-primary-600" />
               <span className="font-medium">{t('header.phone')}</span>
             </div>
-            <span className="text-emerald-600 font-medium">{t('header.freeDelivery')}</span>
+            <span className="text-primary-600 font-medium">{t('header.freeDelivery')}</span>
           </div>
           <div className="flex items-center space-x-6">
             <LanguageSwitcher />
-            <div className="flex items-center space-x-2 text-emerald-700 font-medium">
+            <div className="flex items-center space-x-2 text-primary-700 font-medium">
               <span>{formattedDate}</span>
               <span className="text-gray-300">•</span>
               <span>{formattedTime}</span>
@@ -196,14 +202,14 @@ const Header: React.FC<HeaderProps> = ({
             {isAuthenticated && (
               <button
                 onClick={openOrdersModal}
-                className="inline-flex items-center space-x-1 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-600 transition hover:border-blue-300 hover:bg-blue-100"
+                className="inline-flex items-center space-x-1 rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-sm font-semibold text-primary-700 transition hover:border-primary-300 hover:bg-primary-100"
               >
                 <Receipt className="h-4 w-4" />
                 <span>{t('header.myOrders')}</span>
               </button>
             )}
             {isAuthenticated ? (
-              <span className="text-emerald-600 font-medium">
+              <span className="text-primary-700 font-medium">
                 {t('header.hello')}, {user?.fullName || user?.email}
                 {canAccessAdmin && (
                   <PanelBadgeIcon className={`inline w-4 h-4 ml-1 ${
@@ -212,9 +218,9 @@ const Header: React.FC<HeaderProps> = ({
                 )}
               </span>
             ) : (
-              <button 
+              <button
                 onClick={() => setShowLoginModal(true)}
-                className="hover:text-emerald-600 transition-colors font-medium"
+                className="hover:text-primary-700 transition-colors font-medium"
               >
                 {t('header.myProfile')}
               </button>
@@ -236,7 +242,7 @@ const Header: React.FC<HeaderProps> = ({
               <input
                 type="text"
                 placeholder={t('header.search')}
-                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-gray-50 focus:bg-white transition-all duration-200 text-gray-900 placeholder-gray-500"
+                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-50 focus:bg-white transition-all duration-200 text-gray-900 placeholder-gray-500"
                 value={searchTerm}
                 onChange={(e) => onSearch(e.target.value)}
               />
@@ -248,9 +254,9 @@ const Header: React.FC<HeaderProps> = ({
             {/* Cart */}
             <button
               onClick={() => dispatch({ type: 'TOGGLE_CART' })}
-              className="relative p-3 bg-emerald-50 hover:bg-emerald-100 rounded-full transition-all duration-200 group"
+              className="relative p-3 bg-primary-50 hover:bg-primary-100 rounded-full transition-all duration-200 group"
             >
-              <ShoppingCart className="w-6 h-6 text-emerald-600 group-hover:scale-110 transition-transform duration-200" />
+              <ShoppingCart className="w-6 h-6 text-primary-600 group-hover:scale-110 transition-transform duration-200" />
               {state.itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {state.itemCount}
@@ -370,8 +376,8 @@ const Header: React.FC<HeaderProps> = ({
                 onClick={() => handleNavigationClick(item.onClick)}
                 className={`relative rounded-full px-4 py-2 transition-colors duration-200 ${
                   isActive
-                    ? 'bg-emerald-50 text-emerald-700'
-                    : 'hover:bg-emerald-50 hover:text-emerald-700'
+                    ? 'bg-primary-50 text-primary-700'
+                    : 'hover:bg-primary-50 hover:text-primary-700'
                 }`}
               >
                 {t(item.key)}
@@ -387,7 +393,7 @@ const Header: React.FC<HeaderProps> = ({
             <input
               type="text"
               placeholder={t('header.search')}
-              className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-gray-50 focus:bg-white transition-all duration-200"
+              className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-50 focus:bg-white transition-all duration-200"
               value={searchTerm}
               onChange={(e) => onSearch(e.target.value)}
             />
@@ -409,7 +415,7 @@ const Header: React.FC<HeaderProps> = ({
                 type="button"
                 onClick={() => handleNavigationClick(item.onClick)}
                 className={`block w-full text-left py-2 text-base font-semibold transition-colors ${
-                  isActive ? 'text-emerald-600' : 'text-gray-700 hover:text-emerald-600'
+                  isActive ? 'text-primary-700' : 'text-gray-700 hover:text-primary-700'
                 }`}
               >
                 {t(item.key)}
@@ -423,8 +429,8 @@ const Header: React.FC<HeaderProps> = ({
               onClick={() => setIsMenuOpen(false)}
               className={`block w-full text-left py-2 transition-colors ${
                 location.pathname === link.path
-                  ? 'text-emerald-600 font-semibold'
-                  : 'text-gray-700 hover:text-emerald-600'
+                  ? 'text-primary-700 font-semibold'
+                  : 'text-gray-700 hover:text-primary-700'
               }`}
             >
               {t(link.key)}
@@ -437,7 +443,7 @@ const Header: React.FC<HeaderProps> = ({
                   setIsMenuOpen(false);
                   setShowOrdersModal(true);
                 }}
-                className="flex w-full items-center space-x-2 rounded-xl border border-gray-100 px-4 py-2 text-left text-gray-700 transition hover:border-emerald-200 hover:text-emerald-700"
+                className="flex w-full items-center space-x-2 rounded-xl border border-gray-100 px-4 py-2 text-left text-gray-700 transition hover:border-primary-200 hover:text-primary-700"
               >
                 <Receipt className="h-4 w-4" />
                 <span>{t('header.myOrders')}</span>
@@ -468,7 +474,7 @@ const Header: React.FC<HeaderProps> = ({
             <>
               <button
                 onClick={() => setShowLoginModal(true)}
-                className="block w-full text-left py-2 text-emerald-600 hover:text-emerald-700 transition-colors font-medium"
+                className="block w-full text-left py-2 text-primary-700 hover:text-primary-800 transition-colors font-medium"
               >
                 {t('header.login')}
               </button>

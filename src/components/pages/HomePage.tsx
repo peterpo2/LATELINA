@@ -80,7 +80,7 @@ const HomePage: React.FC<HomePageProps> = ({
                 <button
                   type="button"
                   onClick={handleViewAllCategories}
-                  className="inline-flex items-center justify-center px-5 py-2 rounded-full border border-emerald-200 text-sm font-semibold text-emerald-700 hover:border-emerald-300 hover:text-emerald-800 transition-colors"
+                  className="inline-flex items-center justify-center px-5 py-2 rounded-full border border-primary-200 text-sm font-semibold text-primary-700 hover:border-primary-300 hover:text-primary-800 transition-colors"
                 >
                   {t('categories.viewAll')}
                 </button>
@@ -94,9 +94,9 @@ const HomePage: React.FC<HomePageProps> = ({
                       key={category.id}
                       type="button"
                       onClick={() => onCategoryChange(category.id)}
-                      className="text-left bg-white border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 rounded-2xl p-5 group"
+                      className="text-left bg-white border border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300 rounded-2xl p-5 group"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 group-hover:bg-emerald-100">
+                      <div className="w-12 h-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mb-4 group-hover:bg-primary-100">
                         <IconComponent className="w-6 h-6" />
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -118,7 +118,7 @@ const HomePage: React.FC<HomePageProps> = ({
                 <button
                   type="button"
                   onClick={handleViewAllPromotions}
-                  className="inline-flex items-center justify-center px-5 py-2 rounded-full border border-emerald-200 text-sm font-semibold text-emerald-700 hover:border-emerald-300 hover:text-emerald-800 transition-colors"
+                  className="inline-flex items-center justify-center px-5 py-2 rounded-full border border-primary-200 text-sm font-semibold text-primary-700 hover:border-primary-300 hover:text-primary-800 transition-colors"
                 >
                   {t('home.promotionsViewAll')}
                 </button>
@@ -129,7 +129,7 @@ const HomePage: React.FC<HomePageProps> = ({
                   onEmptyAction={handleViewAllPromotions}
                 />
               ) : (
-                <div className="rounded-2xl border border-dashed border-emerald-200 bg-emerald-50 p-6 text-sm text-emerald-700">
+                <div className="rounded-2xl border border-dashed border-primary-200 bg-primary-50 p-6 text-sm text-primary-700">
                   {t('home.promotionsEmpty')}
                 </div>
               )}
@@ -144,7 +144,7 @@ const HomePage: React.FC<HomePageProps> = ({
                 <button
                   type="button"
                   onClick={handleViewAllProducts}
-                  className="inline-flex items-center justify-center px-5 py-2 rounded-full border border-emerald-200 text-sm font-semibold text-emerald-700 hover:border-emerald-300 hover:text-emerald-800 transition-colors"
+                  className="inline-flex items-center justify-center px-5 py-2 rounded-full border border-primary-200 text-sm font-semibold text-primary-700 hover:border-primary-300 hover:text-primary-800 transition-colors"
                 >
                   {t('products.viewAll')}
                 </button>
@@ -170,7 +170,7 @@ const HomePage: React.FC<HomePageProps> = ({
               <div className="mb-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">{resultsTitle}</h2>
                 <p className="text-gray-600 flex items-center">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
                     {filteredProducts.length} {t('products.products')}
                   </span>
                 </p>

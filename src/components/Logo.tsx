@@ -11,14 +11,14 @@ const LatelinaLogo: React.FC<LogoProps> = ({ className = 'h-10' }) => {
   return (
     <div className="flex items-center space-x-3">
       <div
-        className={`flex aspect-square items-center justify-center rounded-2xl bg-emerald-50 p-2 shadow-inner ${className}`}
+        className={`flex aspect-square items-center justify-center rounded-2xl bg-primary-50 p-2 shadow-inner ${className}`}
       >
         <svg
           role="img"
           aria-label={t('header.title')}
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#10b981"
+          stroke="#ec4899"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -32,8 +32,8 @@ const LatelinaLogo: React.FC<LogoProps> = ({ className = 'h-10' }) => {
         </svg>
       </div>
       <div className="leading-tight">
-        <p className="text-xl font-bold text-emerald-700">{t('header.title')}</p>
-        <p className="text-xs uppercase tracking-[0.25em] text-emerald-500">
+        <p className="text-xl font-bold text-primary-700">{t('header.title')}</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-primary-500">
           {t('header.subtitle')}
         </p>
       </div>
