@@ -1,6 +1,6 @@
 # Docker Guide for Latelina
 
-Latelina is a digital-pharmacy demo that blends a React storefront, .NET 8 Web API, and SQL Server database. The Docker setup lets you experience the seeded catalog and admin dashboard without installing the individual runtimes.
+Latelina is a gifting and decor demo that blends a React storefront, .NET 8 Web API, and SQL Server database. The Docker setup lets you experience the seeded catalog and admin dashboard without installing the individual runtimes.
 
 This is a beginner-friendly walkthrough for running the entire project with Docker Compose.  You do not need Visual Studio,
 Node.js, or SQL Server when using these steps.

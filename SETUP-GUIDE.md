@@ -1,8 +1,7 @@
 # Manual Setup Guide for Latelina
 
-Latelina delivers a full digital-pharmacy experience: React + TypeScript storefront, .NET 8 Web API with AI-powered assistance,
-seeded SQL Server data, and sample accounts for testing. Running it manually gives you insight into how each part works and how
-they connect.
+Latelina delivers a boutique gifting experience: React + TypeScript storefront, .NET 8 Web API, seeded SQL Server data, and sam
+ple accounts for testing. Running it manually gives you insight into how each part works and how they connect.
 
 Use this guide if you prefer running the backend, frontend, and database yourself instead of using Docker.  Every step is listed
 in the order you should complete it.

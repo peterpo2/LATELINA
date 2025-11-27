@@ -22,14 +22,14 @@ The service uses the `Email` section in `appsettings*.json`:
   "SmtpPort": 587,
   "EnableSsl": true,
   "Username": "latelinaproject@gmail.com",
-  "Password": "vdzotamtdvlirmpt",
+  "Password": "<your-app-password>",
   "PickupDirectory": "App_Data/Emails",
   "UsePickupDirectory": false,
   "CheckCertificateRevocation": false
 }
 ```
 
-- **Sender account:** The backend uses the dedicated Gmail mailbox `latelinaproject@gmail.com`. Use the Gmail app password `vdzotamtdvlirmpt` (copy it without spaces) for SMTP authentication and update the configuration if you ever rotate the secret or move to another provider.
+- **Sender account:** Replace the address, username, and password with credentials from your own mailbox provider. Keep secrets out of source control by using environment variables or user-secrets.
 - **Per-user delivery:** Leave `OverrideToAddress` unset so verification codes are sent to each account's email address.
 - **Local pickup folder (optional):** Set `UsePickupDirectory` to `true` if you want `.eml` files written to `Latelina.Backend/Latelina.Web/App_Data/Emails` instead of dispatching through Gmail. This is helpful when testing with fictional mailboxes because the messages never leave your machine.
 - **SMTP host:** Gmail uses `smtp.gmail.com` on port `587` with STARTTLS (`EnableSsl: true`). Adjust the settings if you switch providers.
@@ -50,7 +50,7 @@ If no email arrives in your inbox:
 
 ```bash
 # 1) Login with credentials
-curl -X POST http://localhost:8080/api/auth/login \
+curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"latelinaproject@gmail.com","password":"Admin123!"}'
 
@@ -64,7 +64,7 @@ curl -X POST http://localhost:8080/api/auth/login \
 # 2) Retrieve the code from your inbox (the sender is latelinaproject@gmail.com). If you enabled the pickup directory, the `.eml` file is stored under Latelina.Backend/Latelina.Web/App_Data/Emails instead of being sent.
 
 # 3) Submit the code + token to finish authentication
-curl -X POST http://localhost:8080/api/auth/verify-2fa \
+curl -X POST http://localhost:5000/api/auth/verify-2fa \
   -H "Content-Type: application/json" \
   -d '{
   "email":"latelinaproject@gmail.com",

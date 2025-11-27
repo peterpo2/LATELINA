@@ -1,8 +1,7 @@
 # Latelina
 
-Latelina is a full digital-pharmacy demo that combines a .NET 8 Web API, a React + TypeScript storefront, and seeded SQL Server
-data. The goal is to help you explore a realistic e-commerce experience that includes
-medical product browsing and ordering.
+Latelina is a boutique gifting demo that combines a .NET 8 Web API, a React + TypeScript storefront, and seeded SQL Server data.
+The goal is to help you explore a realistic e-commerce experience for romantic gifts, decor, and curated baskets.
 
 > **Current version:** 0.1.0 (January 2025)
 

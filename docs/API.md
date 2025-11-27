@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ### Get Products
 ```http
-GET /api/products?categoryId=1&searchTerm=paracetamol&pageNumber=1&pageSize=20
+GET /api/products?categoryId=1&searchTerm=рози&pageNumber=1&pageSize=20
 ```
 
 **Query Parameters:**
@@ -47,22 +47,21 @@ GET /api/products?categoryId=1&searchTerm=paracetamol&pageNumber=1&pageSize=20
   "items": [
     {
       "id": 1,
-      "name": "Парацетамол 500мг",
-      "nameEn": "Paracetamol 500mg",
-      "description": "Ефективно обезболяващо средство",
-      "price": 2.30,
-      "stockQuantity": 150,
+      "name": "Класическо мече от рози",
+      "description": "Нежно мече от розови листенца с сатенена панделка.",
+      "price": 32.5,
+      "stockQuantity": 28,
       "categoryId": 1,
-      "categoryName": "Обезболяващи",
+      "categoryName": "Мечета от рози",
       "requiresPrescription": false,
-      "activeIngredient": "Парацетамол",
-      "dosage": "500мг",
-      "manufacturer": "Актавис",
+      "activeIngredient": "Материал: розови листенца",
+      "dosage": "Размер: 25 см",
+      "manufacturer": "Latelina Gifts",
       "rating": 4.7,
       "reviewCount": 89
     }
   ],
-  "totalCount": 12,
+  "totalCount": 10,
   "pageNumber": 1,
   "pageSize": 20,
   "totalPages": 1,
@@ -78,7 +77,7 @@ GET /api/products/{id}
 
 ### Search Products
 ```http
-GET /api/products/search?searchTerm=vitamin
+GET /api/products/search?searchTerm=кошара
 ```
 
 ### Create Product (Admin Only)
@@ -113,11 +112,11 @@ GET /api/categories
 [
   {
     "id": 1,
-    "name": "Обезболяващи",
-    "description": "Лекарства за облекчаване на болка",
-    "icon": "pill",
-    "productCount": 3
-  }
+  "name": "Мечета от рози",
+  "description": "Ръчно изработени мечета от розови цветчета",
+  "icon": "heart",
+  "productCount": 3
+}
 ]
 ```
 
@@ -301,68 +300,14 @@ Content-Type: application/json
 ```http
 Authorization: Bearer <token>    # For authenticated endpoints
 X-User-Id: <user-id>            # For cart operations (demo purposes)
-Accept-Language: bg-BG          # For localized responses
 ```
 
-## 🔄 Rate Limiting
+## 📊 Pagination & Filtering
 
-- **General API**: 100 requests per minute
-- **Authentication**: 10 requests per minute
+All list endpoints support pagination with `pageNumber` (default: 1) and `pageSize` (default: 20, max: 100).
 
-Rate limit headers:
-```http
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 95
-X-RateLimit-Reset: 1640995200
-```
-
-## 📊 Pagination
-
-All list endpoints support pagination:
-
-**Query Parameters:**
-- `pageNumber` (default: 1)
-- `pageSize` (default: 20, max: 100)
-
-**Response Format:**
-```json
-{
-  "items": [...],
-  "totalCount": 150,
-  "pageNumber": 1,
-  "pageSize": 20,
-  "totalPages": 8,
-  "hasPreviousPage": false,
-  "hasNextPage": true
-}
-```
-
-## 🔍 Filtering & Searching
-
-### Product Filters
+Product queries also accept:
 - **Category**: `categoryId=1`
-- **Price Range**: `minPrice=5&maxPrice=50`
-- **Search**: `searchTerm=vitamin`
-- **Prescription**: `requiresPrescription=true`
-
-### Search Capabilities
-- Product name (Bulgarian and English)
-- Product description
-- Active ingredient
-- Manufacturer
-
-## 🌍 Localization
-
-The API supports Bulgarian and English responses. Use the `Accept-Language` header:
-
-```http
-Accept-Language: bg-BG    # Bulgarian
-Accept-Language: en-US    # English
-```
-
-Localized fields:
-- Product names (`name` / `nameEn`)
-- Descriptions (`description` / `descriptionEn`)
-- Active ingredients (`activeIngredient` / `activeIngredientEn`)
-- Dosage information (`dosage` / `dosageEn`)
-- Manufacturer names (`manufacturer` / `manufacturerEn`)
+- **Price range**: `minPrice=5&maxPrice=50`
+- **Search term**: `searchTerm=роза` (matches name, description, or material fields)
+- **Legacy prescription flag**: `requiresPrescription=true|false` (always false for the demo catalog)

@@ -210,7 +210,7 @@ const RAW_API_BASE =
   import.meta.env.VITE_API_BASE_URL ||
   import.meta.env.VITE_API_URL ||
   import.meta.env.VITE_API_URL_DOCKER ||
-  'http://localhost:8080/api';
+  'http://localhost:5000/api';
 
 const API_BASE = RAW_API_BASE.replace(/\/+$/, '');
 
