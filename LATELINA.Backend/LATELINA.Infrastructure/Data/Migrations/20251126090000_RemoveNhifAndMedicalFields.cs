@@ -20,15 +20,21 @@ namespace Latelina.Infrastructure.Data.Migrations
 
                 IF EXISTS (
                     SELECT 1 FROM sys.columns
-                    WHERE Name IN ('ActiveIngredient', 'Dosage', 'RequiresPrescription')
+                    WHERE Name IN ('ActiveIngredient', 'ActiveIngredientEn', 'Dosage', 'DosageEn', 'RequiresPrescription')
                       AND Object_ID = Object_ID('dbo.Products')
                 )
                 BEGIN
                     IF EXISTS (SELECT 1 FROM sys.columns WHERE Name = 'ActiveIngredient' AND Object_ID = Object_ID('dbo.Products'))
                         ALTER TABLE dbo.Products DROP COLUMN ActiveIngredient;
 
+                    IF EXISTS (SELECT 1 FROM sys.columns WHERE Name = 'ActiveIngredientEn' AND Object_ID = Object_ID('dbo.Products'))
+                        ALTER TABLE dbo.Products DROP COLUMN ActiveIngredientEn;
+
                     IF EXISTS (SELECT 1 FROM sys.columns WHERE Name = 'Dosage' AND Object_ID = Object_ID('dbo.Products'))
                         ALTER TABLE dbo.Products DROP COLUMN Dosage;
+
+                    IF EXISTS (SELECT 1 FROM sys.columns WHERE Name = 'DosageEn' AND Object_ID = Object_ID('dbo.Products'))
+                        ALTER TABLE dbo.Products DROP COLUMN DosageEn;
 
                     IF EXISTS (SELECT 1 FROM sys.columns WHERE Name = 'RequiresPrescription' AND Object_ID = Object_ID('dbo.Products'))
                         ALTER TABLE dbo.Products DROP COLUMN RequiresPrescription;
@@ -39,6 +45,7 @@ namespace Latelina.Infrastructure.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            // Intentionally left blank to avoid reintroducing removed NHIF/medical schema.
         }
     }
 }
