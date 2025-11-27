@@ -23,8 +23,7 @@ public class ProductsControllerTests : IClassFixture<CustomWebApplicationFactory
             Name = string.Empty,
             Price = 0m,
             StockQuantity = -5,
-            CategoryId = 0,
-            RequiresPrescription = false
+            CategoryId = 0
         };
 
         var response = await _client.PostAsJsonAsync("/api/Products", payload);
@@ -52,8 +51,7 @@ public class ProductsControllerTests : IClassFixture<CustomWebApplicationFactory
             Name = "Integration Test Product",
             Price = 12.50m,
             StockQuantity = 10,
-            CategoryId = 1,
-            RequiresPrescription = false
+            CategoryId = 1
         };
 
         var response = await _client.PostAsJsonAsync("/api/Products", payload);

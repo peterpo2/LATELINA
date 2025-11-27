@@ -47,13 +47,7 @@ namespace Latelina.Core.Services
                 var searchTerm = filter.SearchTerm.ToLower();
                 products = products.Where(p =>
                     p.Name.ToLower().Contains(searchTerm) ||
-                    (p.Description != null && p.Description.ToLower().Contains(searchTerm)) ||
-                    (p.ActiveIngredient != null && p.ActiveIngredient.ToLower().Contains(searchTerm)));
-            }
-
-            if (filter.RequiresPrescription.HasValue)
-            {
-                products = products.Where(p => p.RequiresPrescription == filter.RequiresPrescription.Value);
+                    (p.Description != null && p.Description.ToLower().Contains(searchTerm)));
             }
 
             var totalCount = await products.CountAsync();
@@ -106,8 +100,7 @@ namespace Latelina.Core.Services
         {
             var products = await _productRepository.FindAsync(p =>
                 p.Name.Contains(searchTerm) ||
-                (p.Description != null && p.Description.Contains(searchTerm)) ||
-                (p.ActiveIngredient != null && p.ActiveIngredient.Contains(searchTerm)));
+                (p.Description != null && p.Description.Contains(searchTerm)));
 
             return _mapper.Map<IEnumerable<ProductDto>>(products);
         }

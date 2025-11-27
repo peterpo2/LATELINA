@@ -28,14 +28,6 @@ namespace Latelina.Domain.Entities
         
         public int CategoryId { get; set; }
         
-        public bool RequiresPrescription { get; set; } = false;
-        
-        [MaxLength(200)]
-        public string? ActiveIngredient { get; set; }
-        
-        [MaxLength(100)]
-        public string? Dosage { get; set; }
-        
         [MaxLength(200)]
         public string? Manufacturer { get; set; }
         

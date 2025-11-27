@@ -52,7 +52,6 @@ namespace Latelina.Core.Services
                         ProductId = item.ProductId,
                         ProductName = product.Name,
                         ImageUrl = product.ImageUrl,
-                        ActiveIngredient = product.ActiveIngredient,
                         Quantity = item.Quantity,
                         UnitPrice = item.UnitPrice,
                         TotalPrice = item.TotalPrice

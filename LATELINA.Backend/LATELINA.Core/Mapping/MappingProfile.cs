@@ -26,8 +26,7 @@ namespace Latelina.Core.Mapping
             CreateMap<ShoppingCart, CartDto>();
             CreateMap<CartItem, CartItemDto>()
                 .ForMember(dest => dest.ProductName, opt => opt.Ignore())
-                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore())
-                .ForMember(dest => dest.ActiveIngredient, opt => opt.Ignore());
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
         }
     }
 }

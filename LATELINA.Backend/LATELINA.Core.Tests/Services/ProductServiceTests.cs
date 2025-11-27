@@ -37,8 +37,7 @@ public class ProductServiceTests
             Description = "Fast acting relief",
             Price = 19.99m,
             StockQuantity = 10,
-            CategoryId = 1,
-            RequiresPrescription = false
+            CategoryId = 1
         };
 
         var category = new Category { Id = 1, Name = "Analgesics", Icon = "pill" };

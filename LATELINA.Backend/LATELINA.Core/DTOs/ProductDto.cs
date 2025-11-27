@@ -19,11 +19,6 @@ namespace Latelina.Core.DTOs
         [Range(1, int.MaxValue, ErrorMessage = "CategoryId must be a positive integer.")]
         public int CategoryId { get; set; }
         public string? CategoryName { get; set; }
-        public bool RequiresPrescription { get; set; }
-        [StringLength(200, ErrorMessage = "ActiveIngredient cannot exceed 200 characters.")]
-        public string? ActiveIngredient { get; set; }
-        [StringLength(100, ErrorMessage = "Dosage cannot exceed 100 characters.")]
-        public string? Dosage { get; set; }
         [StringLength(200, ErrorMessage = "Manufacturer cannot exceed 200 characters.")]
         public string? Manufacturer { get; set; }
         [Range(typeof(decimal), "0", "5", ErrorMessage = "Rating must be between 0 and 5.")]
@@ -46,11 +41,6 @@ namespace Latelina.Core.DTOs
         public string? ImageUrl { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "CategoryId must be a positive integer.")]
         public int CategoryId { get; set; }
-        public bool RequiresPrescription { get; set; }
-        [StringLength(200, ErrorMessage = "ActiveIngredient cannot exceed 200 characters.")]
-        public string? ActiveIngredient { get; set; }
-        [StringLength(100, ErrorMessage = "Dosage cannot exceed 100 characters.")]
-        public string? Dosage { get; set; }
         [StringLength(200, ErrorMessage = "Manufacturer cannot exceed 200 characters.")]
         public string? Manufacturer { get; set; }
     }
@@ -69,11 +59,6 @@ namespace Latelina.Core.DTOs
         public string? ImageUrl { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "CategoryId must be a positive integer.")]
         public int? CategoryId { get; set; }
-        public bool? RequiresPrescription { get; set; }
-        [StringLength(200, ErrorMessage = "ActiveIngredient cannot exceed 200 characters.")]
-        public string? ActiveIngredient { get; set; }
-        [StringLength(100, ErrorMessage = "Dosage cannot exceed 100 characters.")]
-        public string? Dosage { get; set; }
         [StringLength(200, ErrorMessage = "Manufacturer cannot exceed 200 characters.")]
         public string? Manufacturer { get; set; }
     }
@@ -88,7 +73,6 @@ namespace Latelina.Core.DTOs
         public decimal? MaxPrice { get; set; }
         [StringLength(200, ErrorMessage = "SearchTerm cannot exceed 200 characters.")]
         public string? SearchTerm { get; set; }
-        public bool? RequiresPrescription { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "PageNumber must be at least 1.")]
         public int PageNumber { get; set; } = 1;
         [Range(1, 100, ErrorMessage = "PageSize must be between 1 and 100.")]

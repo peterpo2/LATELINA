@@ -50,7 +50,6 @@ public class ProductServiceTests
             MinPrice = 10,
             MaxPrice = 30,
             SearchTerm = "pain",
-            RequiresPrescription = true,
             PageNumber = 2,
             PageSize = 3
         };
@@ -65,7 +64,6 @@ public class ProductServiceTests
         Assert.All(result.Items, item =>
         {
             Assert.Equal(seedData.AnalgesicsCategoryId, item.CategoryId);
-            Assert.True(item.RequiresPrescription);
             Assert.InRange(item.Price, filter.MinPrice!.Value, filter.MaxPrice!.Value);
             Assert.Contains("pain", item.Name, StringComparison.OrdinalIgnoreCase);
             Assert.False(string.IsNullOrWhiteSpace(item.CategoryName));
@@ -146,8 +144,6 @@ public class ProductServiceTests
                 Price = 5 + i,
                 StockQuantity = 50 + i,
                 CategoryId = analgesics.Id,
-                RequiresPrescription = i % 2 == 0,
-                ActiveIngredient = $"Ingredient {i}",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             });
@@ -162,8 +158,6 @@ public class ProductServiceTests
                 Price = 15 + i,
                 StockQuantity = 30 + i,
                 CategoryId = supplements.Id,
-                RequiresPrescription = false,
-                ActiveIngredient = $"Vitamin {i}",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             });
@@ -174,7 +168,6 @@ public class ProductServiceTests
 
         var matchingProductIds = products
             .Where(p => p.CategoryId == analgesics.Id
-                        && p.RequiresPrescription
                         && p.Price >= 10
                         && p.Price <= 30
                         && p.Name.Contains("pain", StringComparison.OrdinalIgnoreCase))
