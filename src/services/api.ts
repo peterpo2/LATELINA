@@ -12,9 +12,6 @@ export interface ApiProduct {
     imageUrl?: string;
     categoryId: number;
     categoryName?: string;
-    requiresPrescription: boolean;
-    activeIngredient?: string;
-    dosage?: string;
     manufacturer?: string;
     rating?: number;
     reviewCount: number;
@@ -33,7 +30,6 @@ export interface ApiCartItem {
     productId: number;
     productName: string;
     imageUrl?: string;
-    activeIngredient?: string;
     quantity: number;
     unitPrice: number;
     totalPrice: number;
@@ -64,7 +60,6 @@ export interface ProductFilter {
     minPrice?: number;
     maxPrice?: number;
     searchTerm?: string;
-    requiresPrescription?: boolean;
     pageNumber?: number;
     pageSize?: number;
 }
@@ -149,8 +144,6 @@ class ApiClient {
         if (filter.minPrice != null) params.append("minPrice", String(filter.minPrice));
         if (filter.maxPrice != null) params.append("maxPrice", String(filter.maxPrice));
         if (filter.searchTerm) params.append("searchTerm", filter.searchTerm);
-        if (filter.requiresPrescription !== undefined)
-            params.append("requiresPrescription", String(filter.requiresPrescription));
         if (filter.pageNumber != null) params.append("pageNumber", String(filter.pageNumber));
         if (filter.pageSize != null) params.append("pageSize", String(filter.pageSize));
 

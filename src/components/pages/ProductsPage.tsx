@@ -5,7 +5,6 @@ import ProductGrid from '../ProductGrid';
 import { useLanguage } from '../../context/LanguageContext';
 import { Category, Product } from '../../types';
 import { getCategoryDisplayName, getCategoryIcon } from '../../utils/categories';
-import { useFeatureToggles } from '../../context/FeatureToggleContext';
 
 interface ProductsPageProps {
   searchTerm: string;
@@ -17,7 +16,6 @@ interface ProductsPageProps {
 }
 
 type AvailabilityFilter = 'all' | 'inStock' | 'outOfStock';
-type PrescriptionFilter = 'all' | 'requires' | 'otc';
 type SortOption = 'relevance' | 'priceAsc' | 'priceDesc';
 
 const ProductsPage: React.FC<ProductsPageProps> = ({
@@ -29,7 +27,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
   allProducts,
 }) => {
   const { t, language } = useLanguage();
-  const { prescriptionFeaturesEnabled } = useFeatureToggles();
 
   const categorySummaries = useMemo(
     () =>
@@ -56,19 +53,12 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
   const [localSearch, setLocalSearch] = useState('');
   const [priceRange, setPriceRange] = useState<[number, number]>(() => [priceBounds.min, priceBounds.max]);
   const [availabilityFilter, setAvailabilityFilter] = useState<AvailabilityFilter>('all');
-  const [prescriptionFilter, setPrescriptionFilter] = useState<PrescriptionFilter>('all');
   const [onlyPromotions, setOnlyPromotions] = useState(false);
   const [sortOption, setSortOption] = useState<SortOption>('relevance');
 
   useEffect(() => {
     setPriceRange([priceBounds.min, priceBounds.max]);
   }, [priceBounds.min, priceBounds.max]);
-
-  useEffect(() => {
-    if (!prescriptionFeaturesEnabled) {
-      setPrescriptionFilter('all');
-    }
-  }, [prescriptionFeaturesEnabled]);
 
   const visibleProducts = useMemo(() => {
     const [minPrice, maxPrice] = priceRange;
@@ -85,16 +75,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
 
       if (availabilityFilter === 'outOfStock' && product.stockQuantity > 0) {
         return false;
-      }
-
-      if (prescriptionFeaturesEnabled) {
-        if (prescriptionFilter === 'requires' && !product.requiresPrescription) {
-          return false;
-        }
-
-        if (prescriptionFilter === 'otc' && product.requiresPrescription) {
-          return false;
-        }
       }
 
       if (onlyPromotions && !product.promotion) {
@@ -127,9 +107,7 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
     filteredProducts,
     localSearch,
     onlyPromotions,
-    prescriptionFilter,
     priceRange,
-    prescriptionFeaturesEnabled,
     sortOption,
   ]);
 
@@ -143,7 +121,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
       selectedCategory !== null ||
       !defaultRange ||
       availabilityFilter !== 'all' ||
-      (prescriptionFeaturesEnabled && prescriptionFilter !== 'all') ||
       onlyPromotions ||
       sortOption !== 'relevance'
     );
@@ -154,8 +131,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
     priceBounds.max,
     priceBounds.min,
     priceRange,
-    prescriptionFilter,
-    prescriptionFeaturesEnabled,
     searchTerm,
     selectedCategory,
     sortOption,
@@ -179,7 +154,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
   const handleResetFilters = () => {
     setLocalSearch('');
     setAvailabilityFilter('all');
-    setPrescriptionFilter('all');
     setOnlyPromotions(false);
     setSortOption('relevance');
     setPriceRange([priceBounds.min, priceBounds.max]);
@@ -344,34 +318,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
                   ))}
                 </div>
               </div>
-
-              {prescriptionFeaturesEnabled && (
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                    {t('products.prescriptionFilter')}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {[
-                      { key: 'all' as PrescriptionFilter, label: t('products.availabilityAll') },
-                      { key: 'requires' as PrescriptionFilter, label: t('products.requiresPrescription') },
-                      { key: 'otc' as PrescriptionFilter, label: t('products.overTheCounter') },
-                    ].map((option) => (
-                      <button
-                        key={option.key}
-                        type="button"
-                        onClick={() => setPrescriptionFilter(option.key)}
-                        className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
-                          prescriptionFilter === option.key
-                            ? 'bg-emerald-600 text-white shadow-sm'
-                            : 'bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-700'
-                        }`}
-                      >
-                        {option.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
 
               <button
                 type="button"

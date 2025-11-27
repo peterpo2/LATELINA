@@ -4,13 +4,11 @@ import {
   Calendar,
   Info,
   Package,
-  Shield,
   ShoppingCart,
   Tag,
 } from 'lucide-react';
 import { Product } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
-import { useFeatureToggles } from '../../context/FeatureToggleContext';
 import { useCart } from '../../context/CartContext';
 import { useProductCatalog } from '../../context/ProductCatalogContext';
 
@@ -18,7 +16,6 @@ const ProductMoreInfoPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const { prescriptionFeaturesEnabled } = useFeatureToggles();
   const { dispatch } = useCart();
   const { products } = useProductCatalog();
 
@@ -29,8 +26,6 @@ const ProductMoreInfoPage: React.FC = () => {
 
   const getProductName = (currentProduct: Product) => currentProduct.name;
   const getDescription = (currentProduct: Product) => currentProduct.description ?? '';
-  const getActiveIngredient = (currentProduct: Product) => currentProduct.activeIngredient;
-  const getDosage = (currentProduct: Product) => currentProduct.dosage;
   const getManufacturer = (currentProduct: Product) => currentProduct.manufacturer;
 
   const handleAddToCart = (currentProduct: Product) => {
@@ -106,20 +101,6 @@ const ProductMoreInfoPage: React.FC = () => {
             </div>
 
             <div className="grid gap-4 rounded-3xl bg-white p-6 shadow-sm sm:grid-cols-2">
-              {getActiveIngredient(product) && (
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                    {t('products.activeIngredient')}
-                  </p>
-                  <p className="mt-1 font-medium text-gray-900">{getActiveIngredient(product)}</p>
-                </div>
-              )}
-              {getDosage(product) && (
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">{t('products.dosage')}</p>
-                  <p className="mt-1 font-medium text-gray-900">{getDosage(product)}</p>
-                </div>
-              )}
               {getManufacturer(product) && (
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
@@ -141,19 +122,6 @@ const ProductMoreInfoPage: React.FC = () => {
                   </span>
                 </p>
               </div>
-              {prescriptionFeaturesEnabled && (
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                    {t('products.prescriptionRequiredLabel')}
-                  </p>
-                  <p className="mt-1 flex items-center space-x-2 font-medium text-gray-900">
-                    <Shield className="h-4 w-4 text-emerald-500" />
-                    <span>
-                      {product.requiresPrescription ? t('products.prescription') : t('products.overTheCounter')}
-                    </span>
-                  </p>
-                </div>
-              )}
               {product.promotion?.validUntil && (
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">

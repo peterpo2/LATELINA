@@ -1,17 +1,8 @@
 import React, { useEffect } from 'react';
-import {
-  X,
-  Shield,
-  Package,
-  ShoppingCart,
-  Tag,
-  Calendar,
-  Info,
-} from 'lucide-react';
+import { X, Package, ShoppingCart, Tag, Calendar, Info } from 'lucide-react';
 import { Product } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
-import { useFeatureToggles } from '../context/FeatureToggleContext';
 
 interface ProductDetailModalProps {
   product: Product;
@@ -21,12 +12,9 @@ interface ProductDetailModalProps {
 const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose }) => {
   const { t } = useLanguage();
   const { dispatch } = useCart();
-  const { prescriptionFeaturesEnabled } = useFeatureToggles();
 
   const getProductName = () => product.name;
   const getDescription = () => product.description ?? '';
-  const getActiveIngredient = () => product.activeIngredient;
-  const getDosage = () => product.dosage;
   const getManufacturer = () => product.manufacturer;
 
   const hasPromotion = Boolean(product.promotion);
@@ -98,12 +86,6 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
             alt={getProductName()}
             className="h-full w-full object-cover"
           />
-          {product.requiresPrescription && prescriptionFeaturesEnabled && (
-            <div className="absolute left-4 top-4 flex items-center space-x-2 rounded-full bg-red-500/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-              <Shield className="h-3.5 w-3.5" />
-              <span>{t('products.prescription')}</span>
-            </div>
-          )}
           {hasPromotion && (
             <div className="absolute bottom-4 left-4 flex items-center space-x-2 rounded-full bg-emerald-600/90 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
               <Tag className="h-4 w-4" />
@@ -131,38 +113,12 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClos
           </div>
 
           <div className="grid gap-4 rounded-2xl bg-gray-50 p-4 text-sm text-gray-700 sm:grid-cols-2">
-            {getActiveIngredient() && (
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                  {t('products.activeIngredient')}
-                </p>
-                <p className="mt-1 font-medium text-gray-900">{getActiveIngredient()}</p>
-              </div>
-            )}
-            {getDosage() && (
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                  {t('products.dosage')}
-                </p>
-                <p className="mt-1 font-medium text-gray-900">{getDosage()}</p>
-              </div>
-            )}
             {getManufacturer() && (
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
                   {t('products.manufacturer')}
                 </p>
                 <p className="mt-1 font-medium text-gray-900">{getManufacturer()}</p>
-              </div>
-            )}
-            {prescriptionFeaturesEnabled && (
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                  {t('products.prescriptionRequiredLabel')}
-                </p>
-                <p className="mt-1 font-medium text-gray-900">
-                  {product.requiresPrescription ? t('products.prescription') : t('products.overTheCounter')}
-                </p>
               </div>
             )}
             <div>

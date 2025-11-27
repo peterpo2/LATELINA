@@ -24,7 +24,7 @@ const FAQ: React.FC = () => {
       id: 3,
       question: t('faq.q3'),
       answer: t('faq.a3'),
-      category: 'prescription'
+      category: 'general'
     },
     {
       id: 4,

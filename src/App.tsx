@@ -7,7 +7,6 @@ import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { NewsProvider } from './context/NewsContext';
-import { FeatureToggleProvider, useFeatureToggles } from './context/FeatureToggleContext';
 import { useProductCatalog, ProductCatalogProvider } from './context/ProductCatalogContext';
 import HomePage from './components/pages/HomePage';
 import ProductsPage from './components/pages/ProductsPage';
@@ -22,7 +21,6 @@ import AdminDashboard from './components/pages/AdminDashboard';
 import ProductMoreInfoPage from './components/pages/ProductMoreInfoPage';
 
 function AppContent() {
-  const { prescriptionFeaturesEnabled } = useFeatureToggles();
   const { products, categories } = useProductCatalog();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
@@ -41,13 +39,7 @@ function AppContent() {
   }, [location.pathname]);
 
   // Filter products based on search and category
-  const normalizedProducts = useMemo(() => {
-    if (prescriptionFeaturesEnabled) {
-      return products;
-    }
-
-    return products.filter((product) => !product.requiresPrescription);
-  }, [prescriptionFeaturesEnabled, products]);
+  const normalizedProducts = useMemo(() => products, [products]);
 
   const baseProducts = useMemo(() => {
     const source = normalizedProducts;
@@ -208,15 +200,13 @@ function App() {
   return (
     <AuthProvider>
       <LanguageProvider>
-        <FeatureToggleProvider>
-          <ProductCatalogProvider>
-            <CartProvider>
-              <NewsProvider>
-                <AppContent />
-              </NewsProvider>
-            </CartProvider>
-          </ProductCatalogProvider>
-        </FeatureToggleProvider>
+        <ProductCatalogProvider>
+          <CartProvider>
+            <NewsProvider>
+              <AppContent />
+            </NewsProvider>
+          </CartProvider>
+        </ProductCatalogProvider>
       </LanguageProvider>
     </AuthProvider>
   );

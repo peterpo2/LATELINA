@@ -24,9 +24,6 @@ export interface Product {
   imageUrl: string;
   categoryId: number;
   category?: Category;
-  requiresPrescription: boolean;
-  activeIngredient?: string;
-  dosage?: string;
   manufacturer?: string;
   rating?: number;
   reviewCount?: number;
@@ -63,20 +60,6 @@ export interface OrderItemSummary {
   netTotal: number;
 }
 
-export interface NhifPrescriptionSummary {
-  id: number;
-  prescriptionNumber: string;
-  personalIdentificationNumber: string;
-  prescribedDate: string;
-  purchaseDate: string;
-  orderNumber: string;
-  userId: string;
-  patientPaidAmount: number;
-  nhifPaidAmount: number;
-  otherCoverageAmount?: number | null;
-  createdAt: string;
-}
-
 export interface OrderSummary {
   id: string;
   orderNumber: string;
@@ -104,7 +87,6 @@ export interface OrderSummary {
   userEmail?: string;
   userFullName?: string;
   items: OrderItemSummary[];
-  nhifPrescriptions?: NhifPrescriptionSummary[];
 }
 
 export interface ShoppingCart {
@@ -134,7 +116,6 @@ export interface ProductFilter {
   minPrice?: number;
   maxPrice?: number;
   searchTerm?: string;
-  requiresPrescription?: boolean;
   pageNumber: number;
   pageSize: number;
 }

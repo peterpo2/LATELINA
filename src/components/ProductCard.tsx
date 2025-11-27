@@ -1,9 +1,8 @@
 import React from 'react';
-import { ShoppingCart, Shield, Heart, Package, Info } from 'lucide-react';
+import { ShoppingCart, Heart, Package, Info } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
-import { useFeatureToggles } from '../context/FeatureToggleContext';
 
 interface ProductCardProps {
   product: Product;
@@ -13,7 +12,6 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) => {
   const { dispatch } = useCart();
   const { t } = useLanguage();
-  const { prescriptionFeaturesEnabled } = useFeatureToggles();
 
   const promotion = product.promotion;
   const hasPromotion = Boolean(promotion);
@@ -56,8 +54,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
   };
 
   const getProductName = () => product.name;
-  const getActiveIngredient = () => product.activeIngredient;
-  const getDosage = () => product.dosage;
   const getManufacturer = () => product.manufacturer;
 
   const handleProductClick = () => {
@@ -92,12 +88,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute left-3 top-3 flex flex-col space-y-2">
-          {product.requiresPrescription && prescriptionFeaturesEnabled && (
-            <div className="flex items-center space-x-1 rounded-full bg-red-500 px-2 py-1 text-xs font-bold text-white">
-              <Shield className="h-3 w-3" />
-              <span>{t('products.prescription')}</span>
-            </div>
-          )}
           {hasPromotion && (
             <div
               className={`rounded-full px-2 py-1 text-xs font-semibold shadow-sm ${getPromotionBadgeClasses(
@@ -178,26 +168,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
 
         <div className="flex-1 overflow-hidden min-h-0">
           <div className="flex h-full min-h-0 flex-col gap-3 overflow-y-auto pr-1 text-sm text-gray-600">
-            <div className="space-y-1">
-              {getActiveIngredient() && (
-                <p>
-                  <span className="font-medium">{t('products.activeIngredient')}:</span>{' '}
-                  {getActiveIngredient()}
-                </p>
-              )}
-              {getDosage() && (
-                <p>
-                  <span className="font-medium">{t('products.dosage')}:</span>{' '}
-                  {getDosage()}
-                </p>
-              )}
-              {getManufacturer() && (
+            {getManufacturer() && (
+              <div className="space-y-1">
                 <p>
                   <span className="font-medium">{t('products.manufacturer')}:</span>{' '}
                   {getManufacturer()}
                 </p>
-              )}
-            </div>
+              </div>
+            )}
 
             {hasPromotion && (
               <div className="rounded-xl bg-emerald-50 p-3 text-xs text-emerald-700">

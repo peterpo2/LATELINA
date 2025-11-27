@@ -13,8 +13,6 @@ const CartDrawer: React.FC = () => {
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
 
   const getProductName = (product: Product) => product.name;
-  const getActiveIngredient = (product: Product) => product.activeIngredient;
-  const getDosage = (product: Product) => product.dosage;
   const getManufacturer = (product: Product) => product.manufacturer;
 
   const updateQuantity = (id: number, quantity: number) => {
@@ -119,16 +117,6 @@ const CartDrawer: React.FC = () => {
                           <h4 className="font-display mb-1 font-medium text-gray-900">
                             {getProductName(item.product)}
                           </h4>
-                          {getActiveIngredient(item.product) && (
-                            <p className="mb-2 text-sm text-gray-600">
-                              {getActiveIngredient(item.product)}
-                            </p>
-                          )}
-                          {getDosage(item.product) && (
-                            <p className="mb-2 text-sm text-gray-600">
-                              {getDosage(item.product)}
-                            </p>
-                          )}
                           {getManufacturer(item.product) && (
                             <p className="mb-2 text-sm text-gray-600">
                               {getManufacturer(item.product)}

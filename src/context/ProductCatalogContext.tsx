@@ -9,9 +9,6 @@ interface ProductInput {
   stockQuantity: number;
   imageUrl: string;
   categoryId: number;
-  requiresPrescription: boolean;
-  activeIngredient?: string;
-  dosage?: string;
   manufacturer?: string;
   promotion?: ProductPromotion | null;
 }
@@ -63,9 +60,6 @@ const buildProduct = (id: number, input: ProductInput): Product => ({
   stockQuantity: input.stockQuantity,
   imageUrl: input.imageUrl.trim(),
   categoryId: input.categoryId,
-  requiresPrescription: input.requiresPrescription,
-  activeIngredient: input.activeIngredient?.trim() || undefined,
-  dosage: input.dosage?.trim() || undefined,
   manufacturer: input.manufacturer?.trim() || undefined,
   promotion: sanitizePromotion(input.promotion),
 });
@@ -139,9 +133,6 @@ export const ProductCatalogProvider: React.FC<{ children: React.ReactNode }> = (
             stockQuantity: updates.stockQuantity ?? item.stockQuantity,
             imageUrl: updates.imageUrl ?? item.imageUrl,
             categoryId: updates.categoryId ?? item.categoryId,
-            requiresPrescription: updates.requiresPrescription ?? item.requiresPrescription,
-            activeIngredient: updates.activeIngredient ?? item.activeIngredient,
-            dosage: updates.dosage ?? item.dosage,
             manufacturer: updates.manufacturer ?? item.manufacturer,
             promotion:
               updates.promotion !== undefined

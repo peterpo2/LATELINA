@@ -29,7 +29,6 @@ import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useNews } from '../../context/NewsContext';
 import { useProductCatalog } from '../../context/ProductCatalogContext';
-import { useFeatureToggles } from '../../context/FeatureToggleContext';
 import type { NewsArticle, OrderStatus, PaymentMethod, Product, ProductPromotion } from '../../types';
 import { generateNewsImage } from '../../utils/imageGenerator';
 
@@ -168,9 +167,6 @@ const mapProductToFormState = (product: Product): ProductFormState => ({
   stockQuantity: product.stockQuantity.toString(),
   imageUrl: product.imageUrl,
   categoryId: product.categoryId.toString(),
-  requiresPrescription: product.requiresPrescription,
-  activeIngredient: product.activeIngredient ?? '',
-  dosage: product.dosage ?? '',
   manufacturer: product.manufacturer ?? '',
   hasPromotion: Boolean(product.promotion),
   promotionId: product.promotion?.id ?? '',
@@ -192,9 +188,6 @@ const buildEmptyProductForm = (): ProductFormState => ({
   stockQuantity: '',
   imageUrl: '',
   categoryId: '',
-  requiresPrescription: false,
-  activeIngredient: '',
-  dosage: '',
   manufacturer: '',
   hasPromotion: false,
   promotionId: '',
@@ -254,9 +247,6 @@ interface ProductFormState {
   stockQuantity: string;
   imageUrl: string;
   categoryId: string;
-  requiresPrescription: boolean;
-  activeIngredient: string;
-  dosage: string;
   manufacturer: string;
   hasPromotion: boolean;
   promotionId: string;
@@ -300,7 +290,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
     updateProduct,
     deleteProduct: removeProductFromCatalog,
   } = useProductCatalog();
-  const { prescriptionFeaturesEnabled, setPrescriptionFeaturesEnabled } = useFeatureToggles();
   const isModal = variant === 'modal';
   const canAccessAdmin = isAdmin || isStaffUser;
   const panelTitle = isAdmin ? t('admin.panel.title') : t('admin.panel.staffTitle');
@@ -311,9 +300,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
     ? t('admin.panel.description')
     : t('admin.panel.staffDescription');
   const PanelIcon = isAdmin ? Shield : ClipboardList;
-  const handlePrescriptionFeatureToggle = () => {
-    setPrescriptionFeaturesEnabled(!prescriptionFeaturesEnabled);
-  };
   const isPanelOpen = isModal ? isOpen : true;
   const canManageOrders = canAccessAdmin;
   const canManageUsers = canAccessAdmin;
@@ -879,7 +865,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
 
         const values = [
           product.name,
-          product.activeIngredient ?? '',
           product.manufacturer ?? '',
           product.description ?? '',
         ];
@@ -1358,8 +1343,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
     const name = productForm.name.trim();
     const description = productForm.description.trim();
     const imageUrl = productForm.imageUrl.trim();
-    const activeIngredient = productForm.activeIngredient.trim();
-    const dosage = productForm.dosage.trim();
     const manufacturer = productForm.manufacturer.trim();
     const categoryId = Number(productForm.categoryId);
     const price = Number(productForm.price);
@@ -1431,9 +1414,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
         stockQuantity,
         imageUrl,
         categoryId,
-        requiresPrescription: productForm.requiresPrescription,
-        activeIngredient: activeIngredient || undefined,
-        dosage: dosage || undefined,
         manufacturer: manufacturer || undefined,
         promotion: productForm.hasPromotion ? promotionPayload : null,
       };
@@ -1573,50 +1553,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
         </div>
 
         <div className="space-y-6 p-6">
-          {activeView === 'permissions' && (
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-4">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-                    {t('admin.features.sectionTitle')}
-                  </span>
-                  <p className="mt-2 text-sm font-semibold text-emerald-900">
-                    {t('admin.features.prescriptionTitle')}
-                  </p>
-                  <p className="mt-1 text-sm text-emerald-900/80">
-                    {t('admin.features.prescriptionDescription')}
-                  </p>
-                  <p className="mt-2 text-xs font-medium text-emerald-700">
-                    {prescriptionFeaturesEnabled
-                      ? t('admin.features.prescriptionStatusEnabled')
-                      : t('admin.features.prescriptionStatusDisabled')}
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={prescriptionFeaturesEnabled}
-                  onClick={handlePrescriptionFeatureToggle}
-                  className={`relative inline-flex h-10 w-20 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 ${
-                    prescriptionFeaturesEnabled ? 'bg-emerald-500' : 'bg-emerald-200'
-                  }`}
-                >
-                  <span className="sr-only">{t('admin.features.prescriptionToggle')}</span>
-                  <span
-                    aria-hidden="true"
-                    className={`pointer-events-none inline-block h-8 w-8 transform rounded-full bg-white shadow ring-0 transition duration-200 ${
-                      prescriptionFeaturesEnabled ? 'translate-x-10' : 'translate-x-0'
-                    }`}
-                  />
-                  <span className="absolute inset-0 flex items-center justify-center text-xs font-semibold uppercase text-white">
-                    {prescriptionFeaturesEnabled
-                      ? t('admin.features.prescriptionEnabled')
-                      : t('admin.features.prescriptionDisabled')}
-                  </span>
-                </button>
-              </div>
-            </div>
-          )}
           {selectedUser && editData ? (
             <form onSubmit={handleSave} className="space-y-6">
               <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
@@ -2104,17 +2040,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                       className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
                     />
                   </div>
-                  <label className="flex items-center space-x-3 text-sm text-slate-600">
-                    <input
-                      type="checkbox"
-                      name="requiresPrescription"
-                      checked={productForm.requiresPrescription}
-                      onChange={handleProductFieldChange}
-                      disabled={!canEditProducts || productSaving}
-                      className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                    <span>{t('admin.products.form.fields.requiresPrescription')}</span>
-                  </label>
                 </div>
               </section>
 
@@ -2128,34 +2053,6 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
                   </p>
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-active-bg">
-                      {t('admin.products.form.fields.activeIngredientBg')}
-                    </label>
-                    <input
-                      id="admin-product-active-bg"
-                      name="activeIngredient"
-                      type="text"
-                      value={productForm.activeIngredient}
-                      onChange={handleProductFieldChange}
-                      disabled={!canEditProducts || productSaving}
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-dosage-bg">
-                      {t('admin.products.form.fields.dosageBg')}
-                    </label>
-                    <input
-                      id="admin-product-dosage-bg"
-                      name="dosage"
-                      type="text"
-                      value={productForm.dosage}
-                      onChange={handleProductFieldChange}
-                      disabled={!canEditProducts || productSaving}
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 shadow-inner focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
-                    />
-                  </div>
                   <div className="space-y-2">
                     <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="admin-product-manufacturer-bg">
                       {t('admin.products.form.fields.manufacturerBg')}
