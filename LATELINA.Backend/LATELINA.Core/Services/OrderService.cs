@@ -46,8 +46,6 @@ namespace Latelina.Core.Services
             decimal netTotal = 0m;
             decimal vatTotal = 0m;
 
-            var requiresPrescription = false;
-
             foreach (var item in orderDto.Items)
             {
                 if (item.Quantity <= 0)
@@ -57,11 +55,6 @@ namespace Latelina.Core.Services
 
                 var product = await _productRepository.GetByIdAsync(item.ProductId)
                               ?? throw new ArgumentException($"Product with ID {item.ProductId} was not found.");
-
-                if (product.RequiresPrescription)
-                {
-                    requiresPrescription = true;
-                }
 
                 var vatRate = product.VatRate > 0 ? product.VatRate : DefaultVatRate;
                 var unitPrice = product.Price;
@@ -94,11 +87,6 @@ namespace Latelina.Core.Services
             var distinctVatRates = orderItems.Select(oi => oi.VatRate).Distinct().ToList();
             var aggregatedVatRate = distinctVatRates.Count == 1 ? distinctVatRates[0] : DefaultVatRate;
 
-            if (requiresPrescription && (orderDto.NhifPrescriptions == null || orderDto.NhifPrescriptions.Count == 0))
-            {
-                throw new InvalidOperationException("Prescription details are required for prescription-only items.");
-            }
-
             var order = new Order
             {
                 UserId = userId,
@@ -124,43 +112,11 @@ namespace Latelina.Core.Services
                 Items = orderItems
             };
 
-            if (orderDto.NhifPrescriptions != null && orderDto.NhifPrescriptions.Count > 0)
-            {
-                foreach (var prescriptionDto in orderDto.NhifPrescriptions)
-                {
-                    if (string.IsNullOrWhiteSpace(prescriptionDto.PrescriptionNumber) ||
-                        string.IsNullOrWhiteSpace(prescriptionDto.PersonalIdentificationNumber))
-                    {
-                        throw new ArgumentException("Prescription number and personal identification number are required for NHIF records.");
-                    }
-
-                    var prescribedDate = prescriptionDto.PrescribedDate ?? DateTime.UtcNow;
-                    var purchaseDate = prescriptionDto.PurchaseDate ?? DateTime.UtcNow;
-
-                    order.NhifPrescriptions.Add(new NhifPrescription
-                    {
-                        PrescriptionNumber = Normalize(prescriptionDto.PrescriptionNumber)!,
-                        PersonalIdentificationNumber = Normalize(prescriptionDto.PersonalIdentificationNumber)!,
-                        PrescribedDate = DateTime.SpecifyKind(prescribedDate, DateTimeKind.Utc),
-                        PurchaseDate = DateTime.SpecifyKind(purchaseDate, DateTimeKind.Utc),
-                        OrderNumber = order.OrderNumber,
-                        UserId = userId,
-                        PatientPaidAmount = decimal.Round(prescriptionDto.PatientPaidAmount ?? totalWithVat, 2, MidpointRounding.AwayFromZero),
-                        NhifPaidAmount = decimal.Round(prescriptionDto.NhifPaidAmount ?? 0m, 2, MidpointRounding.AwayFromZero),
-                        OtherCoverageAmount = prescriptionDto.OtherCoverageAmount.HasValue
-                            ? decimal.Round(prescriptionDto.OtherCoverageAmount.Value, 2, MidpointRounding.AwayFromZero)
-                            : null,
-                        CreatedAt = DateTime.UtcNow
-                    });
-                }
-            }
-
             await _orderRepository.AddAsync(order);
 
             var createdOrder = await _orderRepository.Query()
                 .Where(o => o.Id == order.Id)
                 .Include(o => o.Items)
-                .Include(o => o.NhifPrescriptions)
                 .Include(o => o.User)
                 .FirstAsync();
 
@@ -174,7 +130,6 @@ namespace Latelina.Core.Services
             var orders = await _orderRepository.Query()
                 .Where(o => o.UserId == userId)
                 .Include(o => o.Items)
-                .Include(o => o.NhifPrescriptions)
                 .Include(o => o.User)
                 .OrderByDescending(o => o.CreatedAt)
                 .ToListAsync();
@@ -186,7 +141,6 @@ namespace Latelina.Core.Services
         {
             var orders = await _orderRepository.Query()
                 .Include(o => o.Items)
-                .Include(o => o.NhifPrescriptions)
                 .Include(o => o.User)
                 .OrderByDescending(o => o.CreatedAt)
                 .ToListAsync();
@@ -220,7 +174,6 @@ namespace Latelina.Core.Services
             var updatedOrder = await _orderRepository.Query()
                 .Where(o => o.Id == orderId)
                 .Include(o => o.Items)
-                .Include(o => o.NhifPrescriptions)
                 .Include(o => o.User)
                 .FirstOrDefaultAsync()
                 ?? throw new InvalidOperationException("Failed to load the order after updating its status.");
@@ -284,23 +237,6 @@ namespace Latelina.Core.Services
                         TotalPrice = decimal.Round(i.UnitPrice * i.Quantity, 2, MidpointRounding.AwayFromZero),
                         VatAmount = decimal.Round(i.VatAmount, 2, MidpointRounding.AwayFromZero),
                         VatRate = i.VatRate
-                    })
-                    .ToList(),
-                NhifPrescriptions = order.NhifPrescriptions
-                    .OrderBy(p => p.Id)
-                    .Select(p => new NhifPrescriptionDto
-                    {
-                        Id = p.Id,
-                        PrescriptionNumber = p.PrescriptionNumber,
-                        PersonalIdentificationNumber = p.PersonalIdentificationNumber,
-                        PrescribedDate = p.PrescribedDate,
-                        PurchaseDate = p.PurchaseDate,
-                        OrderNumber = p.OrderNumber,
-                        UserId = p.UserId,
-                        PatientPaidAmount = p.PatientPaidAmount,
-                        NhifPaidAmount = p.NhifPaidAmount,
-                        OtherCoverageAmount = p.OtherCoverageAmount,
-                        CreatedAt = p.CreatedAt
                     })
                     .ToList()
             };

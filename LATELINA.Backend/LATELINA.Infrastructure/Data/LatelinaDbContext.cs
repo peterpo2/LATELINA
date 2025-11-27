@@ -16,7 +16,6 @@ namespace Latelina.Infrastructure.Data
             public DbSet<CartItem> CartItems { get; set; }
             public DbSet<Order> Orders { get; set; }
             public DbSet<OrderItem> OrderItems { get; set; }
-            public DbSet<NhifPrescription> NhifPrescriptions { get; set; }
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
                   base.OnModelCreating(modelBuilder);
@@ -171,10 +170,6 @@ namespace Latelina.Infrastructure.Data
                         .HasConstraintName("FK_Orders_Users_OrderUser")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                        entity.HasMany(o => o.NhifPrescriptions)
-                        .WithOne(p => p.Order)
-                        .HasForeignKey(p => p.OrderId)
-                        .OnDelete(DeleteBehavior.Cascade);
                   });
 
                   // ===== ORDER ITEMS =====
@@ -210,43 +205,6 @@ namespace Latelina.Infrastructure.Data
                         .OnDelete(DeleteBehavior.Restrict);
                   });
 
-                  modelBuilder.Entity<NhifPrescription>(entity =>
-                  {
-                        entity.ToTable("NhifPrescriptions", "dbo");
-                        entity.HasKey(e => e.Id);
-                        entity.Property(e => e.Id).UseIdentityColumn();
-                        entity.Property(e => e.PrescriptionNumber)
-                              .IsRequired()
-                              .HasMaxLength(50);
-                        entity.HasIndex(e => e.PrescriptionNumber)
-                              .IsUnique();
-                        entity.Property(e => e.OrderNumber)
-                              .IsRequired()
-                              .HasMaxLength(100);
-                        entity.Property(e => e.PersonalIdentificationNumber)
-                              .IsRequired()
-                              .HasMaxLength(20);
-                        entity.Property(e => e.PatientPaidAmount)
-                              .HasColumnType("decimal(10,2)");
-                        entity.Property(e => e.NhifPaidAmount)
-                              .HasColumnType("decimal(10,2)");
-                        entity.Property(e => e.OtherCoverageAmount)
-                              .HasColumnType("decimal(10,2)");
-                        entity.Property(e => e.PrescribedDate)
-                              .HasColumnType("datetime2");
-                        entity.Property(e => e.PurchaseDate)
-                              .HasColumnType("datetime2");
-                        entity.Property(e => e.CreatedAt)
-                              .HasColumnType("datetime2");
-                        entity.HasOne(e => e.Order)
-                              .WithMany(o => o.NhifPrescriptions)
-                              .HasForeignKey(e => e.OrderId)
-                              .OnDelete(DeleteBehavior.Cascade);
-                        entity.HasOne(e => e.User)
-                              .WithMany(u => u.NhifPrescriptions)
-                              .HasForeignKey(e => e.UserId)
-                              .OnDelete(DeleteBehavior.Restrict);
-                  });
             }
       }
 }

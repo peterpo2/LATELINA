@@ -86,8 +86,6 @@ namespace Latelina.Domain.Entities
         // Navigation properties
         public virtual User User { get; set; } = null!;
         public virtual ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();
-        public virtual ICollection<NhifPrescription> NhifPrescriptions { get; set; } = new List<NhifPrescription>();
-
         [NotMapped]
         public string OrderKey
         {

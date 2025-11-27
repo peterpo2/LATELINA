@@ -33,7 +33,6 @@ namespace Latelina.Core.DTOs
         public string? UserEmail { get; set; }
         public string? UserFullName { get; set; }
         public List<OrderItemDto> Items { get; set; } = new();
-        public List<NhifPrescriptionDto> NhifPrescriptions { get; set; } = new();
     }
 
     public class OrderItemDto
@@ -92,47 +91,6 @@ namespace Latelina.Core.DTOs
 
         [Required]
         public PaymentMethod PaymentMethod { get; set; }
-
-        public List<CreateNhifPrescriptionDto>? NhifPrescriptions { get; set; }
-    }
-
-    public class NhifPrescriptionDto
-    {
-        public int Id { get; set; }
-        public string PrescriptionNumber { get; set; } = string.Empty;
-        public string PersonalIdentificationNumber { get; set; } = string.Empty;
-        public DateTime PrescribedDate { get; set; }
-        public DateTime PurchaseDate { get; set; }
-        public string OrderNumber { get; set; } = string.Empty;
-        public string UserId { get; set; } = string.Empty;
-        public decimal PatientPaidAmount { get; set; }
-        public decimal NhifPaidAmount { get; set; }
-        public decimal? OtherCoverageAmount { get; set; }
-        public DateTime CreatedAt { get; set; }
-    }
-
-    public class CreateNhifPrescriptionDto
-    {
-        [Required]
-        [MaxLength(50)]
-        public string PrescriptionNumber { get; set; } = string.Empty;
-
-        [Required]
-        [MaxLength(20)]
-        public string PersonalIdentificationNumber { get; set; } = string.Empty;
-
-        public DateTime? PrescribedDate { get; set; }
-
-        public DateTime? PurchaseDate { get; set; }
-
-        [Range(typeof(decimal), "0", "79228162514264337593543950335")]
-        public decimal? PatientPaidAmount { get; set; }
-
-        [Range(typeof(decimal), "0", "79228162514264337593543950335")]
-        public decimal? NhifPaidAmount { get; set; }
-
-        [Range(typeof(decimal), "0", "79228162514264337593543950335")]
-        public decimal? OtherCoverageAmount { get; set; }
     }
 
     public class UpdateOrderStatusDto
