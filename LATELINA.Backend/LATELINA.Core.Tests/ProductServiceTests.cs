@@ -46,10 +46,10 @@ public class ProductServiceTests
 
         var filter = new ProductFilterDto
         {
-            CategoryId = seedData.AnalgesicsCategoryId,
+            CategoryId = seedData.GiftsCategoryId,
             MinPrice = 10,
             MaxPrice = 30,
-            SearchTerm = "pain",
+            SearchTerm = "gift",
             PageNumber = 2,
             PageSize = 3
         };
@@ -63,9 +63,9 @@ public class ProductServiceTests
 
         Assert.All(result.Items, item =>
         {
-            Assert.Equal(seedData.AnalgesicsCategoryId, item.CategoryId);
+            Assert.Equal(seedData.GiftsCategoryId, item.CategoryId);
             Assert.InRange(item.Price, filter.MinPrice!.Value, filter.MaxPrice!.Value);
-            Assert.Contains("pain", item.Name, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains("gift", item.Name, StringComparison.OrdinalIgnoreCase);
             Assert.False(string.IsNullOrWhiteSpace(item.CategoryName));
         });
 
@@ -102,7 +102,7 @@ public class ProductServiceTests
 
         var filter = new ProductFilterDto
         {
-            CategoryId = seedData.AnalgesicsCategoryId,
+            CategoryId = seedData.GiftsCategoryId,
             PageNumber = 1,
             PageSize = 5
         };
@@ -127,10 +127,10 @@ public class ProductServiceTests
 
     private static async Task<SeedData> SeedTestDataAsync(LatelinaDbContext context)
     {
-        var analgesics = new Category { Name = "Analgesics", Icon = "pill" };
-        var supplements = new Category { Name = "Supplements", Icon = "leaf" };
+        var gifts = new Category { Name = "Gifts", Icon = "gift" };
+        var toys = new Category { Name = "Toys", Icon = "gamepad" };
 
-        await context.Categories.AddRangeAsync(analgesics, supplements);
+        await context.Categories.AddRangeAsync(gifts, toys);
         await context.SaveChangesAsync();
 
         var products = new List<Product>();
@@ -139,11 +139,11 @@ public class ProductServiceTests
         {
             products.Add(new Product
             {
-                Name = $"Pain Reliever {i}",
-                Description = "Effective pain relief",
+                Name = $"Gift Basket {i}",
+                Description = "Curated gift basket",
                 Price = 5 + i,
                 StockQuantity = 50 + i,
-                CategoryId = analgesics.Id,
+                CategoryId = gifts.Id,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             });
@@ -153,11 +153,11 @@ public class ProductServiceTests
         {
             products.Add(new Product
             {
-                Name = $"Vitamin Boost {i}",
-                Description = "Daily vitamins",
+                Name = $"Toy Set {i}",
+                Description = "Fun playtime set",
                 Price = 15 + i,
                 StockQuantity = 30 + i,
-                CategoryId = supplements.Id,
+                CategoryId = toys.Id,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             });
@@ -167,15 +167,15 @@ public class ProductServiceTests
         await context.SaveChangesAsync();
 
         var matchingProductIds = products
-            .Where(p => p.CategoryId == analgesics.Id
+            .Where(p => p.CategoryId == gifts.Id
                         && p.Price >= 10
                         && p.Price <= 30
-                        && p.Name.Contains("pain", StringComparison.OrdinalIgnoreCase))
+                        && p.Name.Contains("gift", StringComparison.OrdinalIgnoreCase))
             .Select(p => p.Id)
             .OrderBy(id => id)
             .ToList();
 
-        return new SeedData(analgesics.Id, matchingProductIds);
+        return new SeedData(gifts.Id, matchingProductIds);
     }
 
     private static IMapper CreateMapper()
@@ -184,7 +184,7 @@ public class ProductServiceTests
         return configuration.CreateMapper();
     }
 
-    private sealed record SeedData(int AnalgesicsCategoryId, List<int> MatchingProductIds);
+    private sealed record SeedData(int GiftsCategoryId, List<int> MatchingProductIds);
 
     private sealed class CommandCaptureInterceptor : DbCommandInterceptor
     {

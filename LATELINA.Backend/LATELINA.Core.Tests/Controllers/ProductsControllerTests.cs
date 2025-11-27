@@ -36,7 +36,7 @@ public class ProductsControllerTests
     [Fact]
     public async Task CreateProduct_WhenSuccessful_ReturnsCreatedAtAction()
     {
-        var dto = new CreateProductDto { Name = "Painkiller", CategoryId = 1 };
+        var dto = new CreateProductDto { Name = "Toy Car", CategoryId = 1 };
         var product = new ProductDto { Id = 10, Name = dto.Name, CategoryId = dto.CategoryId };
 
         _productServiceMock

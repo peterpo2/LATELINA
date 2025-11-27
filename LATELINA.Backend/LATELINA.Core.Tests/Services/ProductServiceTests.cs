@@ -33,14 +33,14 @@ public class ProductServiceTests
     {
         var createDto = new CreateProductDto
         {
-            Name = "Painkiller",
-            Description = "Fast acting relief",
+            Name = "Toy Car",
+            Description = "Remote control car",
             Price = 19.99m,
             StockQuantity = 10,
             CategoryId = 1
         };
 
-        var category = new Category { Id = 1, Name = "Analgesics", Icon = "pill" };
+        var category = new Category { Id = 1, Name = "Gifts", Icon = "gift" };
 
         _categoryRepositoryMock
             .Setup(repo => repo.GetByIdAsync(createDto.CategoryId))
@@ -68,7 +68,7 @@ public class ProductServiceTests
     {
         var createDto = new CreateProductDto
         {
-            Name = "Painkiller",
+            Name = "Toy Car",
             Price = 19.99m,
             StockQuantity = 10,
             CategoryId = 99
@@ -90,7 +90,7 @@ public class ProductServiceTests
         var existingProduct = new Product
         {
             Id = 5,
-            Name = "Painkiller",
+            Name = "Toy Car",
             CategoryId = 1,
             Price = 9.99m,
             StockQuantity = 5,
@@ -100,12 +100,12 @@ public class ProductServiceTests
 
         var updateDto = new UpdateProductDto
         {
-            Name = "Painkiller Plus",
+            Name = "Toy Car Deluxe",
             CategoryId = 2,
             Price = 14.99m
         };
 
-        var category = new Category { Id = 2, Name = "Supplements", Icon = "leaf" };
+        var category = new Category { Id = 2, Name = "Toys", Icon = "gamepad" };
 
         _productRepositoryMock
             .Setup(repo => repo.GetByIdAsync(existingProduct.Id))
@@ -134,7 +134,7 @@ public class ProductServiceTests
         var existingProduct = new Product
         {
             Id = 5,
-            Name = "Painkiller",
+            Name = "Toy Car",
             CategoryId = 1
         };
 
@@ -159,7 +159,7 @@ public class ProductServiceTests
     [Fact]
     public async Task UpdateProductAsync_ProductNotFound_ThrowsKeyNotFoundException()
     {
-        var updateDto = new UpdateProductDto { Name = "Painkiller" };
+        var updateDto = new UpdateProductDto { Name = "Toy Car" };
 
         _productRepositoryMock
             .Setup(repo => repo.GetByIdAsync(It.IsAny<int>()))
