@@ -1,14 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Bot,
-  Stethoscope,
-  Truck,
-  CheckCircle,
-  Shield,
-  HeartPulse,
-  Headset
-} from 'lucide-react';
+import { Bot, Gift, Truck, CheckCircle, Shield, HeartPulse, Headset } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Services: React.FC = () => {
@@ -29,14 +21,14 @@ const Services: React.FC = () => {
     },
     {
       id: 2,
-      icon: Stethoscope,
-      iconBg: 'bg-blue-100 text-blue-600',
-      title: t('services.telepharmacyTitle'),
-      description: t('services.telepharmacyDescription'),
+      icon: Gift,
+      iconBg: 'bg-pink-100 text-pink-600',
+      title: t('services.customerServiceTitle'),
+      description: t('services.customerServiceDescription'),
       features: [
-        t('services.telepharmacyFeature1'),
-        t('services.telepharmacyFeature2'),
-        t('services.telepharmacyFeature3')
+        t('services.customerServiceFeature1'),
+        t('services.customerServiceFeature2'),
+        t('services.customerServiceFeature3')
       ]
     },
     {
