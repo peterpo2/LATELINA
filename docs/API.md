@@ -34,10 +34,9 @@ GET /api/products?categoryId=1&searchTerm=рози&pageNumber=1&pageSize=20
 
 **Query Parameters:**
 - `categoryId` (optional): Filter by category
-- `searchTerm` (optional): Search in name, description, active ingredient
+- `searchTerm` (optional): Search in name or description
 - `minPrice` (optional): Minimum price filter
 - `maxPrice` (optional): Maximum price filter
-- `requiresPrescription` (optional): Filter prescription products
 - `pageNumber` (optional): Page number (default: 1)
 - `pageSize` (optional): Items per page (default: 20)
 
@@ -51,11 +50,9 @@ GET /api/products?categoryId=1&searchTerm=рози&pageNumber=1&pageSize=20
       "description": "Нежно мече от розови листенца с сатенена панделка.",
       "price": 32.5,
       "stockQuantity": 28,
+      "imageUrl": "https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg",
       "categoryId": 1,
       "categoryName": "Мечета от рози",
-      "requiresPrescription": false,
-      "activeIngredient": "Материал: розови листенца",
-      "dosage": "Размер: 25 см",
       "manufacturer": "Latelina Gifts",
       "rating": 4.7,
       "reviewCount": 89
@@ -87,15 +84,12 @@ Authorization: Bearer <admin-token>
 Content-Type: application/json
 
 {
-  "name": "Нов продукт",
-  "nameEn": "New Product",
+  "name": "Нов подарък",
   "description": "Описание на продукта",
   "price": 10.50,
   "stockQuantity": 100,
   "categoryId": 1,
-  "requiresPrescription": false,
-  "activeIngredient": "Активна съставка",
-  "dosage": "100мг",
+  "imageUrl": "https://example.com/image.jpg",
   "manufacturer": "Производител"
 }
 ```
@@ -137,9 +131,8 @@ X-User-Id: demo-user
     {
       "id": 1,
       "productId": 1,
-      "productName": "Парацетамол 500мг",
-      "imageUrl": "https://example.com/image.jpg",
-      "activeIngredient": "Парацетамол",
+      "productName": "Подаръчна кошница",
+      "imageUrl": "https://example.com/gift-basket.jpg",
       "quantity": 2,
       "unitPrice": 2.30,
       "totalPrice": 4.60
@@ -309,5 +302,4 @@ All list endpoints support pagination with `pageNumber` (default: 1) and `pageSi
 Product queries also accept:
 - **Category**: `categoryId=1`
 - **Price range**: `minPrice=5&maxPrice=50`
-- **Search term**: `searchTerm=роза` (matches name, description, or material fields)
-- **Legacy prescription flag**: `requiresPrescription=true|false` (always false for the demo catalog)
+- **Search term**: `searchTerm=роза` (matches name or description)
