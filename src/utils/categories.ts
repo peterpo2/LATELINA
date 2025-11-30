@@ -13,23 +13,10 @@ const categoryIconMap: Record<string, LucideIcon> = {
   crown: Crown,
 };
 
-const categoryNameTranslations: Record<string, string> = {
-  'Мечета от рози': 'Rose bears',
-  'Подаръчни кошници': 'Gift baskets',
-  'Романтични комплекти': 'Romantic sets',
-  'Сладки изненади': 'Sweet treats',
-  'Декорации': 'Decor',
-  'Специални поводи': 'Special moments',
-};
-
 export const getCategoryIcon = (iconKey: string): LucideIcon => {
   return categoryIconMap[iconKey] || Heart;
 };
 
-export const getCategoryDisplayName = (category: Category, language: Language): string => {
-  if (language === 'en') {
-    return categoryNameTranslations[category.name] || category.name;
-  }
-
+export const getCategoryDisplayName = (category: Category, _language: Language): string => {
   return category.name;
 };

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
 
 export type Language = 'bg';
 
@@ -10,8 +10,7 @@ interface LanguageContextType {
   t: (key: string, params?: TranslationParams) => string;
 }
 
-const translations = {
-  bg: {
+const translations: Record<string, string> = {
     // Header
     'header.title': 'Latelina Gifts',
     'header.subtitle': 'Романтични подаръци с лична грижа',
@@ -660,21 +659,16 @@ const translations = {
     'faq.a7': 'Да, доставяме в цялата страна. Доставката извън София отнема до 24 часа.',
     'faq.q8': 'Сигурни ли са личните ми данни?',
     'faq.a8': 'Да, използваме най-високите стандарти за сигурност и криптиране на данните. Вашата информация е напълно защитена.'
-  }
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>('bg');
-
-  const setLanguage = (lang: Language) => {
-    // Single-language mode: always keep Bulgarian
-    setLanguageState('bg');
-  };
+  const language: Language = 'bg';
+  const setLanguage = (_lang: Language) => {};
 
   const t = (key: string, params?: TranslationParams): string => {
-    const template = translations.bg[key as keyof (typeof translations)['bg']] || key;
+    const template = translations[key] || key;
 
     if (!params) {
       return template;

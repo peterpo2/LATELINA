@@ -16,7 +16,6 @@ import {
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import LanguageSwitcher from './LanguageSwitcher';
 import LoginModal from './auth/LoginModal';
 import RegisterModal from './auth/RegisterModal';
 import LatelinaLogo from './Logo';
@@ -43,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const { state, dispatch } = useCart();
   const { user, isAuthenticated, isAdmin, isStaff, logout } = useAuth();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -85,22 +84,20 @@ const Header: React.FC<HeaderProps> = ({
     return () => window.clearInterval(intervalId);
   }, []);
 
-  const locale = language === 'bg' ? 'bg-BG' : 'en-GB';
-
   const formattedDate = useMemo(
     () =>
-      new Intl.DateTimeFormat(locale, {
+      new Intl.DateTimeFormat('bg-BG', {
         dateStyle: 'full',
       }).format(currentDateTime),
-    [currentDateTime, locale]
+    [currentDateTime]
   );
 
   const formattedTime = useMemo(
     () =>
-      new Intl.DateTimeFormat(locale, {
+      new Intl.DateTimeFormat('bg-BG', {
         timeStyle: 'medium',
       }).format(currentDateTime),
-    [currentDateTime, locale]
+    [currentDateTime]
   );
 
   const handleLogout = async () => {
@@ -184,7 +181,6 @@ const Header: React.FC<HeaderProps> = ({
             <span className="text-primary-600 font-medium">{t('header.freeDelivery')}</span>
           </div>
           <div className="flex items-center space-x-6">
-            <LanguageSwitcher />
             <div className="flex items-center space-x-2 text-primary-700 font-medium">
               <span>{formattedDate}</span>
               <span className="text-gray-300">•</span>
