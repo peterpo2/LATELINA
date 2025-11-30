@@ -2,20 +2,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy only the project files needed for restore
-COPY LATELINA.Backend/LATELINA.Web/Latelina.Web.csproj Latelina.Web/
-COPY LATELINA.Backend/LATELINA.Core/Latelina.Core.csproj Latelina.Core/
-COPY LATELINA.Backend/LATELINA.Domain/Latelina.Domain.csproj Latelina.Domain/
-COPY LATELINA.Backend/LATELINA.Infrastructure/Latelina.Infrastructure.csproj Latelina.Infrastructure/
+# Copy only the project files needed for restore (preserve folder casing)
+COPY LATELINA.Backend/LATELINA.Web/Latelina.Web.csproj LATELINA.Web/
+COPY LATELINA.Backend/LATELINA.Core/LATELINA.Core.csproj LATELINA.Core/
+COPY LATELINA.Backend/LATELINA.Domain/LATELINA.Domain.csproj LATELINA.Domain/
+COPY LATELINA.Backend/LATELINA.Infrastructure/LATELINA.Infrastructure.csproj LATELINA.Infrastructure/
 
 # Restore dependencies based only on the Web project
-RUN dotnet restore Latelina.Web/Latelina.Web.csproj
+RUN dotnet restore LATELINA.Web/Latelina.Web.csproj
 
 # Copy the rest of the source
 COPY LATELINA.Backend/ ./
 
 # Publish
-RUN dotnet publish Latelina.Web/Latelina.Web.csproj -c Release -o /out /p:UseAppHost=false
+RUN dotnet publish LATELINA.Web/Latelina.Web.csproj -c Release -o /out /p:UseAppHost=false
 
 # ---------- runtime stage ----------
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
