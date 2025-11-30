@@ -12,9 +12,9 @@ interface LanguageContextType {
 
 const translations: Record<string, string> = {
     // Header
-    'header.title': 'Latelina Gifts',
-    'header.subtitle': 'Романтични подаръци с лична грижа',
-    'header.search': 'Търсете мечета от рози, кошници, изненади...',
+    'header.title': 'ЛАТЕЛИНА',
+    'header.subtitle': 'Ръчно изработени подаръци',
+    'header.search': 'Търсене...',
     'header.phone': '+359 2 123 4567',
     'header.freeDelivery': 'Безплатна доставка над €25',
     'header.myProfile': 'Моят профил',
@@ -39,7 +39,7 @@ const translations: Record<string, string> = {
     'navigation.contacts': 'Контакти',
 
     // Hero Section
-    'hero.title': 'Latelina Gifts',
+    'hero.title': 'ЛАТЕЛИНА',
     'hero.description': 'Ръчно изработени мечета от рози, подаръчни кошници и романтични изненади.',
     'hero.certifiedQuality': 'Изработено с любов',
     'hero.support247': 'Лесна онлайн поръчка',
@@ -477,7 +477,7 @@ const translations: Record<string, string> = {
     'admin.news.delete.cancel': 'Отказ',
 
     // Footer
-    'footer.title': 'Latelina Gifts',
+    'footer.title': 'ЛАТЕЛИНА',
     'footer.description': 'Ръчно изработени подаръци, които носят усмивки и създават спомени.',
     'footer.version': 'Версия {version}',
     'footer.quickLinks': 'Бързи връзки',
@@ -496,14 +496,14 @@ const translations: Record<string, string> = {
     'footer.terms': 'Условия за ползване',
     'footer.cookies': 'Бисквитки',
     'footer.feedbackTitle': 'Споделете мнението си',
-    'footer.feedbackDescription': 'Вашата обратна връзка ни помага да подобряваме магазина и обслужването на Latelina Gifts.',
+    'footer.feedbackDescription': 'Вашата обратна връзка ни помага да подобряваме магазина и обслужването на ЛАТЕЛИНА.',
     'footer.ratingLabel': 'Оценка',
     'footer.starsLabel': 'звезди',
     'footer.messageLabel': 'Отзив',
     'footer.messagePlaceholder': 'Опишете вашето впечатление, какво харесвате и какво можем да подобрим...',
-    'footer.feedbackPrivacy': 'Мнението ви ще бъде изпратено по имейл до екипа на Latelina Gifts',
+    'footer.feedbackPrivacy': 'Мнението ви ще бъде изпратено по имейл до екипа на ЛАТЕЛИНА',
     'footer.submitButton': 'Изпрати по имейл',
-    'footer.feedbackEmailSubject': 'Обратна връзка за Latelina Gifts',
+    'footer.feedbackEmailSubject': 'Обратна връзка за ЛАТЕЛИНА',
 
     // Common
     'common.loading': 'Зареждане...',
@@ -526,7 +526,7 @@ const translations: Record<string, string> = {
     'common.currency': '€',
 
     // About Us
-    'about.description': 'Latelina Gifts е бутиков онлайн магазин за романтични подаръци и изработени на ръка детайли.',
+    'about.description': 'ЛАТЕЛИНА е бутиков онлайн магазин за романтични подаръци и изработени на ръка детайли.',
     'about.mission': 'Нашата мисия',
     'about.missionText': 'Да ви помогнем да кажете „обичам те“ по красив и личен начин.',
     'about.vision': 'Нашата визия',
@@ -560,7 +560,7 @@ const translations: Record<string, string> = {
     'services.deliveryFeature1': 'Проследяване на пратката',
     'services.deliveryFeature2': 'Гъвкави опции за получаване',
     'services.deliveryFeature3': 'Сигурно опаковане',
-    'services.valueTitle': 'Защо Latelina Gifts',
+    'services.valueTitle': 'Защо ЛАТЕЛИНА',
     'services.valueSubtitle': 'Създаваме чувство, а не просто продукт.',
     'services.valuePatients': 'Лична грижа',
     'services.valuePatientsDesc': 'Отговаряме бързо и съдействаме за всяка идея.',

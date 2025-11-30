@@ -48,7 +48,7 @@ export const products: Product[] = [
     stockQuantity: 28,
     imageUrl: 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=400',
     categoryId: 1,
-    manufacturer: 'Latelina Gifts',
+    manufacturer: 'ЛАТЕЛИНА',
     reviewCount: 89,
   },
   {
@@ -59,7 +59,7 @@ export const products: Product[] = [
     stockQuantity: 35,
     imageUrl: 'https://images.pexels.com/photos/3683081/pexels-photo-3683081.jpeg?auto=compress&cs=tinysrgb&w=400',
     categoryId: 1,
-    manufacturer: 'Latelina Gifts',
+    manufacturer: 'ЛАТЕЛИНА',
     reviewCount: 67,
   },
   {
@@ -70,7 +70,7 @@ export const products: Product[] = [
     stockQuantity: 15,
     imageUrl: 'https://images.pexels.com/photos/3683107/pexels-photo-3683107.jpeg?auto=compress&cs=tinysrgb&w=400',
     categoryId: 2,
-    manufacturer: 'Latelina Gifts',
+    manufacturer: 'ЛАТЕЛИНА',
     reviewCount: 134,
     promotion: {
       id: 'promo-basket-soft',
@@ -90,7 +90,7 @@ export const products: Product[] = [
     stockQuantity: 22,
     imageUrl: 'https://images.pexels.com/photos/3683083/pexels-photo-3683083.jpeg?auto=compress&cs=tinysrgb&w=400',
     categoryId: 3,
-    manufacturer: 'Latelina Gifts',
+    manufacturer: 'ЛАТЕЛИНА',
     reviewCount: 98,
     promotion: {
       id: 'promo-romantic-set',
@@ -121,7 +121,7 @@ export const products: Product[] = [
     stockQuantity: 32,
     imageUrl: 'https://images.pexels.com/photos/3683050/pexels-photo-3683050.jpeg?auto=compress&cs=tinysrgb&w=400',
     categoryId: 4,
-    manufacturer: 'Latelina Bakery',
+    manufacturer: 'ЛАТЕЛИНА Пекарна',
     reviewCount: 52,
   },
   {
@@ -132,7 +132,7 @@ export const products: Product[] = [
     stockQuantity: 18,
     imageUrl: 'https://images.pexels.com/photos/3683110/pexels-photo-3683110.jpeg?auto=compress&cs=tinysrgb&w=400',
     categoryId: 5,
-    manufacturer: 'Latelina Atelier',
+    manufacturer: 'ЛАТЕЛИНА Ателие',
     reviewCount: 145,
   },
   {
@@ -161,7 +161,7 @@ export const products: Product[] = [
     stockQuantity: 12,
     imageUrl: 'https://images.pexels.com/photos/3683099/pexels-photo-3683099.jpeg?auto=compress&cs=tinysrgb&w=400',
     categoryId: 6,
-    manufacturer: 'Latelina Atelier',
+    manufacturer: 'ЛАТЕЛИНА Ателие',
     reviewCount: 112,
   },
   {
@@ -172,7 +172,7 @@ export const products: Product[] = [
     stockQuantity: 10,
     imageUrl: 'https://images.pexels.com/photos/3683077/pexels-photo-3683077.jpeg?auto=compress&cs=tinysrgb&w=400',
     categoryId: 6,
-    manufacturer: 'Latelina Gifts',
+    manufacturer: 'ЛАТЕЛИНА',
     reviewCount: 156,
   },
 ];

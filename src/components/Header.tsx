@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Search,
@@ -51,7 +51,6 @@ const Header: React.FC<HeaderProps> = ({
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showOrdersModal, setShowOrdersModal] = useState(false);
-  const [currentDateTime, setCurrentDateTime] = useState(() => new Date());
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   const canAccessAdmin = isAdmin || isStaff;
@@ -71,34 +70,6 @@ const Header: React.FC<HeaderProps> = ({
       window.removeEventListener('latelina:openLoginModal', handleOpenLoginModal);
     };
   }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return undefined;
-    }
-
-    const intervalId = window.setInterval(() => {
-      setCurrentDateTime(new Date());
-    }, 1000);
-
-    return () => window.clearInterval(intervalId);
-  }, []);
-
-  const formattedDate = useMemo(
-    () =>
-      new Intl.DateTimeFormat('bg-BG', {
-        dateStyle: 'full',
-      }).format(currentDateTime),
-    [currentDateTime]
-  );
-
-  const formattedTime = useMemo(
-    () =>
-      new Intl.DateTimeFormat('bg-BG', {
-        timeStyle: 'medium',
-      }).format(currentDateTime),
-    [currentDateTime]
-  );
 
   const handleLogout = async () => {
     await logout();
@@ -172,55 +143,13 @@ const Header: React.FC<HeaderProps> = ({
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         {/* Top bar */}
-        <div className="hidden md:flex items-center justify-between py-2 text-sm text-gray-600 border-b border-gray-50">
+        <div className="hidden md:flex items-center justify-center py-2 text-sm text-gray-600 border-b border-gray-50">
           <div className="flex items-center space-x-6">
+            <span className="text-primary-600 font-medium">{t('header.freeDelivery')}</span>
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-primary-600" />
               <span className="font-medium">{t('header.phone')}</span>
             </div>
-            <span className="text-primary-600 font-medium">{t('header.freeDelivery')}</span>
-          </div>
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2 text-primary-700 font-medium">
-              <span>{formattedDate}</span>
-              <span className="text-gray-300">•</span>
-              <span>{formattedTime}</span>
-            </div>
-            {isAuthenticated && canAccessAdmin && (
-              <Link
-                to="/admin"
-                className="inline-flex items-center space-x-1 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-sm font-semibold text-amber-700 transition hover:border-amber-300 hover:bg-amber-100"
-              >
-                <PanelBadgeIcon className="h-4 w-4" />
-                <span>{panelLabel}</span>
-              </Link>
-            )}
-            {isAuthenticated && (
-              <button
-                onClick={openOrdersModal}
-                className="inline-flex items-center space-x-1 rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-sm font-semibold text-primary-700 transition hover:border-primary-300 hover:bg-primary-100"
-              >
-                <Receipt className="h-4 w-4" />
-                <span>{t('header.myOrders')}</span>
-              </button>
-            )}
-            {isAuthenticated ? (
-              <span className="text-primary-700 font-medium">
-                {t('header.hello')}, {user?.fullName || user?.email}
-                {canAccessAdmin && (
-                  <PanelBadgeIcon className={`inline w-4 h-4 ml-1 ${
-                    isAdmin ? 'text-amber-500' : 'text-sky-500'
-                  }`} />
-                )}
-              </span>
-            ) : (
-              <button
-                onClick={() => setShowLoginModal(true)}
-                className="hover:text-primary-700 transition-colors font-medium"
-              >
-                {t('header.myProfile')}
-              </button>
-            )}
           </div>
         </div>
 
