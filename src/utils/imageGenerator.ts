@@ -83,32 +83,32 @@ const productCategoryMap: Record<
   { subtitle: string; gradient: Gradient; icon: string }
 > = {
   1: {
-    subtitle: 'Pain Relief Essentials',
+    subtitle: 'Любов и романтика',
     gradient: ['#0f766e', '#14b8a6'],
-    icon: '💊',
+    icon: '❤️',
   },
   2: {
-    subtitle: 'Daily Vitamins & Wellness',
+    subtitle: 'Подаръчни идеи',
     gradient: ['#7c3aed', '#a855f7'],
-    icon: '🌿',
+    icon: '🎁',
   },
   3: {
-    subtitle: 'Cold & Flu Care',
+    subtitle: 'Специални поводи',
     gradient: ['#2563eb', '#38bdf8'],
-    icon: '🤧',
-  },
-  4: {
-    subtitle: 'Digestive Support',
-    gradient: ['#f97316', '#fbbf24'],
-    icon: '🫗',
-  },
-  5: {
-    subtitle: 'Skin & Hair Care',
-    gradient: ['#be123c', '#f43f5e'],
     icon: '✨',
   },
+  4: {
+    subtitle: 'Уют у дома',
+    gradient: ['#f97316', '#fbbf24'],
+    icon: '🕯️',
+  },
+  5: {
+    subtitle: 'Блясък и стил',
+    gradient: ['#be123c', '#f43f5e'],
+    icon: '🌟',
+  },
   6: {
-    subtitle: 'Kids Health',
+    subtitle: 'За малките радости',
     gradient: ['#2563eb', '#a855f7'],
     icon: '🧸',
   },
@@ -127,9 +127,9 @@ const defaultNewsGradient: Gradient = ['#312e81', '#6366f1'];
 
 export const generateProductImage = (title: string, categoryId: number): string => {
   const config = productCategoryMap[categoryId] ?? {
-    subtitle: 'Pharmacy Essentials',
+    subtitle: 'Подаръчни вдъхновения',
     gradient: ['#0369a1', '#38bdf8'] as Gradient,
-    icon: '🩺',
+    icon: '🎀',
   };
 
   const truncatedTitle = truncate(title, 28);
@@ -166,7 +166,7 @@ export const attachCategoryArtwork = (category: Category, accent: Gradient): str
     width: 400,
     height: 260,
     gradient: accent,
-    icon: '🏥',
+    icon: '🎁',
     accent: '#ffffff10',
     fontSize: 26,
     subtitleSize: 16,

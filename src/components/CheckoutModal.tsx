@@ -1,4 +1,3 @@
-/* cspell:word nhif */
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   CheckCircle2,

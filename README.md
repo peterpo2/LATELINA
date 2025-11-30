@@ -54,13 +54,13 @@ graph TB
 ```json
 {
   "id": 1,
-  "name": "Парацетамол 500мг",
-  "nameEn": "Paracetamol 500mg",
-  "description": "Ефективно обезболяващо и жаропонижаващо средство",
-  "price": 2.30,
-  "stockQuantity": 150,
-  "categoryName": "Обезболяващи",
-  "requiresPrescription": false
+  "name": "Мече от рози",
+  "nameEn": "Rose Bear",
+  "description": "Ръчно изработен подарък с романтични рози",
+  "price": 45.0,
+  "stockQuantity": 25,
+  "categoryName": "Романтични подаръци",
+  "isGiftWrapped": true
 }
 ```
 
