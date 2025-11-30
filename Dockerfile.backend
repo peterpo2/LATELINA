@@ -4,9 +4,9 @@ WORKDIR /src
 
 # Copy only the project files needed for restore (preserve folder casing)
 COPY LATELINA.Backend/LATELINA.Web/Latelina.Web.csproj LATELINA.Web/
-COPY LATELINA.Backend/LATELINA.Core/LATELINA.Core.csproj LATELINA.Core/
-COPY LATELINA.Backend/LATELINA.Domain/LATELINA.Domain.csproj LATELINA.Domain/
-COPY LATELINA.Backend/LATELINA.Infrastructure/LATELINA.Infrastructure.csproj LATELINA.Infrastructure/
+COPY LATELINA.Backend/LATELINA.Core/Latelina.Core.csproj LATELINA.Core/
+COPY LATELINA.Backend/LATELINA.Domain/Latelina.Domain.csproj LATELINA.Domain/
+COPY LATELINA.Backend/LATELINA.Infrastructure/Latelina.Infrastructure.csproj LATELINA.Infrastructure/
 
 # Restore dependencies based only on the Web project
 RUN dotnet restore LATELINA.Web/Latelina.Web.csproj
