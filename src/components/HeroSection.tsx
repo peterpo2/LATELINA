@@ -51,33 +51,6 @@ const HeroSection: React.FC = () => {
               </Link>
             </div>
 
-            {/* Stats - Only 3 key stats */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-gray-200 max-w-xl mx-auto">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600 mb-1">
-                  10,000+
-                </div>
-                <div className="text-sm text-gray-600">
-                  {t("hero.satisfiedClients")}
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600 mb-1">
-                  5,000+
-                </div>
-                <div className="text-sm text-gray-600">
-                  {t("hero.productsInStock")}
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600 mb-1">
-                  24/7
-                </div>
-                <div className="text-sm text-gray-600">
-                  {t("hero.professionalCare")}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

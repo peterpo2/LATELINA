@@ -526,7 +526,7 @@ const translations: Record<string, string> = {
     'common.currency': '€',
 
     // About Us
-    'about.description': 'ЛАТЕЛИНА е бутиков онлайн магазин за романтични подаръци и изработени на ръка детайли.',
+    'about.description': 'Лателина е бутиков онлайн магазин за романтични подаръци и изработени на ръка детайли.',
     'about.mission': 'Нашата мисия',
     'about.missionText': 'Да ви помогнем да кажете „обичам те“ по красив и личен начин.',
     'about.vision': 'Нашата визия',

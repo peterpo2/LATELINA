@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Contacts: React.FC = () => {
@@ -23,7 +23,7 @@ const Contacts: React.FC = () => {
           <div className="space-y-8">
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('contacts.info')}</h2>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="bg-green-100 p-3 rounded-xl">
@@ -44,38 +44,6 @@ const Contacts: React.FC = () => {
                     <p className="text-gray-600">latelinaproject@gmail.com</p>
                   </div>
                 </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="bg-red-100 p-3 rounded-xl">
-                    <MapPin className="w-6 h-6 text-red-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{t('contacts.address')}</h3>
-                    <p className="text-gray-600">ул. Витошка 1, София 1000</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-xl">
-                    <Clock className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{t('footer.workingHours')}</h3>
-                    <p className="text-gray-600 whitespace-pre-line">{t('footer.workingHoursText')}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Emergency Contact */}
-            <div className="bg-red-50 border border-red-200 rounded-2xl p-6">
-              <div className="flex items-center space-x-3 mb-4">
-                <MessageCircle className="w-6 h-6 text-red-600" />
-                <h3 className="font-bold text-red-900">{t('contacts.emergency')}</h3>
-              </div>
-              <p className="text-red-700 mb-4">{t('contacts.emergencyText')}</p>
-              <div className="bg-red-600 text-white px-4 py-2 rounded-lg inline-block font-bold">
-                {t('contacts.emergencyNumber')}: 112
               </div>
             </div>
           </div>

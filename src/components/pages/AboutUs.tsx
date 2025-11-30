@@ -82,27 +82,6 @@ const AboutUs: React.FC = () => {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl p-8 text-white">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold mb-2">10,000+</div>
-              <div className="text-primary-100">{t("about.clients")}</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">5,000+</div>
-              <div className="text-primary-100">{t("about.products")}</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">15+</div>
-              <div className="text-primary-100">{t("about.experience")}</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">24/7</div>
-              <div className="text-primary-100">{t("about.support")}</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

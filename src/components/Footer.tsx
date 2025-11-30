@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Instagram, Stethoscope, Shield, Award, Star } from 'lucide-react';
+import { Mail, Phone, Facebook, Instagram, Stethoscope, Shield, Award, Star } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import LatelinaLogo from './Logo';
 import { quickLinks } from '../data/navigation';
@@ -115,23 +115,6 @@ const Footer: React.FC = () => {
                 </div>
                 <span className="text-gray-300">hello@latelina.bg</span>
               </div>
-              <div className="flex items-center space-x-4 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div className="bg-gradient-to-r from-red-500 to-pink-500 p-2 rounded-lg">
-                  <MapPin className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-gray-300">ул. Витошка 1, София</span>
-              </div>
-            </div>
-            
-            {/* Working hours */}
-            <div className="mt-8 p-4 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 backdrop-blur-sm rounded-xl border border-primary-500/20">
-              <h5 className="font-semibold text-white mb-3 flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span>{t('footer.workingHours')}</span>
-              </h5>
-              <p className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">
-                {t('footer.workingHoursText')}
-              </p>
             </div>
           </div>
         </div>
